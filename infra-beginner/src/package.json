@@ -3,9 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "build": "slidev build",
     "dev": "slidev --open",
-    "export": "slidev export"
+    "build": "slidev build --base /infra-beginner/ --out ../../dist/infra-beginner",
+    "export": "slidev export --dark --output ../infra-beginner.pdf"
   }
 }
 

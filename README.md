@@ -3,6 +3,29 @@
 <https://ja.sli.dev/guide/>
 <https://zenn.dev/jy8752/articles/ad565a43ba0e0a>
 
+## 環境構築
+
+### ルートディレクトリに`vite.config.ts`を作成
+
+```ts:./vite.config.ts
+import { defineConfig } from "vite";
+
+export default defineConfig({
+  build: {
+    emptyOutDir: false, // 出力ディレクトリを空にする
+    outDir: "./dist", // 出力先ディレクトリを指定
+  },
+});
+```
+
+### ルートディレクトリのpackage.jsonにplaywrightを追加
+
+```sh
+pnpm i -w -D playwright-chromium
+```
+
+### リダイレクト設定
+
 ## スライド作成
 
 ```sh
@@ -76,5 +99,23 @@ Slidevプロジェクトの`package.json`にある依存関係は他のスライ
 +   "vue": "^3.5.12"
 + }
 }
+```
 
+### ビルドとエクスポート
+
+作成したSlidevプロジェクトのpackage.jsonにあるビルドとエクスポートのスクリプトを以下のように修正
+
+```diff json:./slide-name/package.json
+{
+  "name": "src",
+  "type": "module",
+  "private": true,
+  "scripts": {
+-   "build": "slidev build",
+    "dev": "slidev --open",
+-   "export": "slidev export"
++   "build": "slidev build --base /slide-name/ --out ../../dist/slide-name",
++   "export": "slidev export --dark --output ../slide-name.pdf"
+  }
+}
 ```
