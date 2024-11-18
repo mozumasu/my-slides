@@ -24,6 +24,14 @@ export default defineConfig({
 pnpm i -w -D playwright-chromium
 ```
 
+### prettierの設定
+
+<https://github.com/slidevjs/prettier-plugin>
+
+```sh
+pnpm i -w -D prettier prettier-plugin-slidev
+```
+
 ### リダイレクト設定
 
 ## スライド作成
