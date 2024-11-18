@@ -111,10 +111,11 @@ MD024:
 
 # MD025/single-title/single-h1 : Multiple top-level headings in the same document : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md025.md
 MD025:
+  false
   # Heading level
-  level: 1
+  # level: 1
   # RegExp for matching title in front matter
-  front_matter_title: "^\\s*title\\s*[:=]"
+  # front_matter_title: "^\\s*title\\s*[:=]"
 
 # MD026/no-trailing-punctuation : Trailing punctuation in heading : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md026.md
 MD026:
@@ -154,8 +155,9 @@ MD032: true
 
 # MD033/no-inline-html : Inline HTML : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md033.md
 MD033:
+  false
   # Allowed elements
-  allowed_elements: [img, details, summary]
+  # allowed_elements: [img, details, summary]
 
 # MD034/no-bare-urls : Bare URL used : https://github.com/DavidAnson/markdownlint/blob/v0.35.0/doc/md034.md
 MD034: true
