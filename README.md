@@ -127,3 +127,11 @@ Slidevプロジェクトの`package.json`にある依存関係は他のスライ
   }
 }
 ```
+
+## スライドテーマの作成
+
+<https://ja.sli.dev/themes/write-a-theme.html>
+
+```sh
+pnpm create slidev-theme
+```
