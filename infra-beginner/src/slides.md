@@ -15,6 +15,8 @@ transition: none
 mdc: true
 overviewSnapshots: true
 
+colorSchema: dark
+
 fonts:
   # basically the text
   sans: "Noto Sans JP"
@@ -115,7 +117,7 @@ layout: center
 
 <style>
 span {
-  font-size: 7.5em;
+  font-size: 128px;
   background-color: #0d00ff;
   background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
   background-size: 100%;
