@@ -1,8 +1,8 @@
 ---
 theme: default
-title: 楽しくインフラ入門するために
+title: No CUI, No Life.
 info: |
-  ## インフラエンジニア4ヶ月目の学び
+  ## CUIは良いぞ
   WeztermとNeovimはいいぞ
 
 class: text-center
@@ -10,7 +10,7 @@ class: text-center
 drawings:
   persist: true
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
+transition: none
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 overviewSnapshots: true
@@ -25,14 +25,13 @@ fonts:
   mono: "Fira Code"
 ---
 
-# 楽しいインフラ入門
+# No <span>CUI</span>, No Life
 
-## インフラを楽しむための知識たち
-
-めぐろLT #22 「LT忘年会2024」
-
-<div class="pt-12">
-  <span class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">mozumasu</span>
+<div class="opacity-50">
+めぐろLT #22 「 LT忘年会2024 」
+</div>
+<div class="pt-4">
+  <p class="px-2 rounded opacity-50">mozumasu</p>
 </div>
 
 <div class="abs-br m-6 flex gap-2">
@@ -45,89 +44,13 @@ fonts:
 <style>
 .slidev-layout {
   background: #000428;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: -webkit-linear-gradient(45deg, #261040,#000428,#02032b);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(45deg, #261040,#000428,#02032b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
-</style>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
-layout: center
----
-
-# CLI は良いぞ
-
----
-layout: center
----
-
-# 最も自分の思考について来れるもの
-
-# それはCLI
-
----
-
-## 自己紹介
-
-コード化されているものと[CLI]{style="color:red"}と[CUI]{style="color:red"}が好き  
-インフラ4ヶ月目
-
-<a href="https://zenn.dev/mozumasu" target="_blank">
-<img src=./images/zenn-2024.png alt="Zenn" width="900">
-</a>
-
----
-layout: center
----
-
-# ランキング形式でお届け
-
-~ 独断と偏見を添えて ~
-
----
-
-# 3位 <v-click> ターミナルとNeovimのカスタマイズ </v-click>
-
-<v-click>ターミナルとエディタに詳しくなる</v-click>
-<v-click>
-
-- 初めての言語を触る時もエディタが知らないことを教えてくれる  
-  LSP, Linter, Formatterを設定する習慣がつく
-
-- viの操作も怖く無い
-
-</v-click>
-
-<br>
-<br>
-
-<v-click>
-
-## Neovimあるある
-
-</v-click>
-
-<v-click>
-
-- 途中から入った現場のコードでLinterのWarning祭り
-
-- プラグイン情報 「そこ (公式) に無かったら無いですね」
-
-</v-click>
-
-<v-click>公式ドキュメントを読む習慣がつく</v-click>
-
-<!--
-エディタで解決できることはエディタで解決するべき
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
   background-size: 100%;
   -webkit-background-clip: text;
   -moz-background-clip: text;
@@ -135,6 +58,571 @@ h1 {
   -moz-text-fill-color: transparent;
 }
 </style>
+
+---
+layout: center
+---
+
+# <span>CUI</span> は良いぞ
+
+<style>
+span {
+  font-size: 2.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+layout: center
+---
+
+# 最も自分の思考について来れるもの
+
+# それは <v-click><span>CUI</span></v-click>
+
+<style>
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+layout: center
+---
+
+# 生活を豊かにするもの
+
+<div class="pt-8">
+
+それは　　　 <v-click><span>CUI</span></v-click>
+
+</div>
+
+<hr>
+
+<style>
+span {
+  font-size: 7.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+
+## 自己紹介
+
+- 好きなもの: Wezterm, Neovim, zsh, IaC
+- インフラ4ヶ月目
+- X: [@mozumasu](https://twitter.com/mozumasu)
+
+<br>
+
+<a href="https://zenn.dev/mozumasu" target="_blank">
+<img src=./images/zenn-2024.png alt="Zenn" width="700">
+</a>
+
+---
+layout: center
+---
+
+# CUIってなんだっけ
+
+CUI: Character User Interface
+
+キーボードでコマンドを入力して操作する画面
+
+<img src="https://storage.googleapis.com/zenn-user-upload/deployed-images/08a43a1e073bbbdd72d4a4d3.gif?sha=5754a4180c7b26d61c0699e7df1e903ca46a63c8">
+
+---
+layout: center
+---
+
+# <span>[CUI]{style="color:red"}</span> 使いこなせてる？
+
+<style>
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+layout: center
+---
+
+# <span>[CUI]{style="color:red"}</span> 生活を始めてみよう✨
+
+<style>
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+layout: center
+---
+
+# なにから始めればいいの？🤔
+
+---
+
+# dotfilesを始めよう
+
+<br>
+
+dotfilesは設定ファイルを管理するリポジトリのこと
+
+<a href="https://zenn.dev/mozumasu" target="_blank">
+<img src=./images/dotfiles.png alt="dotfiles" width="700">
+</a>
+<!-- [![dotfiles](https://github-readme-stats.vercel.app/api/pin/?username=mozumasu&repo=dotfiles&theme=radical)](https://github.com/mozumasu/dotfiles) -->
+
+<style>
+h1 {
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 20%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+layout: center
+---
+
+# 設定　=　<v-click>呼吸</v-click>
+
+---
+layout: center
+---
+
+# Q. 設定ファイル、何秒で開ける？
+
+---
+layout: center
+---
+
+# 一緒に測ってみよう！
+
+```sh
+time cat
+```
+
+---
+layout: center
+---
+
+# A. 10秒未満
+
+---
+
+# 爆速で設定ファイルを開く
+
+<br>
+
+Step1. 管理ディレクトリに移動
+
+```sh
+z [移動したいディレクトリ名の一部]
+```
+
+Step2. ファイルを開く
+
+```sh
+# control + t でファイル名をfzfで選択
+```
+
+<br>
+
+使用ツール
+
+- https://github.com/junegunn/fzf
+- https://github.com/ajeetdsouza/zoxide
+
+---
+
+# dotfilesによって得られるの恩恵
+
+- 別の端末になってもgit cloneでいつもの環境
+- 設定ファイルに詳しくなる
+- ツールに詳しくなる
+- 名刺代わりになる
+
+<br>
+
+<v-click><span>設定を変更するハードルが下がる</span></v-click>
+
+<style>
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+
+# 趣味にもピッタリ
+
+<br>
+
+dotfiles❤️10ヶ月目  
+気づいたらコミットが積み上がっていく
+
+<a href="https://zenn.dev/mozumasu" target="_blank">
+<img src=./images/dotfiles-commits.png alt="Zenn" width="700">
+</a>
+
+---
+layout: center
+---
+
+# <span>dotfiles</span> 入門
+
+<style>
+span {
+  font-size: 1.5em;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 10%, #a32bff 50%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+</style>
+
+---
+
+# 準備
+
+CUI生活を快適にするツールをインストール
+
+```sh
+brew install gh      # GitHub CLI
+brew install ghq     # ローカルでのリポジトリ管理
+brew install bat     # catをより便利にカラフルに
+brew install jesseduffield/lazygit/lazygit # git管理をクールに
+brew install fzf     # ファジーファインダー: 曖昧検索して選択
+brew install zoxide  # ディレクトリ移動の履歴を保存・移動
+```
+
+<br>
+参照
+
+> <https://formulae.brew.sh/formula/gh>  
+> <https://formulae.brew.sh/formula/ghq>  
+> <https://formulae.brew.sh/formula/fzf>  
+> <https://formulae.brew.sh/formula/bat>  
+> https://github.com/jesseduffield/lazygit?tab=readme-ov-file#homebrew
+
+---
+
+# 準備
+
+クローンしたリポジトリに爆速移動できるようにしよう
+
+Control + g でプロジェクトに移動できる
+
+```sh
+# ~/.zshrc
+function ghq-fzf() {
+  local src=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
+  if [ -n "$src" ]; then
+    BUFFER="cd $(ghq root)/$src"
+    zle accept-line
+  fi
+  zle -R -c
+}
+zle -N ghq-fzf
+bindkey '^g' ghq-fzf
+```
+
+設定を反映
+
+```sh
+exec $SHELL -l
+```
+
+---
+
+# dotfilesを用意
+
+<br>
+
+dotfilesというGitHubリポジトリを用意
+
+```sh
+gh repo create dotfiles --private
+```
+
+GitHubリポジトリをローカルにクローン
+
+```sh
+ghq get dotfiles
+```
+
+Control + g でプロジェクトディレクトリに移動
+
+---
+
+# Brewfileを管理しよう
+
+現在インストールしているパッケージをBrewfileに書き出す
+
+```sh
+brew bundle dump
+```
+
+早速Git管理だ！
+
+```sh
+git add Brewfile
+git commit -m "Add Brewfile."
+git push
+```
+
+GitHubリポジトリを確認してみよう
+
+```sh
+gh browse
+```
+
+---
+layout: center
+---
+
+# まとめ
+
+- CUI入門はdotfilesがおすすめ
+- 設定 = 呼吸
+
+---
+layout: center
+---
+
+# ご清聴ありがとうございました
+
+---
+layout: center
+---
+
+# Tips
+
+という名の使用しなかったスライドの供養
+
+---
+
+# zshの設定ファイルを追加
+
+```sh
+mv ~/.zshrc [dotfileのパス]
+```
+
+ホームディレクトリに.zshrcのシンボリックリンクを作成
+
+```sh
+ln -s [dotfileのパス]/.zshrc ~/.zshrc
+```
+
+---
+
+# ディレクトリに戻るとき、これやってない？
+
+cd .\./ を連発！
+
+```sh
+cd ../../../
+```
+
+<div v-click>
+
+## もっとスマートに
+
+直前にいたディレクトリに戻る
+
+```sh
+cd -
+```
+
+</div>
+
+<div v-click>
+
+プロジェクトのルートディレクトリに移動
+
+```sh
+git rev-parse --show-toplevel
+```
+
+<br>
+
+</div>
+
+---
+layout: center
+---
+
+# コマンドが長い？覚えられない？
+
+---
+
+# aliasで短く
+
+```sh
+# alias設定前
+git rev-parse --show-toplevel
+
+# alias設定後
+proot
+```
+
+<br>
+
+<div v-click>
+
+aliasの設定
+
+```sh
+# ~/.zshrc
+abbr -S proot='cd $(git rev-parse --show-toplevel)' >>/dev/null
+```
+
+</div>
+<div v-click>
+
+こういうふうにもかける
+
+```sh
+abbr -S -qq proot='cd $(git rev-parse --show-toplevel)'
+```
+
+</div>
+
+---
+
+# aliasの設定にもいろいろ
+
+<br>
+入力後にスペースを入力したり、コマンド実行すると元のコマンドが表示される (Zshの独自機能)
+
+```sh
+abbr -S -qq ll='ls -l'
+```
+
+<br>
+元のコマンドを表示しない
+
+```sh
+alias ggrks='google'
+```
+
+---
+
+# 覚えられないなら参照しちゃおう
+
+<br>
+
+サクッと概要を知りたいな
+
+```sh
+fzf --help
+```
+
+詳しく知りたいな
+
+```sh
+man fzf
+```
+
+---
+
+# zshのキーバインドを確認してみよう
+
+```sh
+bindkey
+```
+
+---
+
+# 謎の記号だらけ...?
+
+キーバインドを割り当てたいけど、記号がわからない
+
+これで確認できる
+
+```sh
+cat
+```
+
+---
+
+# オレオレキーバインド思想
+
+キーバインドの設定で守る方針
+
+- デフォルトのキーバインド必ず確認
+- emacs/vimのキーバインドを潰さない
+- 使わないキーバインドは無効化
+
+できたら守ったほうがいいもの
+
+- ウィンドウマネージャー(例: [AeroSpace](https://github.com/nikitabobko/AeroSpace))のキーバンドを潰さない
+- ターミナルのキーバインドを潰さない
+
+---
+
+# CUIに影響するキーバインド設定の場
+
+- シェル
+- ターミナル
+- karabiner
+
+影響範囲は下に行くほど大きい
+
+<div v-click>
+影響範囲が大きいものから設定するのがおすすめ
+</div>
 
 ---
 
@@ -153,7 +641,7 @@ ssh -i ~/.ssh/hoge-key hoge-user@127.0.0.0.1 -p 22
 
 ---
 
-# 2位 ~/.ssh/config
+# ~/.ssh/config
 
 ```sh
 # ~/.ssh/config
@@ -263,307 +751,30 @@ Include conf.d/hosts/*
 
 ---
 
-# 1位 dotfiles
+# zshであそぼ
 
-<br>
-dotfile : 設定ファイル全般のこと
+3回も打てばあらかた覚える
 
-↑これを管理するリポジトリをdotfilesリポジトリと呼ぶ
+hogeディレクトリとtestディレクトリを作成
 
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
----
-layout: center
----
-
-# 設定 =
-
-# <v-click>呼吸</v-click>
-
----
-
-# 得られるの恩恵
-
-- 設定ファイルに詳しくなる
-- 構成管理の習慣がつく
-- 他人のdotfilesを見るのが楽しくなる
-- ツールに詳しくなる
-
----
-layout: center
----
-
-# dotfiles 入門
-
----
-
-# ちょっと準備....
-
-CLI生活を快適にするツールをインストール  
-なくてもいいけどあると便利
+拡張子`.hogehoge`のファイルを100個作成
 
 ```sh
-brew install gh      # GitHub CLI
-brew install ghq     # ローカルでのリポジトリ管理
-brew install fzf     # ファジーファインダー: 曖昧検索して選択
-brew install zoxide  # ディレクトリ移動の履歴を保存・移動
+mkdir hoge test
+touch hoge/{1..100}.hoge test/{1..100}.hoge
+ls hoge test
 ```
 
-<br>
-参照
-
-> https://formulae.brew.sh/formula/gh  
-> https://formulae.brew.sh/formula/ghq  
-> https://formulae.brew.sh/formula/fzf  
-> https://formulae.brew.sh/formula/zoxide
-
----
-
-# ちょっと準備....
-
-クローンしたリポジトリに爆速移動できるようにしよう
-
-Control + g でプロジェクトに移動できる
+まとめて消す
 
 ```sh
-# ~/.zshrc
-function ghq-fzf() {
-  local src=$(ghq list | fzf --preview "bat --color=always --style=header,grid --line-range :80 $(ghq root)/{}/README.*")
-  if [ -n "$src" ]; then
-    BUFFER="cd $(ghq root)/$src"
-    zle accept-line
-  fi
-  zle -R -c
-}
-zle -N ghq-fzf
-bindkey '^g' ghq-fzf
+rm -f **/*.hoge
+ls hoge test
 ```
 
-設定を反映
+後片付け
 
 ```sh
-exec $SHELL -l
+rm -rf hoge test
+ls hoge test
 ```
-
----
-
-# dotfilesを始めよう
-
-<br>
-
-## リポジトリを用意しよう
-
-dotfilesというGitHubリポジトリを用意
-
-```sh
-gh repo create dotfiles --private
-```
-
-GitHubリポジトリをローカルにクローン
-
-```sh
-ghq get dotfiles
-```
-
-Control + g でプロジェクトディレクトリに移動
-
----
-
-# Brewfileを管理しよう
-
-現在インストールしているパッケージをBrewfileに書き出す
-
-```sh
-brew bundle dump
-```
-
-早速Git管理だ！
-
-```sh
-git add Brewfile
-git commit -m "Add Brewfile."
-git push
-```
-
-GitHubリポジトリを確認してみよう
-
-```sh
-gh browse
-```
-
----
-layout: center
----
-
-# 設定ファイルを追加しよ
-
----
-
-# zshの設定ファイルを追加
-
-```sh
-mv ~/.zshrc [dotfileのパス]
-```
-
----
-layout: center
----
-
-# そのファイル、いつまで探し続けるの？
-
-人生探し物で終えるつもり？
-
----
-
-# ディレクトリは飛び回ってなんぼ
-
-```sh
-z  [移動したいディレクトリ名の一部]
-```
-
----
-
-# プロジェクトルートに戻るたびにやってない？
-
-階層間違えがち
-
-```sh
-cd ../../../
-```
-
----
-
-# もっとスマートに
-
-もう.の数を気にしなくていい
-
-```sh
-git rev-parse --show-toplevel
-```
-
-<br>
-<div v-click>
-  長すぎる
-
-# aliasで短く賢く
-
-```sh
-abbr -S proot='cd $(git rev-parse --show-toplevel)' >>/dev/null
-```
-
-設定後のコマンド
-
-```sh
-proot
-```
-
-</div>
-
----
-
-# aliasの設定にもいろいろ
-
-<br>
-入力後にスペースを入力したり、コマンド実行すると元のコマンドが表示される (Zshの独自機能)
-
-```sh
-abbr -S ll='ls -l' >>/dev/null
-```
-
-<br>
-元のコマンドを表示しない
-
-```sh
-alias ggrks='google'
-```
-
----
-
-# 直前のディレクトリに移動
-
-```sh
-cd -
-```
-
----
-
-# zshのキーバインドを確認してみよう
-
-```sh
-bindkey
-```
-
----
-
-# 謎の記号だらけ...?
-
-キーバインドを割り当てたいけど、記号がわからない
-
-これで確認できる
-
-```sh
-cat
-```
-
-参考になるサイト↓
-[にわか管理者のためのLinux運用入門(286) zshを使う - ショートカットキーの読み方 | TECH+（テックプラス）](https://news.mynavi.jp/techplus/article/techp5581/)
-
----
-
-# オレオレキーバインド思想
-
-キーバインドの設定で守るべき方針
-
-- デフォルトのキーバインド必ず確認
-- emacs/vimのキーバインドを潰さない
-- 使わないキーバインドは無効化
-
----
-
-# CLIに影響するキーバインド設定の場
-
-- シェル
-- ターミナル
-- karabiner
-
-影響範囲は下に行くほど大きい
-
----
-
-# ランキングには入らなかったけどいい感じのやつ
-
-- Makefile
-- Taskfile
-
----
-
-# Taskfile
-
-```sh
-brew install go-task
-```
-
----
-
-## layout: center
-
-# まとめ
-
-- 設定 = 呼吸
-- 設定ファイルを開くのにかけていい時間は5秒まで
-
----
-
-## layout: center
-
-# ご清聴ありがとうございました！
