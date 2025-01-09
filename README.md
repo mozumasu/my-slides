@@ -27,6 +27,7 @@ pnpm i -w -D playwright-chromium
 ### prettierの設定
 
 <https://github.com/slidevjs/prettier-plugin>
+<https://sli.dev/features/prettier-plugin>
 
 ```sh
 pnpm i -w -D prettier prettier-plugin-slidev
@@ -132,6 +133,8 @@ Slidevプロジェクトの`package.json`にある依存関係は他のスライ
 
 <https://ja.sli.dev/themes/write-a-theme.html>
 
+命名は`slidev-theme-`で始める必要がある
+
 ```sh
-pnpm create slidev-theme
+pnpm create slidev-theme-hoge
 ```

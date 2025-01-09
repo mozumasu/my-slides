@@ -31,7 +31,11 @@ importers:
         specifier: ^1.0.5
         version: 1.0.5(prettier@3.3.3)
 
-  infra-beginner/src: {}
+  infra-beginner/src:
+    devDependencies:
+      playwright-chromium:
+        specifier: ^1.48.2
+        version: 1.48.2
 
 packages:
 
