@@ -1,0 +1,38 @@
+.safe {
+  color: rgb(100, 255, 150);
+  background-color: rgb(0, 255, 150, 0.02);
+}
+
+.warn {
+  color: rgb(255, 108, 108);
+  background-color: rgb(255, 118, 100, 0.05);
+}
+
+.slidev-layout h1 {
+  font-size: 36px;
+  background-color: #0d00ff;
+  background-image: linear-gradient(45deg, #2baaff 20%, #a32bff 40%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
+
+.text-red {
+  color: red;
+}
+
+.message {
+  font-size: 36px;
+}
+
+/* 本文の文字サイズを変更 */
+/* Slidev のデフォルトスタイルのオーバーライド */
+.slidev-layout p {
+  font-size: 24px;
+}
+
+/*.slidev-layout {*/
+/*  font-size: 28px;*/
+/*}*/
