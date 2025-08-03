@@ -1,0 +1,14 @@
+{
+  "name": "@packages/config",
+  "version": "0.0.1",
+  "type": "module",
+  "private": true,
+  "exports": {
+    "./tailwind": "./tailwind.config.js",
+    "./biome": "./biome.json"
+  },
+  "dependencies": {
+    "tailwindcss": "^3.4.0",
+    "@biomejs/biome": "^1.9.4"
+  }
+}

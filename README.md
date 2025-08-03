@@ -1,140 +1,207 @@
-# スライド管理レポジトリ
+# 🚀 Personal Portfolio
 
-<https://ja.sli.dev/guide/>
-<https://zenn.dev/jy8752/articles/ad565a43ba0e0a>
+> ブログとスライドのポートフォリオサイト powered by Astro & Slidev
 
-## 環境構築
+[![Turborepo](https://img.shields.io/badge/built%20with-Turborepo-cc00ff.svg)](https://turbo.build/)
+[![Astro](https://img.shields.io/badge/built%20with-Astro-ff5d01.svg)](https://astro.build/)
+[![Slidev](https://img.shields.io/badge/built%20with-Slidev-1e293b.svg)](https://sli.dev/)
 
-### ルートディレクトリに`vite.config.ts`を作成
+## ✨ 特徴
 
-```ts:./vite.config.ts
-import { defineConfig } from "vite";
+- **📝 ブログ**: Astro製のモダンSPA
+- **🎬 スライド**: Slidev製のインタラクティブプレゼンテーション
+- **⚡ Turborepo**: 高速並列ビルド・開発
+- **🎨 統一設計**: Tailwind CSS + Biome
+- **🔄 共通コンポーネント**: モノレポによる効率的な開発
 
-export default defineConfig({
-  build: {
-    emptyOutDir: false, // 出力ディレクトリを空にする
-    outDir: "./dist", // 出力先ディレクトリを指定
-  },
-});
+## 🏗️ プロジェクト構造
+
+```
+my-portfolio/
+├── apps/
+│   ├── blog/                 # Astroブログ
+│   └── slides/               # Slidevプレゼンテーション
+│       ├── 202501-lt/        # 2025年LT
+│       ├── infra-beginner/   # インフラ初心者向け
+│       └── favorite-oss/     # お気に入りOSS
+├── packages/
+│   ├── config/               # 共通設定（Tailwind、Biome）
+│   ├── ui/                   # 共通UIコンポーネント
+│   └── lib/                  # 共通ライブラリ
+├── turbo.json                # Turborepo設定
+├── makefile                  # 開発コマンド
+└── pnpm-workspace.yaml       # ワークスペース設定
 ```
 
-### ルートディレクトリのpackage.jsonにplaywrightを追加
+## 🛠️ 技術スタック
 
-```sh
-pnpm i -w -D playwright-chromium
+### フロントエンド
+
+- **[Astro](https://astro.build/)** - 静的サイトジェネレーター
+- **[Slidev](https://sli.dev/)** - プレゼンテーションフレームワーク
+- **[Vue.js](https://vuejs.org/)** - UIコンポーネント
+- **[Tailwind CSS](https://tailwindcss.com/)** - スタイリング
+
+### 開発環境
+
+- **[Turborepo](https://turbo.build/)** - モノレポ管理・高速ビルド
+- **[pnpm](https://pnpm.io/)** - パッケージマネージャー
+- **[Biome](https://biomejs.dev/)** - リント・フォーマット
+- **[TypeScript](https://www.typescriptlang.org/)** - 型安全性
+
+### デプロイ
+
+- **[Cloudflare Workers](https://workers.cloudflare.com/)** - ホスティング
+- **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** - ドメイン管理
+
+## 🚀 セットアップ
+
+### 必要環境
+
+- Node.js 18+
+- pnpm 9+
+- fzf (スライド選択用、オプション)
+
+### インストール
+
+```bash
+# リポジトリをクローン
+git clone <repository-url>
+cd my-portfolio
+
+# 依存関係をインストール
+make install
+# または
+pnpm install
 ```
 
-### prettierの設定
+## 💻 開発コマンド
 
-<https://github.com/slidevjs/prettier-plugin>
-<https://sli.dev/features/prettier-plugin>
+### 基本コマンド
 
-```sh
-pnpm i -w -D prettier prettier-plugin-slidev
+```bash
+# ヘルプ表示
+make
+
+# 全プロジェクト同時開発
+make dev
+
+# ブログ開発
+make blog
+
+# 全スライド開発
+make slides
+
+# スライド選択開発（fzf）
+make slide-select
+
+# 新しいスライド作成（インタラクティブ）
+make new-slide
+# または引数で指定
+make new-slide NAME=my-presentation
 ```
 
-### リダイレクト設定
+### ビルド・デプロイ
 
-## スライド作成
+```bash
+# 全プロジェクトビルド
+make build
 
-```sh
-mkdir slide-name
-cd slide-name
-# プロジェクトはsrcにする
-pnpm create slidev@latest
+# スライドPDF出力
+make export
 ```
 
-ディレクトリ構成は以下のようになる
+### メンテナンス
 
-```sh
-.
-|-- slide-name
-|   `-- src
-|       |-- components
-|       |   `-- Counter.vue
-|       |-- pages
-|       |   `-- imported-slides.md
-|       |-- snippets
-|       |   `-- external.ts
-|       |-- .gitignore
-|       |-- .npmrc
-|       |-- README.md
-|       |-- netlify.toml
-|       |-- package.json
-|       |-- slides.md
-|       `-- vercel.json
-|-- package.json
-`-- pnpm-workspace.yaml
+```bash
+# 依存関係インストール
+make install
+
+# キャッシュ・ビルド成果物削除
+make clean
+
+# コード整形
+make format
+
+# リント実行
+make lint
+
+# 型チェック
+make type-check
+
+# プロジェクト状況確認
+make status
 ```
 
-Slidevプロジェクトの`package.json`にある依存関係は他のスライドでも使用するため、ルートに移す
+## 📝 コンテンツ作成
 
-```diff json:./slide-name/package.json
-{
-  "name": "src",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "slidev build",
-    "dev": "slidev --open",
-    "export": "slidev export"
-  },
-- "dependencies": {
--   "@slidev/cli": "^0.50.0-beta.6",
--   "@slidev/theme-default": "latest",
--   "@slidev/theme-seriph": "latest",
--   "vue": "^3.5.12"
-- }
-}
+### 新しいブログ記事
+
+```bash
+# ブログ開発環境起動
+make blog
+
+# apps/blog/src/pages/ に記事を追加
 ```
 
-```diff json:./package.json
-{
-  "name": "my-slides",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "packageManager": "pnpm@9.12.2",
-+ "dependencies": {
-+   "@slidev/cli": "^0.50.0-beta.6",
-+   "@slidev/theme-default": "latest",
-+   "@slidev/theme-seriph": "latest",
-+   "vue": "^3.5.12"
-+ }
-}
+### 新しいスライド
+
+```bash
+# 新しいスライドプロジェクトを作成（推奨・インタラクティブ）
+make new-slide
+# プロジェクト名を入力: my-presentation
+
+# または引数で直接指定
+make new-slide NAME=my-presentation
+
+# 手動で作成する場合
+cd apps/slides
+mkdir my-new-slide
+cd my-new-slide
+# package.jsonとslides.mdを手動作成
 ```
 
-### ビルドとエクスポート
+**`make new-slide`コマンドの特徴:**
+- 🎯 **インタラクティブ**: プロジェクト名を対話的に入力可能
+- 📦 **自動生成**: package.jsonとslides.mdを自動作成
+- 🔧 **依存関係**: 必要なパッケージを自動インストール  
+- ✅ **エラーハンドリング**: 重複チェック・入力検証
+- 🚀 **標準テンプレート**: Slidev公式テンプレート付き
 
-作成したSlidevプロジェクトのpackage.jsonにあるビルドとエクスポートのスクリプトを以下のように修正
+## 🎨 スタイル設定
 
-```diff json:./slide-name/package.json
-{
-  "name": "src",
-  "type": "module",
-  "private": true,
-  "scripts": {
--   "build": "slidev build",
-    "dev": "slidev --open",
--   "export": "slidev export"
-+   "build": "slidev build --base /slide-name/ --out ../../dist/slide-name",
-+   "export": "slidev export --dark --output ../slide-name.pdf"
-  }
-}
+### Tailwind CSS
+
+共通のTailwind設定は `packages/config/tailwind.config.js` にあります。
+
+### Biome（フォーマット・リント）
+
+設定は `packages/config/biome.json` で一元管理されています。
+
+### カスタムテーマ
+
+Slidevのカスタムテーマは `packages/ui/slidev-theme-mozumasu/` にあります。
+
+## 🚢 デプロイ
+
+### Cloudflare Workers
+
+```bash
+# ビルド
+make build
+
+# デプロイ（Wranglerが設定済みの場合）
+pnpm wrangler deploy
 ```
 
-## スライドテーマの作成
+## 📚 参考リンク
 
-<https://ja.sli.dev/themes/write-a-theme.html>
+- [Astro Documentation](https://docs.astro.build/)
+- [Slidev Documentation](https://sli.dev/)
+- [Turborepo Documentation](https://turbo.build/repo/docs)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
 
-命名は`slidev-theme-`で始める必要がある
+## 📄 ライセンス
 
-```sh
-pnpm create slidev-theme-hoge
-```
+MIT License
