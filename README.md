@@ -36,24 +36,28 @@ my-portfolio/
 ## 🛠️ 技術スタック
 
 ### フロントエンド
+
 - **[Astro](https://astro.build/)** - 静的サイトジェネレーター
 - **[Slidev](https://sli.dev/)** - プレゼンテーションフレームワーク
 - **[Vue.js](https://vuejs.org/)** - UIコンポーネント
 - **[Tailwind CSS](https://tailwindcss.com/)** - スタイリング
 
 ### 開発環境
+
 - **[Turborepo](https://turbo.build/)** - モノレポ管理・高速ビルド
 - **[pnpm](https://pnpm.io/)** - パッケージマネージャー
 - **[Biome](https://biomejs.dev/)** - リント・フォーマット
 - **[TypeScript](https://www.typescriptlang.org/)** - 型安全性
 
 ### デプロイ
+
 - **[Cloudflare Workers](https://workers.cloudflare.com/)** - ホスティング
 - **[Cloudflare Registrar](https://www.cloudflare.com/products/registrar/)** - ドメイン管理
 
 ## 🚀 セットアップ
 
 ### 必要環境
+
 - Node.js 18+
 - pnpm 9+
 - fzf (スライド選択用、オプション)
@@ -90,6 +94,9 @@ make slides
 
 # スライド選択開発（fzf）
 make slide-select
+
+# 新しいスライド作成
+make new-slide NAME=my-presentation
 ```
 
 ### ビルド・デプロイ
@@ -138,45 +145,34 @@ make blog
 ### 新しいスライド
 
 ```bash
-# apps/slides/ ディレクトリに移動
-cd apps/slides
+# 新しいスライドプロジェクトを作成（推奨）
+make new-slide NAME=my-presentation
 
-# 新しいスライドプロジェクト作成
+# または手動で作成
+cd apps/slides
 mkdir my-new-slide
 cd my-new-slide
-
-# package.jsonを作成
-cat > package.json << 'EOF'
-{
-  "name": "slides-my-new-slide",
-  "type": "module",
-  "private": true,
-  "scripts": {
-    "build": "slidev build",
-    "dev": "slidev --open",
-    "export": "slidev export"
-  },
-  "devDependencies": {
-    "@slidev/cli": "^0.50.0-beta.6",
-    "@slidev/theme-default": "^0.25.0",
-    "@slidev/theme-seriph": "^0.25.0",
-    "vue": "^3.5.12"
-  }
-}
-EOF
-
-# slides.mdを作成してスライド内容を記述
+# package.jsonとslides.mdを手動作成
 ```
+
+**`make new-slide`コマンドの特徴:**
+- 📦 package.jsonとslides.mdを自動生成
+- 🔧 依存関係を自動インストール  
+- ✅ エラーハンドリング（重複チェック等）
+- 🚀 Slidev標準テンプレート付き
 
 ## 🎨 スタイル設定
 
 ### Tailwind CSS
+
 共通のTailwind設定は `packages/config/tailwind.config.js` にあります。
 
 ### Biome（フォーマット・リント）
+
 設定は `packages/config/biome.json` で一元管理されています。
 
 ### カスタムテーマ
+
 Slidevのカスタムテーマは `packages/ui/slidev-theme-mozumasu/` にあります。
 
 ## 🚢 デプロイ
