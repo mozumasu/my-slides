@@ -95,7 +95,9 @@ make slides
 # スライド選択開発（fzf）
 make slide-select
 
-# 新しいスライド作成
+# 新しいスライド作成（インタラクティブ）
+make new-slide
+# または引数で指定
 make new-slide NAME=my-presentation
 ```
 
@@ -145,10 +147,14 @@ make blog
 ### 新しいスライド
 
 ```bash
-# 新しいスライドプロジェクトを作成（推奨）
+# 新しいスライドプロジェクトを作成（推奨・インタラクティブ）
+make new-slide
+# プロジェクト名を入力: my-presentation
+
+# または引数で直接指定
 make new-slide NAME=my-presentation
 
-# または手動で作成
+# 手動で作成する場合
 cd apps/slides
 mkdir my-new-slide
 cd my-new-slide
@@ -156,10 +162,11 @@ cd my-new-slide
 ```
 
 **`make new-slide`コマンドの特徴:**
-- 📦 package.jsonとslides.mdを自動生成
-- 🔧 依存関係を自動インストール  
-- ✅ エラーハンドリング（重複チェック等）
-- 🚀 Slidev標準テンプレート付き
+- 🎯 **インタラクティブ**: プロジェクト名を対話的に入力可能
+- 📦 **自動生成**: package.jsonとslides.mdを自動作成
+- 🔧 **依存関係**: 必要なパッケージを自動インストール  
+- ✅ **エラーハンドリング**: 重複チェック・入力検証
+- 🚀 **標準テンプレート**: Slidev公式テンプレート付き
 
 ## 🎨 スタイル設定
 
