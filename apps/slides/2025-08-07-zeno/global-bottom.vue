@@ -68,10 +68,10 @@ const colorSchemes = computed(() => {
   } else {
     // Neon theme (original)
     return {
-      layer1: { from: '#8b5cf6', to: 'violet-500/20' },
-      layer2: { from: '#a855f7', to: 'purple-500/20' },
-      layer3: { from: '#7c3aed', to: 'violet-600/20' },
-      layer4: { from: '#06b6d4', to: 'cyan-500/20' },
+      layer1: { from: '#8b5cf6', to: '#c4b5fd' },
+      layer2: { from: '#a855f7', to: '#c084fc' },
+      layer3: { from: '#7c3aed', to: '#a78bfa' },
+      layer4: { from: '#06b6d4', to: '#67e8f9' },
       ocean1: { from: '#20B2AA', to: '#40E0D0' },
       ocean2: { from: '#00CED1', to: '#48D1CC' },
       ocean3: { from: '#00BFFF', to: '#87CEEB' },
