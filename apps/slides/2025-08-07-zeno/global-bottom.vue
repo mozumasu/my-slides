@@ -15,36 +15,7 @@ const toggleTheme = () => {
   console.log('Background theme switched to:', currentTheme.value)
 }
 
-// Simple seeded random function (fallback for seedrandom)
-function seededRandom(seed: string) {
-  let state = seed.split("").reduce((a, b) => {
-    a = (a << 5) - a + b.charCodeAt(0);
-    return a & a;
-  }, 0);
 
-  return function () {
-    state = (state * 1664525 + 1013904223) % 4294967296;
-    return Math.abs(state / 4294967296);
-  };
-}
-
-type Range = [number, number];
-type Distribution =
-  | "full"
-  | "top"
-  | "bottom"
-  | "left"
-  | "right"
-  | "top-left"
-  | "top-right"
-  | "bottom-left"
-  | "bottom-right"
-  | "center";
-
-const currentSlideNo = ref(1);
-const distribution = ref<Distribution>("full");
-const baseOpacity = 0.08;
-const opacity = computed(() => baseOpacity);
 const hue = ref(0);
 
 // Theme-based color schemes
@@ -72,7 +43,6 @@ const colorSchemes = computed(() => {
     }
   }
 });
-const seed = ref("default");
 const animationTime = ref(0);
 
 // Three.js water surface
@@ -316,10 +286,6 @@ const waterFragmentShader = `
 
 const canvasRef = ref<HTMLCanvasElement>();
 
-const overflow = 0.3;
-const disturb = 0.3;
-const disturbChance = 0.3;
-
 // Initialize Three.js water surface
 const initWaterSurface = () => {
   if (!canvasRef.value) return;
@@ -442,119 +408,9 @@ const cleanupWater = () => {
   }
 };
 
-function distributionToLimits(dist: Distribution) {
-  const min = -0.2;
-  const max = 1.2;
-  let x: Range = [min, max];
-  let y: Range = [min, max];
 
-  function intersection(a: Range, b: Range): Range {
-    return [Math.max(a[0], b[0]), Math.min(a[1], b[1])];
-  }
-
-  const limits = dist.split("-");
-
-  for (const limit of limits) {
-    switch (limit) {
-      case "top":
-        y = intersection(y, [min, 0.6]);
-        break;
-      case "bottom":
-        y = intersection(y, [0.4, max]);
-        break;
-      case "left":
-        x = intersection(x, [min, 0.6]);
-        break;
-      case "right":
-        x = intersection(x, [0.4, max]);
-        break;
-      case "center":
-        x = intersection(x, [0.25, 0.75]);
-        y = intersection(y, [0.25, 0.75]);
-        break;
-      case "full":
-        x = intersection(x, [0, 1]);
-        y = intersection(y, [0, 1]);
-        break;
-    }
-  }
-
-  return { x, y };
-}
-
-function distance2([x1, y1]: Range, [x2, y2]: Range) {
-  return (x2 - x1) ** 2 + (y2 - y1) ** 2;
-}
-
-function usePoly(number = 16) {
-  function getPoints(): Range[] {
-    const limits = distributionToLimits(distribution.value);
-    const rng = seededRandom(`${seed.value}-${currentSlideNo.value}`);
-
-    function randomBetween([a, b]: Range) {
-      return rng() * (b - a) + a;
-    }
-
-    function applyOverflow(random: number, overflow: number) {
-      random = random * (1 + overflow * 2) - overflow;
-      return rng() < disturbChance ? random + (rng() - 0.5) * disturb : random;
-    }
-
-    return Array.from({ length: number })
-      .fill(0)
-      .map(() => [
-        applyOverflow(randomBetween(limits.x), overflow),
-        applyOverflow(randomBetween(limits.y), overflow),
-      ]);
-  }
-
-  const points = ref(getPoints());
-  const poly = computed(() =>
-    points.value.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(", "),
-  );
-
-  function jumpPoints() {
-    const newPoints = new Set(getPoints());
-    points.value = points.value.map((o) => {
-      let minDistance = Number.POSITIVE_INFINITY;
-      let closest: Range | undefined;
-      for (const n of newPoints) {
-        const d = distance2(o, n);
-        if (d < minDistance) {
-          minDistance = d;
-          closest = n;
-        }
-      }
-      if (closest) newPoints.delete(closest);
-      return closest || o;
-    });
-  }
-
-  // Update on slide change simulation - disabled to prevent flickering
-  // watch(currentSlideNo, () => {
-  //   jumpPoints();
-  // });
-
-  return poly;
-}
-
-const poly1 = usePoly(12);
-const poly2 = usePoly(8);
-const poly3 = usePoly(5);
-const poly4 = usePoly(3);
 
 onMounted(() => {
-  // Update slide number based on URL
-  const updateSlideNumber = () => {
-    const path = window.location.pathname;
-    const match = path.match(/\/(\d+)$/);
-    if (match) {
-      currentSlideNo.value = parseInt(match[1]);
-    } else {
-      currentSlideNo.value = 1;
-    }
-  };
-
   // Animation loop
   const animate = () => {
     animationTime.value += 0.02;
@@ -562,12 +418,7 @@ onMounted(() => {
     requestAnimationFrame(animate);
   };
 
-  // Initial update
-  updateSlideNumber();
   animate();
-
-  // Listen for popstate events (navigation)
-  window.addEventListener("popstate", updateSlideNumber);
 
   // Listen for theme toggle (T key)
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -586,15 +437,10 @@ onMounted(() => {
   // Window resize handler
   window.addEventListener('resize', handleResize);
 
-  // Periodically check for changes (fallback)
-  const interval = setInterval(updateSlideNumber, 500);
-
   // Cleanup
   return () => {
-    window.removeEventListener("popstate", updateSlideNumber);
     window.removeEventListener("keydown", handleKeyPress);
     window.removeEventListener('resize', handleResize);
-    clearInterval(interval);
   };
 });
 
@@ -619,84 +465,6 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div
-    class="bg transform-gpu overflow-hidden pointer-events-none"
-    :style="{ 
-      filter: `blur(80px) hue-rotate(${hue}deg)`,
-      transform: `scale(${1 + Math.sin(animationTime * 0.4) * 0.08}) rotate(${Math.cos(animationTime * 0.1) * 0.5}deg)`
-    }"
-    aria-hidden="true"
-  >
-    <!-- Primary layers -->
-    <div
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly1})`, 
-        background: `linear-gradient(to right, ${colorSchemes.layer1.from}, ${colorSchemes.layer1.to})`,
-        opacity: currentTheme === 'ocean' ? opacity * 1.2 : opacity * 0.8,
-        transform: `translate(${Math.sin(animationTime * 0.6) * 20}px, ${Math.cos(animationTime * 0.4) * 15}px) scale(${1 + Math.sin(animationTime * 0.8) * 0.15})`
-      }"
-    />
-    <div
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly2})`, 
-        background: `linear-gradient(to left, ${colorSchemes.layer2.from}, ${colorSchemes.layer2.to})`,
-        opacity: currentTheme === 'ocean' ? opacity * 1.0 : opacity * 0.7,
-        transform: `translate(${Math.cos(animationTime * 0.5) * -25}px, ${Math.sin(animationTime * 0.7) * 20}px) scale(${1 + Math.cos(animationTime * 1.1) * 0.2})`
-      }"
-    />
-    <div
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly3})`, 
-        background: `linear-gradient(to top, ${colorSchemes.layer3.from}, ${colorSchemes.layer3.to})`,
-        opacity: currentTheme === 'ocean' ? 0.25 : 0.15,
-        transform: `translate(${Math.sin(animationTime * 0.3) * 30}px, ${Math.cos(animationTime * 0.6) * -10}px) scale(${1 + Math.sin(animationTime * 1.3) * 0.25})`
-      }"
-    />
-    <div
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly4})`, 
-        background: `linear-gradient(to bottom right, ${colorSchemes.layer4.from}, ${colorSchemes.layer4.to})`,
-        opacity: currentTheme === 'ocean' ? 0.2 : 0.1,
-        transform: `translate(${Math.cos(animationTime * 0.4) * -15}px, ${Math.sin(animationTime * 0.5) * 25}px) scale(${1 + Math.cos(animationTime * 1.5) * 0.3})`
-      }"
-    />
-    
-    <!-- Additional ocean layers (only visible in ocean theme) -->
-    <div
-      v-if="currentTheme === 'ocean'"
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly1})`, 
-        background: `linear-gradient(to top, ${colorSchemes.ocean1.from}, ${colorSchemes.ocean1.to})`,
-        opacity: 0.18,
-        transform: `translate(${Math.sin(animationTime * 0.2) * 40}px, ${Math.cos(animationTime * 0.3) * 20}px) scale(${1.2 + Math.sin(animationTime * 0.6) * 0.1})`
-      }"
-    />
-    <div
-      v-if="currentTheme === 'ocean'"
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly2})`, 
-        background: `linear-gradient(to bottom right, ${colorSchemes.ocean2.from}, ${colorSchemes.ocean2.to})`,
-        opacity: 0.12,
-        transform: `translate(${Math.cos(animationTime * 0.25) * -35}px, ${Math.sin(animationTime * 0.4) * 30}px) scale(${0.9 + Math.cos(animationTime * 0.7) * 0.15})`
-      }"
-    />
-    <div
-      v-if="currentTheme === 'ocean'"
-      class="clip"
-      :style="{ 
-        'clip-path': `polygon(${poly3})`, 
-        background: `linear-gradient(to right, ${colorSchemes.ocean3.from}, ${colorSchemes.ocean3.to})`,
-        opacity: 0.08,
-        transform: `translate(${Math.sin(animationTime * 0.15) * 50}px, ${Math.cos(animationTime * 0.2) * -25}px) scale(${1.1 + Math.sin(animationTime * 0.5) * 0.2})`
-      }"
-    />
-  </div>
   
   <!-- Three.js Water Surface (ocean theme only) -->
   <canvas 
@@ -705,39 +473,6 @@ onUnmounted(() => {
     class="water-canvas"
   ></canvas>
   
-  <!-- Water surface patterns (ocean theme only) -->
-  <div v-if="currentTheme === 'ocean'" class="water-surface">
-    <!-- Ripple effects -->
-    <div 
-      class="ripple"
-      v-for="i in 8"
-      :key="i"
-      :style="{
-        left: `${15 + (i * 12)}%`,
-        top: `${20 + (i * 8)}%`,
-        animationDelay: `${i * 0.3}s`,
-        animationDuration: `${4 + (i * 0.2)}s`
-      }"
-    ></div>
-    
-    <!-- Light reflections -->
-    <div 
-      class="light-reflection"
-      v-for="i in 5"
-      :key="`light-${i}`"
-      :style="{
-        left: `${10 + (i * 18)}%`,
-        top: `${30 + (i * 10)}%`,
-        animationDelay: `${i * 0.8}s`,
-        animationDuration: `${6 + (i * 0.5)}s`
-      }"
-    ></div>
-    
-    <!-- Water waves -->
-    <div class="water-wave wave-1"></div>
-    <div class="water-wave wave-2"></div>
-    <div class="water-wave wave-3"></div>
-  </div>
   
   <!-- Theme indicator -->
   <div class="theme-indicator">
@@ -753,25 +488,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-.bg,
-.clip {
-  transition: clip-path 2.5s ease;
-}
-
-.bg {
-  position: absolute;
-  inset: 0;
-  z-index: -10;
-}
-
-.clip {
-  clip-path: circle(75%);
-  aspect-ratio: 16 / 9;
-  position: absolute;
-  inset: 0;
-  transform-origin: center;
-  will-change: transform, opacity;
-}
 
 /* Theme indicator styles */
 .theme-indicator {
@@ -833,114 +549,4 @@ onUnmounted(() => {
   pointer-events: none;
 }
 
-/* Water surface patterns */
-.water-surface {
-  position: absolute;
-  inset: 0;
-  z-index: -5;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-/* Ripple effects */
-.ripple {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(64, 224, 208, 0.4);
-  border-radius: 50%;
-  animation: ripple-expand infinite ease-out;
-}
-
-@keyframes ripple-expand {
-  0% {
-    width: 20px;
-    height: 20px;
-    opacity: 0.8;
-    border-width: 3px;
-  }
-  50% {
-    width: 120px;
-    height: 120px;
-    opacity: 0.4;
-    border-width: 2px;
-  }
-  100% {
-    width: 200px;
-    height: 200px;
-    opacity: 0;
-    border-width: 1px;
-  }
-}
-
-/* Light reflections */
-.light-reflection {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.3) 0%,
-    rgba(64, 224, 208, 0.2) 30%,
-    rgba(32, 178, 170, 0.1) 60%,
-    transparent 100%
-  );
-  border-radius: 50%;
-  animation: light-shimmer infinite ease-in-out;
-}
-
-@keyframes light-shimmer {
-  0%, 100% {
-    transform: scale(0.8) translateY(0px);
-    opacity: 0.3;
-  }
-  50% {
-    transform: scale(1.2) translateY(-10px);
-    opacity: 0.8;
-  }
-}
-
-/* Water waves */
-.water-wave {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(72, 209, 204, 0.1) 25%,
-    rgba(64, 224, 208, 0.15) 50%,
-    rgba(32, 178, 170, 0.1) 75%,
-    transparent 100%
-  );
-  animation: water-flow infinite linear;
-}
-
-.wave-1 {
-  animation-duration: 20s;
-  transform: rotate(0deg);
-}
-
-.wave-2 {
-  animation-duration: 15s;
-  transform: rotate(45deg);
-  animation-direction: reverse;
-}
-
-.wave-3 {
-  animation-duration: 25s;
-  transform: rotate(90deg);
-}
-
-@keyframes water-flow {
-  0% {
-    transform: translateX(-100%) translateY(-50%) scale(1);
-  }
-  50% {
-    transform: translateX(0%) translateY(0%) scale(1.1);
-  }
-  100% {
-    transform: translateX(100%) translateY(50%) scale(1);
-  }
-}
 </style>
