@@ -56,6 +56,22 @@ pre {
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2) !important;
 }
+
+/* Tab key styling */
+.tab-key {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-family: "Fira Code", monospace;
+  font-size: 0.75em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 4px;
+}
 </style>
 
 ---
@@ -292,9 +308,9 @@ snippets:
 <div class="bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-yellow-400 font-mono text-sm mb-4">// input</div>
 
-```bash
-$ instance-connect<Tab>
-```
+<div class="font-mono text-green-400 bg-slate-800 p-3 rounded">
+$ instance-connect<span class="tab-key">Tab</span>
+</div>
 
 </div>
 
