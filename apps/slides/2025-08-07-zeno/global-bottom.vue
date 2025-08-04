@@ -29,9 +29,11 @@ type Distribution =
 
 const currentSlideNo = ref(1);
 const distribution = ref<Distribution>("full");
-const opacity = ref(0.4);
+const baseOpacity = 0.3;
+const opacity = computed(() => baseOpacity + Math.sin(animationTime.value * 0.3) * 0.1);
 const hue = ref(0);
 const seed = ref("default");
+const animationTime = ref(0);
 
 const overflow = 0.3;
 const disturb = 0.3;
@@ -133,9 +135,10 @@ function usePoly(number = 16) {
   return poly;
 }
 
-const poly1 = usePoly(10);
-const poly2 = usePoly(6);
-const poly3 = usePoly(3);
+const poly1 = usePoly(12);
+const poly2 = usePoly(8);
+const poly3 = usePoly(5);
+const poly4 = usePoly(3);
 
 onMounted(() => {
   // Update slide number based on URL
@@ -149,8 +152,16 @@ onMounted(() => {
     }
   };
 
+  // Animation loop
+  const animate = () => {
+    animationTime.value += 0.02;
+    hue.value = Math.sin(animationTime.value * 0.3) * 40 + Math.cos(animationTime.value * 0.7) * 15;
+    requestAnimationFrame(animate);
+  };
+
   // Initial update
   updateSlideNumber();
+  animate();
 
   // Listen for popstate events (navigation)
   window.addEventListener("popstate", updateSlideNumber);
@@ -169,20 +180,43 @@ onMounted(() => {
 <template>
   <div
     class="bg transform-gpu overflow-hidden pointer-events-none"
-    :style="{ filter: `blur(70px) hue-rotate(${hue}deg)` }"
+    :style="{ 
+      filter: `blur(80px) hue-rotate(${hue}deg)`,
+      transform: `scale(${1 + Math.sin(animationTime * 0.4) * 0.08}) rotate(${Math.cos(animationTime * 0.1) * 0.5}deg)`
+    }"
     aria-hidden="true"
   >
     <div
-      class="clip bg-gradient-to-r from-[#c084fc] to-white/10"
-      :style="{ 'clip-path': `polygon(${poly1})`, opacity: opacity }"
+      class="clip bg-gradient-to-r from-[#8b5cf6] to-violet-500/20"
+      :style="{ 
+        'clip-path': `polygon(${poly1})`, 
+        opacity: opacity * (0.8 + Math.sin(animationTime * 1.2) * 0.4),
+        transform: `translate(${Math.sin(animationTime * 0.6) * 20}px, ${Math.cos(animationTime * 0.4) * 15}px) scale(${1 + Math.sin(animationTime * 0.8) * 0.15})`
+      }"
     />
     <div
-      class="clip bg-gradient-to-l from-[#3b82f6] to-white/10"
-      :style="{ 'clip-path': `polygon(${poly2})`, opacity: opacity }"
+      class="clip bg-gradient-to-l from-[#a855f7] to-purple-500/20"
+      :style="{ 
+        'clip-path': `polygon(${poly2})`, 
+        opacity: opacity * (0.7 + Math.cos(animationTime * 1.5) * 0.5),
+        transform: `translate(${Math.cos(animationTime * 0.5) * -25}px, ${Math.sin(animationTime * 0.7) * 20}px) scale(${1 + Math.cos(animationTime * 1.1) * 0.2})`
+      }"
     />
     <div
-      class="clip bg-gradient-to-t from-[#06b6d4] to-white/10"
-      :style="{ 'clip-path': `polygon(${poly3})`, opacity: 0.2 }"
+      class="clip bg-gradient-to-t from-[#7c3aed] to-violet-600/20"
+      :style="{ 
+        'clip-path': `polygon(${poly3})`, 
+        opacity: 0.15 + Math.sin(animationTime * 2.0) * 0.25,
+        transform: `translate(${Math.sin(animationTime * 0.3) * 30}px, ${Math.cos(animationTime * 0.6) * -10}px) scale(${1 + Math.sin(animationTime * 1.3) * 0.25})`
+      }"
+    />
+    <div
+      class="clip bg-gradient-to-br from-[#06b6d4] to-cyan-500/20"
+      :style="{ 
+        'clip-path': `polygon(${poly4})`, 
+        opacity: 0.1 + Math.cos(animationTime * 1.8) * 0.2,
+        transform: `translate(${Math.cos(animationTime * 0.4) * -15}px, ${Math.sin(animationTime * 0.5) * 25}px) scale(${1 + Math.cos(animationTime * 1.5) * 0.3})`
+      }"
     />
   </div>
 </template>
@@ -190,7 +224,7 @@ onMounted(() => {
 <style scoped>
 .bg,
 .clip {
-  transition: all 2.5s ease;
+  transition: clip-path 2.5s ease;
 }
 
 .bg {
@@ -204,5 +238,7 @@ onMounted(() => {
   aspect-ratio: 16 / 9;
   position: absolute;
   inset: 0;
+  transform-origin: center;
+  will-change: transform, opacity;
 }
 </style>
