@@ -34,18 +34,21 @@ css: unocss
   background: rgba(15, 23, 42, 0.4) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
 }
 
 pre {
   background: rgba(15, 23, 42, 0.4) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
 }
 
 .code-container {
   background: rgba(15, 23, 42, 0.3) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
 }
 
 /* Override existing background classes */
