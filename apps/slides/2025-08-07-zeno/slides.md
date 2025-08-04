@@ -15,8 +15,7 @@ transition: fade-out
 mdc: true
 overviewSnapshots: true
 
-colorSchema: dark
-
+colorSchema: light
 fonts:
   # basically the text
   sans: "Noto Sans JP"
@@ -79,23 +78,22 @@ pre {
 /* Neon title effects - green glow for h1 */
 h1 {
   color: #00ff41;
-  text-shadow: 
-    0 0 1px #00ff41, 
-    0 0 15px #00ff41, 
-    0 0 8px #39ff14, 
+  text-shadow:
+    0 0 1px #00ff41,
+    0 0 15px #00ff41,
+    0 0 8px #39ff14,
     0 0 25px #39ff14;
   font-weight: 300;
   letter-spacing: 1px;
 }
 
-
 @keyframes neon-flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 
-      0 0 1px #6F51A1, 
-      0 0 20px #6F51A1, 
-      0 0 10px #0ff, 
-      0 0 10px #0ff, 
+    text-shadow:
+      0 0 1px #6F51A1,
+      0 0 20px #6F51A1,
+      0 0 10px #0ff,
+      0 0 10px #0ff,
       0 0 60px #0ff;
   }
   20%, 24%, 55% {
@@ -105,10 +103,10 @@ h1 {
 
 @keyframes zeno-flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
-    text-shadow: 
-      0 0 2px #fff, 
-      0 0 25px #fff, 
-      0 0 10px #0ff, 
+    text-shadow:
+      0 0 2px #fff,
+      0 0 25px #fff,
+      0 0 10px #0ff,
       0 0 40px #0ff;
   }
   20%, 24%, 55% {
@@ -119,8 +117,8 @@ h1 {
 /* First slide subtitle and author styling */
 .neon-subtitle {
   color: #aaa;
-  text-shadow: 
-    0 0 1px #0ff, 
+  text-shadow:
+    0 0 1px #0ff,
     0 0 3px #0ff;
   font-size: 0.9em;
   font-weight: 300;
@@ -132,10 +130,10 @@ h1 {
 
 .neon-author {
   color: #ff69b4;
-  text-shadow: 
-    0 0 1px #ff69b4, 
-    0 0 12px #ff69b4, 
-    0 0 5px #ff0080, 
+  text-shadow:
+    0 0 1px #ff69b4,
+    0 0 12px #ff69b4,
+    0 0 5px #ff0080,
     0 0 20px #ff0080;
   font-size: 1.5em;
   font-weight: 600;
@@ -147,10 +145,10 @@ h1 {
 /* Highlight zeno.zsh part with white flickering */
 .zeno-highlight {
   color: #fff;
-  text-shadow: 
-    0 0 2px #fff, 
-    0 0 25px #fff, 
-    0 0 10px #0ff, 
+  text-shadow:
+    0 0 2px #fff,
+    0 0 25px #fff,
+    0 0 10px #0ff,
     0 0 40px #0ff;
   font-size: 1.8em;
   font-weight: 800;
@@ -174,10 +172,10 @@ h1 {
 /* First line styling */
 .title-line1 {
   color: #fff;
-  text-shadow: 
-    0 0 1px #0ff, 
-    0 0 15px #0ff, 
-    0 0 8px #0ff, 
+  text-shadow:
+    0 0 1px #0ff,
+    0 0 15px #0ff,
+    0 0 8px #0ff,
     0 0 25px #0ff;
   font-size: 2.5rem;
   font-weight: 300;
@@ -188,9 +186,9 @@ h1 {
 /* Second line styling */
 .title-line2 {
   color: #00ff41;
-  text-shadow: 
-    0 0 1px #00ff41, 
-    0 0 8px #00ff41, 
+  text-shadow:
+    0 0 1px #00ff41,
+    0 0 8px #00ff41,
     0 0 4px #39ff14;
   font-size: 6rem;
   font-weight: 700;
@@ -243,7 +241,9 @@ h1 {
 </div>
 
 ---
+
 layout: center
+
 ---
 
 # さっそく試してみよう
@@ -464,7 +464,9 @@ completions:
 </div>
 
 ---
+
 layout: center
+
 ---
 
 # fzf補完実践
@@ -560,7 +562,9 @@ ref: <a href="https://github.com/yuki-yano/zeno.zsh?tab=readme-ov-file#configura
 </div>
 
 ---
+
 layout: center
+
 ---
 
 # お気に入りの使い方
