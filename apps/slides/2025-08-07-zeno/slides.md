@@ -73,29 +73,18 @@ pre {
   margin: 0 4px;
 }
 
-/* Neon title effects - flickering for first slide */
+/* Neon title effects - green glow for h1 */
 h1 {
-  color: #fff;
+  color: #00ff41;
   text-shadow: 
-    0 0 1px #6F51A1, 
-    0 0 20px #6F51A1, 
-    0 0 10px #0ff, 
-    0 0 10px #0ff, 
-    0 0 60px #0ff;
-  font-weight: 700;
-  letter-spacing: 2px;
-  animation: neon-flicker 2s infinite alternate;
+    0 0 1px #00ff41, 
+    0 0 15px #00ff41, 
+    0 0 8px #39ff14, 
+    0 0 25px #39ff14;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
-/* Remove flickering from slides 2 onwards */
-.slidev-page:not(:first-child) h1 {
-  text-shadow: 
-    0 0 1px #6F51A1, 
-    0 0 15px #6F51A1, 
-    0 0 8px #0ff, 
-    0 0 25px #0ff;
-  animation: none;
-}
 
 @keyframes neon-flicker {
   0%, 18%, 22%, 25%, 53%, 57%, 100% {
@@ -110,13 +99,109 @@ h1 {
     text-shadow: 0 0 1px #6F51A1;
   }
 }
+
+@keyframes zeno-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 
+      0 0 2px #fff, 
+      0 0 25px #fff, 
+      0 0 10px #0ff, 
+      0 0 40px #0ff;
+  }
+  20%, 24%, 55% {
+    text-shadow: 0 0 1px #fff;
+  }
+}
+
+/* First slide subtitle and author styling */
+.neon-subtitle {
+  color: #aaa;
+  text-shadow: 
+    0 0 1px #0ff, 
+    0 0 3px #0ff;
+  font-size: 0.9em;
+  font-weight: 300;
+  margin: 1.5em 0;
+  text-align: center;
+  letter-spacing: 0.5px;
+  opacity: 0.7;
+}
+
+.neon-author {
+  color: #ff69b4;
+  text-shadow: 
+    0 0 1px #ff69b4, 
+    0 0 12px #ff69b4, 
+    0 0 5px #ff0080, 
+    0 0 20px #ff0080;
+  font-size: 1.5em;
+  font-weight: 600;
+  margin-top: 3em;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+/* Highlight zeno.zsh part with white flickering */
+.zeno-highlight {
+  color: #fff;
+  text-shadow: 
+    0 0 2px #fff, 
+    0 0 25px #fff, 
+    0 0 10px #0ff, 
+    0 0 40px #0ff;
+  font-size: 1.8em;
+  font-weight: 800;
+  letter-spacing: 3px;
+  animation: zeno-flicker 2s infinite alternate;
+}
+
+/* Smaller subtitle text */
+.subtitle-text {
+  font-size: 0.7em;
+  font-weight: 200;
+  letter-spacing: 0.5px;
+}
+
+/* Title container styling */
+.title-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+/* First line styling */
+.title-line1 {
+  color: #fff;
+  text-shadow: 
+    0 0 1px #0ff, 
+    0 0 15px #0ff, 
+    0 0 8px #0ff, 
+    0 0 25px #0ff;
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: -1.2rem;
+}
+
+/* Second line styling */
+.title-line2 {
+  color: #00ff41;
+  text-shadow: 
+    0 0 1px #00ff41, 
+    0 0 8px #00ff41, 
+    0 0 4px #39ff14;
+  font-size: 6rem;
+  font-weight: 700;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+}
 </style>
 
-# zeno.zsh で始める CLI無双
-
-<div class="mt-12 text-lg opacity-80">
-効率的なコマンドライン操作を実現するzshプラグイン
+<div class="title-container">
+  <div class="title-line1"><span class="zeno-highlight">zeno.zsh</span> <span class="subtitle-text">で始める</span></div>
+  <div class="title-line2">CLI無双</div>
 </div>
+
+<div class="neon-subtitle">2025/08/07 ペチオブLT会</div>
 
 ---
 

@@ -30,7 +30,7 @@ type Distribution =
 const currentSlideNo = ref(1);
 const distribution = ref<Distribution>("full");
 const baseOpacity = 0.08;
-const opacity = computed(() => baseOpacity + Math.sin(animationTime.value * 0.3) * 0.1);
+const opacity = computed(() => baseOpacity);
 const hue = ref(0);
 const seed = ref("default");
 const animationTime = ref(0);
@@ -127,10 +127,10 @@ function usePoly(number = 16) {
     });
   }
 
-  // Update on slide change simulation
-  watch(currentSlideNo, () => {
-    jumpPoints();
-  });
+  // Update on slide change simulation - disabled to prevent flickering
+  // watch(currentSlideNo, () => {
+  //   jumpPoints();
+  // });
 
   return poly;
 }
@@ -190,7 +190,7 @@ onMounted(() => {
       class="clip bg-gradient-to-r from-[#8b5cf6] to-violet-500/20"
       :style="{ 
         'clip-path': `polygon(${poly1})`, 
-        opacity: opacity * (0.8 + Math.sin(animationTime * 1.2) * 0.4),
+        opacity: opacity * 0.8,
         transform: `translate(${Math.sin(animationTime * 0.6) * 20}px, ${Math.cos(animationTime * 0.4) * 15}px) scale(${1 + Math.sin(animationTime * 0.8) * 0.15})`
       }"
     />
@@ -198,7 +198,7 @@ onMounted(() => {
       class="clip bg-gradient-to-l from-[#a855f7] to-purple-500/20"
       :style="{ 
         'clip-path': `polygon(${poly2})`, 
-        opacity: opacity * (0.7 + Math.cos(animationTime * 1.5) * 0.5),
+        opacity: opacity * 0.7,
         transform: `translate(${Math.cos(animationTime * 0.5) * -25}px, ${Math.sin(animationTime * 0.7) * 20}px) scale(${1 + Math.cos(animationTime * 1.1) * 0.2})`
       }"
     />
@@ -206,7 +206,7 @@ onMounted(() => {
       class="clip bg-gradient-to-t from-[#7c3aed] to-violet-600/20"
       :style="{ 
         'clip-path': `polygon(${poly3})`, 
-        opacity: 0.15 + Math.sin(animationTime * 2.0) * 0.25,
+        opacity: 0.15,
         transform: `translate(${Math.sin(animationTime * 0.3) * 30}px, ${Math.cos(animationTime * 0.6) * -10}px) scale(${1 + Math.sin(animationTime * 1.3) * 0.25})`
       }"
     />
@@ -214,7 +214,7 @@ onMounted(() => {
       class="clip bg-gradient-to-br from-[#06b6d4] to-cyan-500/20"
       :style="{ 
         'clip-path': `polygon(${poly4})`, 
-        opacity: 0.1 + Math.cos(animationTime * 1.8) * 0.2,
+        opacity: 0.1,
         transform: `translate(${Math.cos(animationTime * 0.4) * -15}px, ${Math.sin(animationTime * 0.5) * 25}px) scale(${1 + Math.cos(animationTime * 1.5) * 0.3})`
       }"
     />
