@@ -123,10 +123,10 @@ const waterVertexShader = `
     vec3 wave2 = gerstnerWave(worldPos, normalize(vec2(-0.6, 0.8)), 1.5, 0.025, 1.8, uTime * 1.1);
     vec3 wave3 = gerstnerWave(worldPos, normalize(vec2(0.4, -0.9)), 1.8, 0.02, 2.0, uTime * 1.4);
     
-    // High frequency surface ripples
-    float ripple1 = wave(worldPos, normalize(vec2(1.0, 0.0)), 8.0, 0.008, 3.0, uTime);
-    float ripple2 = wave(worldPos, normalize(vec2(0.0, 1.0)), 10.0, 0.006, 3.5, uTime);
-    float ripple3 = wave(worldPos, normalize(vec2(0.7, 0.7)), 12.0, 0.004, 4.0, uTime);
+    // Gentler surface ripples for smoothness
+    float ripple1 = wave(worldPos, normalize(vec2(1.0, 0.0)), 5.0, 0.006, 2.5, uTime);
+    float ripple2 = wave(worldPos, normalize(vec2(0.0, 1.0)), 6.0, 0.004, 2.8, uTime);
+    float ripple3 = wave(worldPos, normalize(vec2(0.7, 0.7)), 7.0, 0.003, 3.2, uTime);
     
     // Combine all wave components
     vec3 waveOffset = (swell1 + swell2 + swell3 + wave1 + wave2 + wave3) * uWaveStrength;
@@ -172,77 +172,119 @@ const waterFragmentShader = `
   uniform float uTime;
   uniform vec3 uShallowColor;
   uniform vec3 uDeepColor;
+  uniform vec3 uMidColor;
   uniform vec3 uCausticsColor;
   uniform vec3 uSandColor;
   uniform float uOpacity;
   
-  // Enhanced caustics pattern (light refraction effect)
-  float caustics(vec2 uv, float time) {
-    vec2 p = uv * 6.0;
-    float c = 0.0;
+  // High-quality smooth noise function with proper interpolation
+  float smoothNoise(vec2 p) {
+    vec2 i = floor(p);
+    vec2 f = fract(p);
     
-    // Multiple layers of caustics with different speeds and scales
-    for(int i = 0; i < 4; i++) {
-      float scale = pow(2.0, float(i));
-      vec2 offset = vec2(time * 0.08, time * 0.06) * scale;
-      
-      vec2 q = p * scale + offset;
-      // More complex caustics pattern
-      float layer = sin(q.x + cos(q.y + time * 0.5)) * cos(q.y + sin(q.x + time * 0.3));
-      c += layer / scale;
-    }
+    // Smooth interpolation function (quintic for ultra-smooth transitions)
+    f = f * f * f * (f * (f * 6.0 - 15.0) + 10.0);
     
-    // Sharper, more defined caustics
-    c = c * 0.5 + 0.5;
-    return pow(max(0.0, c), 1.5);
+    // Sample corners of grid cell
+    float a = sin(dot(i, vec2(12.9898, 78.233))) * 43758.5453;
+    float b = sin(dot(i + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453;
+    float c = sin(dot(i + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453;
+    float d = sin(dot(i + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453;
+    
+    // Smooth interpolation
+    return mix(mix(fract(a), fract(b), f.x), mix(fract(c), fract(d), f.x), f.y);
   }
   
-  // Sand pattern on the bottom
-  float sandPattern(vec2 uv) {
-    vec2 p = uv * 25.0;
-    float sand = 0.0;
+  // Enhanced caustics pattern with ultra-smooth interpolation
+  float caustics(vec2 uv, float time) {
+    vec2 p = uv * 2.5; // Further reduced frequency for ultra-smooth pattern
+    float c = 0.0;
     
-    // Multiple noise layers for sand texture
-    for(int i = 0; i < 3; i++) {
-      float scale = pow(2.0, float(i));
-      vec2 q = p * scale;
-      sand += sin(q.x) * cos(q.y) / scale;
+    // Multiple layers of caustics with smoother transitions
+    for(int i = 0; i < 4; i++) { // Reduced iterations for smoother performance
+      float scale = pow(1.4, float(i)); // Even smaller scaling factor
+      vec2 offset = vec2(time * 0.03, time * 0.02) * scale; // Much slower for ultra-smooth movement
+      
+      vec2 q = p * scale + offset;
+      // Ultra-smooth caustics using improved noise
+      float layer = smoothNoise(q + time * 0.1) * 0.8 + smoothNoise(q * 2.0 + time * 0.05) * 0.2;
+      layer = smoothstep(0.2, 0.8, layer); // Gentle contrast for smoothness
+      c += layer / (scale * 0.8); // Reduced influence for smoother blending
     }
     
-    return sand * 0.5 + 0.5;
+    // Ultra-smooth caustics with very gradual falloff
+    c = c * 0.2 + 0.8; // Higher base value, lower variation
+    return smoothstep(0.3, 0.9, c); // Gentler transition range
+  }
+  
+  // Ultra-smooth sand pattern on the bottom
+  float sandPattern(vec2 uv) {
+    vec2 p = uv * 8.0; // Much reduced frequency for ultra-smooth sand
+    float sand = 0.0;
+    
+    // Multiple ultra-smooth noise layers for sand texture
+    for(int i = 0; i < 3; i++) { // Fewer layers for smoother result
+      float scale = pow(1.3, float(i)); // Very gentle scaling
+      vec2 q = p * scale;
+      float layer = smoothNoise(q); // Use our improved smooth noise
+      sand += layer / (scale * 1.2); // Reduced influence
+    }
+    
+    // Apply gentle smoothstep for ultra-gradual transitions
+    return smoothstep(0.4, 0.6, sand * 0.3 + 0.7); // Very gentle variation
   }
   
   void main() {
-    // Calculate water depth with enhanced variation
+    // Calculate water depth with enhanced variation for more contrast
     float waveHeight = vPosition.z;
-    float depth = 1.0 - abs(waveHeight) * 6.0;
+    float depth = 1.0 - abs(waveHeight) * 8.0; // Increased multiplier for more contrast
     depth = clamp(depth, 0.0, 1.0);
     
-    // Wave height-based lighting for 3D effect
-    float waveShading = waveHeight * 3.0; // Amplify height differences
-    float lightIntensity = 1.0 + waveShading * 0.4; // Peaks are brighter
-    float shadowIntensity = 1.0 - abs(waveShading) * 0.2; // Valleys are darker
+    // Enhanced wave height-based lighting for stronger 3D effect
+    float waveShading = waveHeight * 4.0; // Stronger amplitude for more contrast
+    float lightIntensity = 1.0 + waveShading * 0.6; // Brighter peaks
+    float shadowIntensity = 1.0 - abs(waveShading) * 0.4; // Darker valleys
     
     // Sand bottom color with texture
     float sandNoise = sandPattern(vUv);
-    vec3 sandBottom = mix(uSandColor * 0.9, uSandColor * 1.1, sandNoise);
+    vec3 sandBottom = mix(uSandColor * 0.8, uSandColor * 1.2, sandNoise);
     
-    // Water color with height-based variation
-    vec3 waterColor = mix(uDeepColor, uShallowColor, depth);
-    waterColor *= lightIntensity; // Apply height-based lighting
+    // Enhanced water color with three-tier depth system
+    vec3 waterColor;
+    if (depth > 0.7) {
+      // Shallow water - bright turquoise
+      waterColor = mix(uMidColor, uShallowColor, (depth - 0.7) / 0.3);
+    } else if (depth > 0.3) {
+      // Medium depth - blue
+      waterColor = mix(uDeepColor, uMidColor, (depth - 0.3) / 0.4);
+    } else {
+      // Deep water - dark blue with enhanced darkness
+      vec3 veryDeepColor = uDeepColor * 0.6; // Even darker for deep areas
+      waterColor = mix(veryDeepColor, uDeepColor, depth / 0.3);
+    }
     
-    // Blend sand and water based on depth and transparency
-    float transparency = 0.6 + depth * 0.4; // More variation in transparency
+    // Apply stronger height-based lighting
+    waterColor *= lightIntensity;
+    
+    // Enhanced contrast for wave shadows
+    if (waveHeight < -0.02) {
+      waterColor *= 0.7; // Darken wave valleys more
+    } else if (waveHeight > 0.02) {
+      waterColor *= 1.3; // Brighten wave peaks more
+    }
+    
+    // Blend sand and water with enhanced transparency variation
+    float transparency = 0.5 + depth * 0.5; // More dramatic transparency changes
     vec3 color = mix(sandBottom, waterColor, transparency);
     
-    // Enhanced caustics effect with wave interaction
+    // Enhanced caustics effect with stronger wave interaction
     float causticsPattern = caustics(vUv, uTime);
-    causticsPattern = pow(causticsPattern, 1.0);
+    causticsPattern = pow(causticsPattern, 0.8); // Slightly softer for smoothness
     
-    // Caustics affected by wave height
-    float causticsStrength = 0.7 + waveHeight * 0.5; // Stronger on wave peaks
+    // Stronger caustics affected by wave height and depth
+    float causticsStrength = (0.6 + waveHeight * 0.8) * (1.0 - depth * 0.3); // Stronger on peaks, weaker in deep areas
     vec3 causticsEffect = uCausticsColor * causticsPattern * causticsStrength;
-    color = mix(color, color + causticsEffect, 0.9);
+    color = mix(color, color + causticsEffect, 0.7); // More visible caustics
     
     // Enhanced Fresnel effect based on normal
     vec3 viewDirection = normalize(vec3(0.0, 1.0, 1.0)); // Viewing from above
@@ -252,13 +294,20 @@ const waterFragmentShader = `
     // Strong reflection on wave crests
     color += vec3(0.3, 0.5, 0.7) * fresnel * 0.6;
     
-    // Wave-dependent shimmer
-    float shimmer = sin(vUv.x * 40.0 + uTime * 2.5) * sin(vUv.y * 35.0 + uTime * 2.0);
-    shimmer *= (1.0 + waveHeight * 2.0); // Stronger shimmer on peaks
-    color += vec3(0.9, 1.0, 1.0) * shimmer * 0.12 * causticsPattern;
+    // Ultra-smooth wave-dependent shimmer
+    float shimmer = smoothNoise(vUv * 20.0 + uTime * 0.8) * smoothNoise(vUv * 15.0 - uTime * 0.6);
+    shimmer = smoothstep(-0.3, 0.3, shimmer); // Gentle contrast for smoothness
+    shimmer *= (1.0 + waveHeight * 1.5); // Gentler shimmer variation on peaks
+    color += vec3(0.9, 1.0, 1.0) * shimmer * 0.08 * causticsPattern; // Reduced intensity
     
-    // Apply shadow/highlight effect
+    // Apply enhanced shadow/highlight effect for more contrast
     color *= shadowIntensity;
+    
+    // Final contrast enhancement to make wave patterns more visible
+    color = mix(color, color * color, 0.2); // Slight contrast boost
+    
+    // Clamp to prevent overexposure while maintaining contrast
+    color = clamp(color, vec3(0.0), vec3(1.5));
     
     // Higher base opacity for more vibrant colors
     gl_FragColor = vec4(color, uOpacity * 0.95);
@@ -281,14 +330,30 @@ const initWaterSurface = () => {
   renderer = new THREE.WebGLRenderer({ 
     canvas: canvasRef.value, 
     alpha: true, 
-    antialias: true 
+    antialias: true,
+    powerPreference: "high-performance",
+    precision: "highp", // High precision for smoother gradients
+    logarithmicDepthBuffer: true // Better depth precision
   });
+  
+  // Maximum anti-aliasing and smoothing
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  
+  // Additional smoothing settings
+  const gl = renderer.getContext();
+  if (gl.getExtension('EXT_texture_filter_anisotropic')) {
+    // Enable anisotropic filtering for smoother textures
+    const ext = gl.getExtension('EXT_texture_filter_anisotropic');
+    gl.texParameterf(gl.TEXTURE_2D, ext.TEXTURE_MAX_ANISOTROPY_EXT, gl.getParameter(ext.MAX_TEXTURE_MAX_ANISOTROPY_EXT));
+  }
   
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.setClearColor(0x000000, 0); // Transparent background
   
-  // Water geometry with higher resolution for smoother waves
-  const geometry = new THREE.PlaneGeometry(25, 25, 300, 300);
+  // Water geometry with maximum resolution for ultimate smoothness
+  const geometry = new THREE.PlaneGeometry(25, 25, 768, 768); // Even higher resolution
   
   // Water material with custom shaders
   const material = new THREE.ShaderMaterial({
@@ -296,9 +361,10 @@ const initWaterSurface = () => {
     fragmentShader: waterFragmentShader,
     uniforms: {
       uTime: { value: 0 },
-      uWaveStrength: { value: 1.2 }, // Stronger waves for more dimension
-      uShallowColor: { value: new THREE.Color(0x00FFFF) }, // Bright cyan/turquoise
-      uDeepColor: { value: new THREE.Color(0x0080FF) },    // Vibrant blue
+      uWaveStrength: { value: 0.9 }, // Gentler waves for smoother appearance
+      uShallowColor: { value: new THREE.Color(0x40E0D0) }, // Turquoise for shallow areas
+      uDeepColor: { value: new THREE.Color(0x003366) },    // Much darker blue for deep areas
+      uMidColor: { value: new THREE.Color(0x0066CC) },     // Medium blue for mid-depth
       uCausticsColor: { value: new THREE.Color(0xFFFFFF) }, // Pure white caustics
       uSandColor: { value: new THREE.Color(0xFFF8DC) },    // Sandy beige/cream
       uOpacity: { value: 0.85 }
