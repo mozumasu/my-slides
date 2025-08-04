@@ -1,6 +1,6 @@
 ---
 theme: default
-title: zeno.zshで始めるCLI無双  
+title: zeno.zshで始めるCLI無双
 info: |
   ## zeno.zshで始めるCLI無双
   zeno.zshを使ったCLI効率化の紹介
@@ -10,7 +10,7 @@ class: text-center
 drawings:
   persist: true
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
-transition: slide-left
+transition: fade-out
 # enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 overviewSnapshots: true
@@ -72,31 +72,41 @@ pre {
   letter-spacing: 1px;
   margin: 0 4px;
 }
-</style>
 
----
+/* Neon title effects */
+h1 {
+  color: #fff;
+  text-shadow: 
+    0 0 1px #6F51A1, 
+    0 0 20px #6F51A1, 
+    0 0 10px #0ff, 
+    0 0 10px #0ff, 
+    0 0 60px #0ff;
+  font-weight: 700;
+  letter-spacing: 2px;
+  animation: neon-flicker 2s infinite alternate;
+}
+
+@keyframes neon-flicker {
+  0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    text-shadow: 
+      0 0 1px #6F51A1, 
+      0 0 20px #6F51A1, 
+      0 0 10px #0ff, 
+      0 0 10px #0ff, 
+      0 0 60px #0ff;
+  }
+  20%, 24%, 55% {
+    text-shadow: 0 0 1px #6F51A1;
+  }
+}
+</style>
 
 # zeno.zsh で始める CLI無双
 
 <div class="mt-12 text-lg opacity-80">
 効率的なコマンドライン操作を実現するzshプラグイン
 </div>
-
-<div class="mt-16 text-center">
-<div class="inline-block bg-slate-800 px-6 py-4 rounded-lg border border-slate-600">
-<div class="text-green-400 font-mono text-sm">$ brew install zeno.zsh</div>
-</div>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <a href="https://github.com/yuki-yano/zeno.zsh" target="_blank" alt="GitHub" title="zeno.zsh on GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<style>
-</style>
 
 ---
 
@@ -108,6 +118,7 @@ pre {
 <div class="text-purple-400 font-mono text-sm mb-4">// plugin.info</div>
 <div class="space-y-3">
 <div><span class="text-blue-400">type:</span> <span class="text-green-400">"zsh-plugin"</span></div>
+
 <div><span class="text-blue-400">supports:</span> <span class="text-green-400">["zsh", "fish"]</span></div>
 <div><span class="text-blue-400">powered_by:</span> <span class="text-green-400">"deno"</span></div>
 </div>
@@ -127,12 +138,11 @@ pre {
 
 <div class="mt-8 text-center">
 <div class="inline-block bg-slate-900/50 px-4 py-2 rounded border border-slate-700">
-<span class="text-purple-400 font-mono text-xs">ref:</span> 
-<a href="https://zenn.dev/yano/articles/zsh_plugin_from_deno" target="_blank" 
+<span class="text-purple-400 font-mono text-xs">ref:</span>
+<a href="https://zenn.dev/yano/articles/zsh_plugin_from_deno" target="_blank"
    class="text-cyan-400 hover:text-cyan-300 font-mono text-xs">zenn.dev/yano/articles/zsh_plugin_from_deno</a>
 </div>
 </div>
-
 
 ---
 layout: center
@@ -159,7 +169,6 @@ aws ec2-instance-connect ssh \
 ```
 
 </div>
-
 
 ---
 
@@ -204,10 +213,9 @@ aws ec2-instance-connect ssh \
 </div>
 </div>
 
-
 ---
 
-# zeno.zshで解決！
+# zeno.zshで解決
 
 <div class="mt-8 grid grid-cols-2 gap-8">
 
@@ -215,15 +223,15 @@ aws ec2-instance-connect ssh \
 <div class="text-red-400 font-mono text-sm mb-4">// before</div>
 <div class="space-y-3 text-sm">
 <div class="flex items-center gap-2">
-<span class="text-red-400">❌</span> 
+<span class="text-red-400">❌</span>
 <span>コマンド入力が面倒</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-red-400">❌</span> 
+<span class="text-red-400">❌</span>
 <span>idのコピペが面倒</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-red-400">❌</span> 
+<span class="text-red-400">❌</span>
 <span>毎回同じ作業</span>
 </div>
 </div>
@@ -233,15 +241,15 @@ aws ec2-instance-connect ssh \
 <div class="text-green-400 font-mono text-sm mb-4">// after</div>
 <div class="space-y-3 text-sm">
 <div class="flex items-center gap-2">
-<span class="text-green-400">✅</span> 
+<span class="text-green-400">✅</span>
 <span><strong>snippet展開</strong>でコマンド入力簡単</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-green-400">✅</span> 
+<span class="text-green-400">✅</span>
 <span><strong>fzf補完</strong>でidを選択するだけ</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-green-400">✅</span> 
+<span class="text-green-400">✅</span>
 <span>自動化された効率的な操作</span>
 </div>
 </div>
@@ -265,7 +273,6 @@ aws ec2-instance-connect ssh \
 
 </div>
 
-
 ---
 
 # コマンド入力が面倒
@@ -286,12 +293,11 @@ aws ec2-instance-connect ssh \
 
 ```yaml
 snippets:
- - keyword: instance-connect
-   snippet: aws ec2-instance-connect ssh --instance-id {{instance-id}} --os-user ec2-user
+  - keyword: instance-connect
+    snippet: aws ec2-instance-connect ssh --instance-id {{instance-id}} --os-user ec2-user
 ```
 
 </div>
-
 
 ---
 
@@ -330,7 +336,6 @@ aws ec2-instance-connect ssh \
 
 </div>
 
-
 ---
 
 # idのコピペが面倒
@@ -351,15 +356,14 @@ aws ec2-instance-connect ssh \
 
 ```yaml
 completions:
- - name: instance-id
-   patterns:
-     - "aws ec2-instance-connect ssh --instance-id( .*)?"
-   sourceCommand: "aws ec2 describe-instances --query '...' --output text"
-   callback: "awk -F ' ' '{ print $1 }'"
+  - name: instance-id
+    patterns:
+      - "aws ec2-instance-connect ssh --instance-id( .*)?"
+    sourceCommand: "aws ec2 describe-instances --query '...' --output text"
+    callback: "awk -F ' ' '{ print $1 }'"
 ```
 
 </div>
-
 
 ---
 layout: center
@@ -520,7 +524,7 @@ completions:
       - "^nb edit( .*)? $"
     sourceCommand: "nb ls --no-color | grep -E '^\\[[0-9]+\\]'"
     options:
-      --ansi: true  # ← ANSIカラー有効
+      --ansi: true # ← ANSIカラー有効
       --prompt: "'nb edit >'"
       --preview: "echo {} | sed -E 's/^\\[([0-9]+)\\].*/\\1/' | xargs nb show"
     callback: "sed -E 's/^\\[([0-9]+)\\].*/\\1/'"

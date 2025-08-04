@@ -29,7 +29,7 @@ type Distribution =
 
 const currentSlideNo = ref(1);
 const distribution = ref<Distribution>("full");
-const baseOpacity = 0.3;
+const baseOpacity = 0.08;
 const opacity = computed(() => baseOpacity + Math.sin(animationTime.value * 0.3) * 0.1);
 const hue = ref(0);
 const seed = ref("default");
