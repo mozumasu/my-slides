@@ -27,7 +27,8 @@ type Distribution =
   | "top-right"
   | "bottom-left"
   | "bottom-right"
-  | "center";
+  | "center"
+  | "topmost";
 
 const currentSlideNo = ref(1);
 const distribution = ref<Distribution>("full");
@@ -66,11 +67,11 @@ const colorSchemes = computed(() => {
       ocean3: { from: '#00BFFF', to: '#1E90FF' },      // Deep sky blue
     }
   } else {
-    // Neon theme (original)
+    // Neon theme (purple, blue, magenta)
     return {
-      layer1: { from: '#8b5cf6', to: '#c4b5fd' },
-      layer2: { from: '#a855f7', to: '#c084fc' },
-      layer3: { from: '#7c3aed', to: '#a78bfa' },
+      layer1: { from: '#8b5cf6', to: 'rgba(255, 255, 255, 0.1)' }, // Purple
+      layer2: { from: '#2f96ad', to: 'rgba(255, 255, 255, 0.1)' }, // Blue
+      layer3: { from: '#d946ef', to: 'rgba(255, 255, 255, 0.1)' }, // Magenta/Red-purple
       layer4: { from: '#06b6d4', to: '#67e8f9' },
       ocean1: { from: '#20B2AA', to: '#40E0D0' },
       ocean2: { from: '#00CED1', to: '#48D1CC' },
@@ -458,6 +459,9 @@ function distributionToLimits(dist: Distribution) {
 
   for (const limit of limits) {
     switch (limit) {
+      case 'topmost':
+        y = intersection(y, [-0.5, 0]);
+        break;
       case "top":
         y = intersection(y, [min, 0.6]);
         break;
@@ -470,6 +474,12 @@ function distributionToLimits(dist: Distribution) {
       case "right":
         x = intersection(x, [0.4, max]);
         break;
+      case 'xcenter':
+        x = intersection(x, [0.25, 0.75]);
+        break;
+      case 'ycenter':
+        y = intersection(y, [0.25, 0.75]);
+        break;
       case "center":
         x = intersection(x, [0.25, 0.75]);
         y = intersection(y, [0.25, 0.75]);
@@ -477,6 +487,8 @@ function distributionToLimits(dist: Distribution) {
       case "full":
         x = intersection(x, [0, 1]);
         y = intersection(y, [0, 1]);
+        break;
+      default:
         break;
     }
   }
@@ -532,10 +544,10 @@ function usePoly(number = 16) {
     });
   }
 
-  // Update on slide change simulation - disabled to prevent flickering
-  // watch(currentSlideNo, () => {
-  //   jumpPoints();
-  // });
+  // Watch slide changes and update points (like the reference)
+  watch(currentSlideNo, () => {
+    jumpPoints();
+  });
 
   return poly;
 }
@@ -623,14 +635,11 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <!-- Neon theme polygons -->
+  <!-- Neon theme polygons (matching reference) -->
   <div
     v-if="currentTheme === 'neon'"
     class="bg transform-gpu overflow-hidden pointer-events-none"
-    :style="{ 
-      filter: `blur(70px) hue-rotate(${hue}deg)`,
-      transform: `scale(${1 + Math.sin(animationTime * 0.4) * 0.08}) rotate(${Math.cos(animationTime * 0.1) * 0.5}deg)`
-    }"
+    :style="{ filter: `blur(70px) hue-rotate(${hue}deg)` }"
     aria-hidden="true"
   >
     <div
@@ -638,8 +647,7 @@ onUnmounted(() => {
       :style="{ 
         'clip-path': `polygon(${poly1})`, 
         background: `linear-gradient(to right, ${colorSchemes.layer1.from}, ${colorSchemes.layer1.to})`,
-        opacity: opacity,
-        transform: `translate(${Math.sin(animationTime * 0.6) * 20}px, ${Math.cos(animationTime * 0.4) * 15}px) scale(${1 + Math.sin(animationTime * 0.8) * 0.15})`
+        opacity: opacity
       }"
     />
     <div
@@ -647,8 +655,7 @@ onUnmounted(() => {
       :style="{ 
         'clip-path': `polygon(${poly2})`, 
         background: `linear-gradient(to left, ${colorSchemes.layer2.from}, ${colorSchemes.layer2.to})`,
-        opacity: opacity,
-        transform: `translate(${Math.cos(animationTime * 0.5) * -25}px, ${Math.sin(animationTime * 0.7) * 20}px) scale(${1 + Math.cos(animationTime * 1.1) * 0.2})`
+        opacity: opacity
       }"
     />
     <div
@@ -656,8 +663,7 @@ onUnmounted(() => {
       :style="{ 
         'clip-path': `polygon(${poly3})`, 
         background: `linear-gradient(to top, ${colorSchemes.layer3.from}, ${colorSchemes.layer3.to})`,
-        opacity: 0.2,
-        transform: `translate(${Math.sin(animationTime * 0.3) * 30}px, ${Math.cos(animationTime * 0.6) * -10}px) scale(${1 + Math.sin(animationTime * 1.3) * 0.25})`
+        opacity: 0.2
       }"
     />
   </div>
@@ -686,7 +692,7 @@ onUnmounted(() => {
 /* Neon theme polygon styles */
 .bg,
 .clip {
-  transition: clip-path 2.5s ease;
+  transition: all 2.5s ease;
 }
 
 .bg {
