@@ -73,7 +73,7 @@ pre {
   margin: 0 4px;
 }
 
-/* Neon title effects */
+/* Neon title effects - flickering for first slide */
 h1 {
   color: #fff;
   text-shadow: 
@@ -85,6 +85,16 @@ h1 {
   font-weight: 700;
   letter-spacing: 2px;
   animation: neon-flicker 2s infinite alternate;
+}
+
+/* Remove flickering from slides 2 onwards */
+.slidev-page:not(:first-child) h1 {
+  text-shadow: 
+    0 0 1px #6F51A1, 
+    0 0 15px #6F51A1, 
+    0 0 8px #0ff, 
+    0 0 25px #0ff;
+  animation: none;
 }
 
 @keyframes neon-flicker {
