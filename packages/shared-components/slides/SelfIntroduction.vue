@@ -54,10 +54,9 @@ const currentTheme = computed(() => {
 
 // Animation delay for staggered entrance
 const animationDelays = {
-  name: '0.2s',
-  role: '0.4s',
-  tools: '0.6s',
-  achievement: '0.8s'
+  role: '0s',
+  tools: '0.2s',
+  achievement: '0.4s'
 };
 
 // Mounted lifecycle
@@ -68,47 +67,48 @@ onMounted(() => {
 </script>
 
 <template>
-  <div 
-    :class="[
-      'self-introduction',
-      `theme-${currentTheme}`,
-      { 'compact': compact, 'animated': showAnimation }
-    ]"
-  >
-    <!-- Main Content -->
-    <div class="content-section">
-      <!-- Name -->
-      <h1 
-        class="name" 
-        :style="{ animationDelay: animationDelays.name }"
-      >
-        {{ profile.name }}
-      </h1>
-
+  <div :class="['profile-container', `container-theme-${currentTheme}`]">
+    <!-- Profile Title Outside Card -->
+    <h1 class="profile-title-outside" :style="{ animationDelay: '0s' }">Profile</h1>
+    
+    <!-- Card -->
+    <div 
+      :class="[
+        'self-introduction',
+        `theme-${currentTheme}`,
+        { 'compact': compact, 'animated': showAnimation }
+      ]"
+    >
+      <!-- Main Content -->
+      <div class="content-section">
       <!-- Role -->
-      <p 
-        class="role" 
-        :style="{ animationDelay: animationDelays.role }"
-      >
-        {{ profile.role }}
-      </p>
+      <div class="role-section" :style="{ animationDelay: animationDelays.role }">
+        <h3 class="section-title">ROLE</h3>
+        <div class="role-content">
+          <span class="role-icon">💻</span>
+          <span class="role-text">{{ profile.role }}</span>
+        </div>
+      </div>
 
       <!-- Tools -->
       <div 
         class="tools-section" 
         :style="{ animationDelay: animationDelays.tools }"
       >
-        <div class="tool-item">
-          <span class="tool-label">ターミナル:</span>
-          <span class="tool-value">{{ profile.tools.terminal }}</span>
-        </div>
-        <div class="tool-item">
-          <span class="tool-label">エディタ:</span>
-          <span class="tool-value">{{ profile.tools.editor }}</span>
-        </div>
-        <div class="tool-item">
-          <span class="tool-label">IME:</span>
-          <span class="tool-value">{{ profile.tools.ime }}</span>
+        <h3 class="section-title">MY DEV SETUP</h3>
+        <div class="tools-badges">
+          <div class="tool-badge">
+            <img src="https://wezterm.org/favicon.svg" alt="wezterm" class="tool-logo" />
+            <span class="tool-name">{{ profile.tools.terminal }}</span>
+          </div>
+          <div class="tool-badge">
+            <img src="https://avatars.githubusercontent.com/u/6471485?s=200&v=4" alt="neovim" class="tool-logo" />
+            <span class="tool-name">{{ profile.tools.editor }}</span>
+          </div>
+          <div class="tool-badge">
+            <span class="tool-emoji">⌨️</span>
+            <span class="tool-name">{{ profile.tools.ime }}</span>
+          </div>
         </div>
       </div>
 
@@ -118,7 +118,11 @@ onMounted(() => {
         :style="{ animationDelay: animationDelays.achievement }"
       >
         <div class="achievement-badge">
-          <span class="achievement-text">{{ profile.achievement }}</span>
+          <span class="achievement-icon">📚</span>
+          <div class="achievement-content">
+            <span class="achievement-label">Recent Achievement</span>
+            <span class="achievement-text">{{ profile.achievement }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -130,26 +134,81 @@ onMounted(() => {
           <img :src="profileImage" alt="Profile" class="avatar-image" />
         </div>
       </div>
+      <div class="avatar-name">mozumasu</div>
     </div>
+  </div>
   </div>
 </template>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* Container */
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  gap: 1.5rem;
+}
+
+/* Profile Title Outside Card */
+.profile-title-outside {
+  font-size: 2.5rem;
+  font-weight: 800;
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  margin: 0;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
 /* Base Styles */
 .self-introduction {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 3rem;
-  margin: 2rem;
+  justify-content: space-between;
+  height: 340px;
+  padding: 2rem 3rem;
+  margin: 0;
+  width: 85%;
+  max-width: 880px;
   position: relative;
-  font-family: 'Inter', 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
-  gap: 4rem;
-  border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Outfit', 'Inter', 'Hiragino Sans', sans-serif;
+  gap: 3rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  box-sizing: border-box;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+.self-introduction:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.12),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
 
 .self-introduction.compact {
   min-height: auto;
@@ -158,8 +217,7 @@ onMounted(() => {
 
 /* Animation Classes */
 .animated .avatar-section,
-.animated .name,
-.animated .role,
+.animated .role-section,
 .animated .tools-section,
 .animated .achievement-section {
   opacity: 0;
@@ -177,15 +235,24 @@ onMounted(() => {
 /* Avatar Section */
 .avatar-section {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
 }
 
 .avatar-frame {
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(45deg, var(--accent-color), var(--secondary-color));
   position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.avatar-frame:hover {
+  transform: scale(1.05);
 }
 
 .avatar-inner {
@@ -202,8 +269,10 @@ onMounted(() => {
 
 .avatar-text {
   font-size: 3rem;
-  font-weight: bold;
+  font-weight: 700;
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
   color: var(--accent-color);
+  letter-spacing: -0.02em;
   text-shadow: var(--text-glow);
 }
 
@@ -214,102 +283,200 @@ onMounted(() => {
   object-fit: cover;
 }
 
+.avatar-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  font-family: 'Space Grotesk', 'Outfit', sans-serif;
+  color: var(--primary-text);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  opacity: 0.9;
+  margin-top: 0.25rem;
+}
+
 /* Content Section */
 .content-section {
   text-align: left;
-  max-width: 600px;
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-/* Name */
-.name {
-  font-size: 3.5rem;
-  font-weight: 700;
-  margin: 0 0 1rem 0;
+/* Role Section */
+.role-section {
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.role-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'Outfit', 'Inter', sans-serif;
   color: var(--primary-text);
-  text-shadow: var(--text-glow);
-  position: relative;
 }
 
-/* Role */
-.role {
-  font-size: 1.5rem;
-  color: var(--secondary-text);
-  margin: 0 0 2.5rem 0;
-  font-weight: 500;
+.role-icon {
+  font-size: 1rem;
+  filter: grayscale(0%);
+}
+
+.role-text {
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  letter-spacing: -0.02em;
 }
 
 /* Tools Section */
 .tools-section {
-  margin-bottom: 2.5rem;
-}
-
-.tool-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
-  padding: 0.75rem 1.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  backdrop-filter: blur(10px);
+  padding: 0.5rem 0;
   transition: all 0.3s ease;
 }
 
-.tool-item:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--card-shadow);
-}
-
-.tool-label {
-  color: var(--secondary-text);
-  font-weight: 500;
-}
-
-.tool-value {
+.section-title {
+  font-size: 0.65rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
   color: var(--accent-color);
-  font-weight: 600;
-  font-family: 'Fira Code', monospace;
-  text-shadow: var(--text-glow);
+  opacity: 0.7;
+  margin: 0 0 0.75rem 0;
 }
 
-/* Achievement Section */
-.achievement-section {
-  margin-top: 1rem;
+.tools-badges {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
-.achievement-badge {
-  display: inline-block;
-  padding: 1rem 2rem;
-  background: var(--achievement-bg);
-  border: 2px solid var(--accent-color);
-  border-radius: 25px;
+.tool-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.9rem;
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.02) 40%,
+    rgba(255, 255, 255, 0.05) 60%,
+    rgba(255, 255, 255, 0.15) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.3),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.achievement-badge::before {
+.tool-badge::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, var(--accent-color-alpha), transparent);
-  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 100%);
+  transition: left 0.5s ease;
 }
 
-@keyframes shimmer {
-  0% { left: -100%; }
-  100% { left: 100%; }
+.tool-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.15),
+    0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tool-badge:hover::before {
+  left: 100%;
+}
+
+
+.tool-logo {
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.tool-emoji {
+  font-size: 1rem;
+  filter: grayscale(0%);
+}
+
+.tool-name {
+  color: var(--primary-text);
+  font-weight: 600;
+  font-family: 'JetBrains Mono', 'Fira Code', 'SF Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+/* Achievement Section */
+.achievement-section {
+  margin-top: 0;
+}
+
+.achievement-badge {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.achievement-badge:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+.achievement-icon {
+  font-size: 1.5rem;
+  filter: grayscale(0%);
+  flex-shrink: 0;
+}
+
+.achievement-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.achievement-label {
+  font-size: 0.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary-text);
+  opacity: 0.8;
 }
 
 .achievement-text {
   color: var(--primary-text);
-  font-weight: 600;
+  font-weight: 500;
+  font-family: 'Outfit', 'Inter', sans-serif;
   position: relative;
   z-index: 1;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
 }
 
 /* Neon Theme */
@@ -327,27 +494,49 @@ onMounted(() => {
   --card-shadow: 0 8px 32px rgba(0, 255, 65, 0.3);
   
   background: rgba(0, 0, 0, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(0, 255, 65, 0.2);
+  box-shadow: 
+    0 0 40px rgba(0, 255, 65, 0.05),
+    inset 0 0 0 1px rgba(0, 255, 65, 0.1);
 }
 
-.theme-neon .avatar-frame {
-  box-shadow: 0 0 30px #00ff41, inset 0 0 30px rgba(0, 255, 65, 0.2);
+.theme-neon .tool-badge {
+  background: linear-gradient(145deg, 
+    rgba(0, 255, 65, 0.25) 0%, 
+    rgba(0, 255, 65, 0.08) 20%,
+    rgba(0, 0, 0, 0.3) 40%,
+    rgba(0, 255, 65, 0.08) 60%,
+    rgba(0, 255, 65, 0.25) 100%);
+  border: 1px solid rgba(0, 255, 65, 0.4);
+  box-shadow: 
+    inset 0 1px 1px rgba(0, 255, 65, 0.5),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.5),
+    0 2px 8px rgba(0, 255, 65, 0.3);
 }
 
-.theme-neon .name::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00ff41, transparent);
-  box-shadow: 0 0 10px #00ff41;
+.theme-neon .tool-badge::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(0, 255, 65, 0.6) 50%, 
+    transparent 100%);
 }
 
-/* Ocean Theme */
+.theme-neon .tool-badge:hover {
+  box-shadow: 
+    inset 0 1px 2px rgba(0, 255, 65, 0.6),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.6),
+    0 4px 12px rgba(0, 255, 65, 0.4);
+}
+
+.theme-neon .achievement-badge {
+  background: rgba(0, 255, 65, 0.04);
+}
+
+
+
+
 .theme-ocean {
   --bg-color: rgba(240, 248, 255, 0.3);
   --primary-text: #1e40af;
@@ -361,26 +550,49 @@ onMounted(() => {
   --text-glow: 0 0 10px rgba(14, 165, 233, 0.5);
   --card-shadow: 0 8px 32px rgba(14, 165, 233, 0.2);
   
-  background: rgba(224, 242, 254, 0.2);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(200%);
+  -webkit-backdrop-filter: blur(24px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.05),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.2);
 }
 
-.theme-ocean .avatar-frame {
-  box-shadow: 0 0 20px rgba(14, 165, 233, 0.4), inset 0 0 20px rgba(14, 165, 233, 0.1);
+
+.theme-ocean .tool-badge {
+  background: linear-gradient(145deg, 
+    rgba(59, 130, 246, 0.2) 0%, 
+    rgba(147, 197, 253, 0.1) 20%,
+    rgba(219, 234, 254, 0.05) 40%,
+    rgba(147, 197, 253, 0.1) 60%,
+    rgba(59, 130, 246, 0.2) 100%);
+  border: 1px solid rgba(147, 197, 253, 0.3);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px rgba(59, 130, 246, 0.2),
+    0 2px 6px rgba(59, 130, 246, 0.1);
 }
 
-.theme-ocean .name::after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #0ea5e9, transparent);
-  box-shadow: 0 0 5px rgba(14, 165, 233, 0.5);
+.theme-ocean .tool-badge::before {
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(147, 197, 253, 0.5) 50%, 
+    transparent 100%);
 }
+
+.theme-ocean .tool-badge:hover {
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.6),
+    inset 0 -1px 2px rgba(59, 130, 246, 0.3),
+    0 4px 10px rgba(59, 130, 246, 0.15);
+}
+
+.theme-ocean .achievement-badge {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -392,14 +604,46 @@ onMounted(() => {
 
   .content-section {
     text-align: center;
+    padding-top: 3rem;
   }
   
-  .name {
-    font-size: 2.5rem;
+  .profile-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
   }
   
-  .role {
+  .role-content {
     font-size: 1.25rem;
+  }
+  
+  .role-icon {
+    font-size: 1.5rem;
+  }
+  
+  .tool-badge {
+    padding: 0.5rem 1rem;
+    gap: 0.5rem;
+  }
+  
+  .tool-logo {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .tool-emoji {
+    font-size: 1.25rem;
+  }
+  
+  .tool-name {
+    font-size: 0.85rem;
+  }
+  
+  .tools-badges {
+    gap: 0.5rem;
+  }
+  
+  .achievement-icon {
+    font-size: 2rem;
   }
   
   .avatar-frame {
@@ -409,12 +653,6 @@ onMounted(() => {
   
   .avatar-text {
     font-size: 2rem;
-  }
-  
-  .tool-item {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.25rem;
   }
   
   .achievement-badge {
@@ -427,6 +665,10 @@ onMounted(() => {
   gap: 2rem;
 }
 
+.compact .content-section {
+  padding-top: 2rem;
+}
+
 .compact .avatar-frame {
   width: 120px;
   height: 120px;
@@ -436,22 +678,42 @@ onMounted(() => {
   font-size: 2rem;
 }
 
-.compact .name {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+.compact .profile-title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
-.compact .role {
-  font-size: 1.25rem;
+.compact .role-section {
   margin-bottom: 1.5rem;
+}
+
+.compact .role-content {
+  font-size: 1.1rem;
+}
+
+.compact .role-icon {
+  font-size: 1.25rem;
 }
 
 .compact .tools-section {
   margin-bottom: 1.5rem;
 }
 
-.compact .tool-item {
-  padding: 0.5rem 1rem;
-  margin-bottom: 0.5rem;
+.compact .tool-badge {
+  padding: 0.4rem 0.8rem;
+  gap: 0.4rem;
+}
+
+.compact .tool-logo {
+  width: 1rem;
+  height: 1rem;
+}
+
+.compact .tool-emoji {
+  font-size: 1rem;
+}
+
+.compact .tool-name {
+  font-size: 0.75rem;
 }
 </style>
