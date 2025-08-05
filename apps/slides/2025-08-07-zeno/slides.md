@@ -205,6 +205,12 @@ h1 {
 <div class="neon-subtitle">2025/08/07 ペチオブLT会</div>
 
 ---
+layout: center
+---
+
+<SelfIntroduction theme="neon" />
+
+---
 
 # zeno.zsh とは
 
