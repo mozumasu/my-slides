@@ -6,7 +6,7 @@ title: 自作キーボードに入門した人はどうなる?
 info: |
   ## 自作キーボードに入門した人はどうなる?
   カスタムキーボードの世界への旅
-  
+
   あなたの理想のキーボードを見つけよう
 class: text-center
 highlighter: shiki
@@ -17,35 +17,128 @@ transition: slide-left
 mdc: true
 colorSchema: light
 fonts:
-  sans: "Noto Sans JP"
+  sans: "M PLUS Rounded 1c, Noto Sans JP"
   serif: "Robot Slab"
   mono: "Fira Code"
 css: unocss
 ---
 
-# 自作キーボードに入門した人はどうなる?
+# ようこそ、<span class="gradient-text">自作キーボード沼</span>へ
 
-<br>
-
-### カスタムキーボードの世界への旅
-
-<div class="pt-12">
-  <span @click="$nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <kbd>space</kbd>
-  </span>
+<div class="flex flex-col items-center justify-center h-60">
+  <div class="wave-container">
+    <h2 class="subtitle">mozumasu</h2>
+  </div>
+  
+  <div class="keyboard-icon">
+    <span class="key-icon">⌨️</span>
+  </div>
 </div>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@900&display=swap');
+
 /* Ocean title effects - blue glow for h1 */
 h1 {
-  color: #00bfff;
-  text-shadow:
-    0 0 1px #00bfff,
-    0 0 15px #00bfff,
-    0 0 8px #4dd0e1,
-    0 0 25px #4dd0e1;
-  font-weight: 300;
-  letter-spacing: 1px;
+  color: #ffffff;
+  font-size: 3.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 2rem;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(135deg, #ff6b35 0%, #ff9800 30%, #ffc107 60%, #ffeb3b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+}
+
+/* Subtitle styling */
+.subtitle {
+  font-size: 2.5rem;
+  color: #ffffff;
+  font-weight: 900;
+  margin: 0;
+  font-family: "Rounded Mplus 1c", "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", sans-serif;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.05em;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+/* Wave container */
+.wave-container {
+  position: relative;
+  padding: 2rem;
+}
+
+/* Keyboard icon animation */
+.keyboard-icon {
+  margin-top: 3rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+.key-icon {
+  font-size: 4rem;
+}
+
+/* Next button styling */
+.next-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.next-button:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.next-button kbd {
+  padding: 0.25rem 0.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-family: "Fira Code", monospace;
+}
+
+/* Animations */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* Enhanced glass morphism for content */
@@ -97,64 +190,58 @@ import SelfIntroduction from '@mozumasu/shared-components/slides/SelfIntroductio
 <SelfIntroduction theme="ocean" profileImage="/images/profile_mozumasu.jpeg" />
 
 ---
-layout: default
+layout: center
 ---
 
-# あなたの沼はどこから？
+# Q. <span v-click>あなたの沼はどこから？</span>
 
-<div class="mt-8 space-y-6">
+---
+layout: center
+---
 
-<div v-click class="glass">
-  <h3 class="text-2xl mb-2">1. 思想が合わない 🤔</h3>
-  <p>使わないキーが視界に入るのが許せない...</p>
-</div>
-
-<div v-click class="glass">
-  <h3 class="text-2xl mb-2">2. 肩と首辛い 😣</h3>
-  <p>長時間のコーディングで体がバキバキ...</p>
-</div>
-
-<div v-click class="glass">
-  <h3 class="text-2xl mb-2">3. 見た目にこだわりたい ✨</h3>
-  <p>デスクの上もオシャレにしたい！</p>
-</div>
-
-</div>
+# A. <span v-click>私は思想から</span>
 
 ---
 layout: default
 ---
 
-# 思想が合わない？
+# 思想？
 
-<div class="mt-6">
+<div v-click class="glass">
+  <h3 class="text-2xl mb-2">デザインは必要最低限であるべき</h3>
+</div>
 
-### 使わないキーがポジションを占有しているのが気にくわない
+<div v-click class="glass">
+  <h3 class="text-2xl mb-2">→ 使わないキーがポジションを占有しているのが気にくわない
+</h3>
+</div>
+
+---
 
 <div class="grid grid-cols-2 gap-6 mt-8">
 
 <div class="glass">
-<h4 class="text-xl mb-4">無駄なキーたち</h4>
+<h2 class="text-xl mb-4">使用しないキーたち</h2>
 
-- <span class="key">Enter</span> → Ctrl + M で代替
-- <span class="key">Backspace</span> → Ctrl + H で代替  
-- <span class="key">英数/かな</span> → SKKなので不要
-- <span class="key">矢印キー</span> → Emacsキーバインド
+- <span class="key">Enter</span>
+- <span class="key">Backspace</span>
+- <span class="key">英数/かな</span>
+- <span class="key">矢印キー</span>
 
 </div>
 
 <div class="glass">
-<h4 class="text-xl mb-4">その他の不満</h4>
+<h2 class="text-xl mb-4">その他の不満</h2>
 
 - 数字キーが遠い 📏
 - 印字は不要 🚫
-- → **必要なものだけ視界に入ってほしい**
 
 </div>
 
 </div>
 
-</div>
+<div v-click class="grid grid-cols-2 gap-6 mt-8">
+必要なものだけ視界に入ってほしい</div>
 
 ---
 layout: center
@@ -181,7 +268,6 @@ layout: center
 
 <div v-click class="glass">
   <h3 class="text-xl mb-2">😎 かっこいい</h3>
-  <p>これ重要！モチベーション爆上がり</p>
 </div>
 
 </div>
@@ -199,7 +285,7 @@ layout: default
 
 - **トラックボールの有無** 🖲️
 - **キーの数** → 40くらいほしい  
-  <small>（アルファベットは26キー）</small>
+  <small>※ アルファベットは26キー</small>
 - **接続方式**  
   Bluetooth or 有線
 - **購入形態**  
@@ -214,10 +300,13 @@ layout: default
 - キー数 **42キー**
 - **Bluetooth** 接続
 - **キット** で購入
-- → **roBa** を選択！
 
 </div>
 
+</div>
+
+<div v-click class="glass mt-8 text-center">
+→ roBa を選択！
 </div>
 
 ---
@@ -312,7 +401,7 @@ layout: default
 
 <div class="mt-6">
 
-### 決める順番が重要！
+### 決める順番が重要
 
 <div class="flex flex-col items-center mt-8 space-y-4">
 
@@ -354,7 +443,7 @@ layout: default
 
 <div>
 
-### よくある不安 😰
+## よくある不安 😰
 
 <div class="space-y-3">
 <div v-click class="glass">
@@ -378,14 +467,15 @@ layout: default
 
 <div v-click>
 
-### 解決策：遊舎工房 🎯
+## それ、遊舎工房 で解決します 🎯
 
-<div class="glass">
+</div>
+
+<div v-click class="glass" >
 <h4 class="text-lg mb-3">はんだ付けの練習</h4>
 
 - 基盤込みで **2,500円**
 - 丁寧な指導付き
-- 失敗しても安心
 
 </div>
 
@@ -395,8 +485,7 @@ layout: default
 - 相談にも乗ってくれる
 - 工具の貸出あり
 - 初心者に優しい環境
-
-</div>
+- 工具のセット売りあり
 
 </div>
 
@@ -420,20 +509,35 @@ image: /images/first-keyboard.jpg
 
 </div>
 
-<div class="glass">
-<h4 class="text-lg mb-2">IME</h4>
-
-**SKK** - シンプルな日本語入力
-
-<small>英数/かなキーが不要になる理由</small>
-
-</div>
-
 <div class="mt-8 text-sm opacity-75">
 初めての自作キーボード。<br>
 ここから沼が始まった...
 </div>
 
+</div>
+
+---
+layout: center
+---
+
+<div>
+- おゆまる + レジン でキーキャップを作成
+<p v-click class="glass mt-4"> 軸が安定せず断念😢 </p>
+ </div>
+
+<div v-click>
+- A1 miniを購入
+</div>
+
+<div v-click>
+- 3Dプリンターでケースを作成
+</div>
+
+<div v-click>
+- 3Dプリンターでキーキャップを作成
+</div>
+<div v-click>
+- 3Dプリンターで作成したキーキャップ + レジン
 </div>
 
 ---
@@ -494,14 +598,19 @@ layout: default
 </div>
 
 ---
+layout: center
+---
+
+# キーバインドの沼
+
+---
 layout: two-cols
 ---
 
 # キーバインドの設定
 
-### レイヤー機能の活用
+## レイヤー機能の活用
 
-<div class="glass mt-4">
 <h4 class="text-lg mb-2">別レイヤーに割り当て</h4>
 
 - 数字キー（0-9）
@@ -517,30 +626,38 @@ layout: two-cols
 
 </div>
 
-::right::
+---
+layout: default
+---
 
-### 使用しないキーの省略
+## 使用しないキーの省略
 
 <div class="glass mt-12">
 <h4 class="text-lg mb-2">代替キーバインド</h4>
 
-- <span class="key">英数/かな</span> → SKKなので不要
-- <span class="key">矢印キー</span> → Emacsのキーバインド
+- <span class="key">英数/かな</span> → control + j, l (SKK)
+- <span class="key">矢印キー</span> → control + n/p/f/b (Emacs)
 - <span class="key">Enter</span> → Ctrl + M
 - <span class="key">Backspace</span> → Ctrl + H
 
 </div>
 
 <div class="glass mt-4">
-<h4 class="text-lg mb-2">どうやって決めてる？</h4>
+
+---
+layout: center
+---
+
+- <span class="key">Enter</span> → Ctrl + M
+- <span class="key">Backspace</span> → Ctrl + H
+
+## どうやって決めてるの？
 
 シェルのキーバインドを参考に
 
 ```sh
 bindkey
 ```
-
-</div>
 
 ---
 layout: default
@@ -574,6 +691,18 @@ layout: default
 </div>
 
 </div>
+
+---
+layout: center
+---
+
+# 苦労したこと
+
+## プリントしたロータリーエンコーダー回らない~~
+
+## 打鍵感がぶにゅんぶにゅん
+
+<div v-click>やすりがけしたらいけた</div>
 
 ---
 layout: center
@@ -613,7 +742,7 @@ layout: center
 
 <div class="glass max-w-3xl mx-auto">
 
-### 自作キーボードは...
+### 自作キーボードは
 
 <div class="grid grid-cols-2 gap-6 mt-8">
 
