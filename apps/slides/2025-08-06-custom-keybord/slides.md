@@ -957,16 +957,28 @@ layout: default
 layout: center
 ---
 
-- <span class="key">Enter</span> → Ctrl + M
-- <span class="key">Backspace</span> → Ctrl + H
+<div class="glass-section">
+<div class="p-8">
 
-## どうやって決めてるの？
+<div class="glass-item mb-6">
+<ul class="text-xl space-y-2">
+<li><span class="key">Enter</span> → Ctrl + M</li>
+<li><span class="key">Backspace</span> → Ctrl + H</li>
+</ul>
+</div>
 
-シェルのキーバインドを参考に
+<h2 class="text-2xl mb-4 gradient-text">どうやって決めてるの？</h2>
+
+<div class="glass-item">
+<p class="text-xl mb-4">シェルのキーバインドを参考に</p>
 
 ```sh
 bindkey
 ```
+</div>
+
+</div>
+</div>
 
 ---
 layout: default
