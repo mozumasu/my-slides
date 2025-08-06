@@ -65,6 +65,9 @@ importers:
         specifier: ^0.179.1
         version: 0.179.1
     devDependencies:
+      '@mozumasu/shared-components':
+        specifier: file:../../../packages/shared-components
+        version: link:../../../packages/shared-components
       '@slidev/cli':
         specifier: ^0.50.0-beta.6
         version: 0.50.0-beta.6(@babel/parser@7.28.0)(@nuxt/kit@3.14.159(magicast@0.3.5)(rollup@4.46.2))(@types/markdown-it@14.1.2)(@types/node@20.19.9)(@vue/compiler-sfc@3.5.13)(magicast@0.3.5)(playwright-chromium@1.48.2)(postcss@8.5.6)(rollup@4.46.2)

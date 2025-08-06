@@ -90,18 +90,11 @@ pre {
 layout: center
 ---
 
-# 自己紹介
+<script setup>
+import SelfIntroduction from '@mozumasu/shared-components/slides/SelfIntroduction.vue'
+</script>
 
-<div class="glass max-w-2xl mx-auto">
-
-### もずます
-
-- **エンジニア**として日々コーディング
-- **Emacs**使い（だからキーバインドにこだわる）
-- **自作キーボード**沼に入って1年
-- **3Dプリンター**で色々作るのが好き
-
-</div>
+<SelfIntroduction theme="ocean" profileImage="/images/profile_mozumasu.jpeg" />
 
 ---
 layout: default

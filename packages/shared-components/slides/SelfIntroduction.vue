@@ -6,12 +6,14 @@ interface Props {
   theme?: "neon" | "ocean" | "auto";
   showAnimation?: boolean;
   compact?: boolean;
+  profileImage?: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   theme: "auto",
   showAnimation: true,
   compact: false,
+  profileImage: "/images/profile_mozumasu.jpeg",
 });
 
 // Profile data
@@ -27,7 +29,7 @@ const profile = {
 };
 
 // Profile image path
-const profileImage = "/images/profile_mozumasu.jpeg";
+const profileImage = computed(() => props.profileImage);
 
 // Auto theme detection (based on current background theme)
 const detectedTheme = ref<"neon" | "ocean">("ocean");

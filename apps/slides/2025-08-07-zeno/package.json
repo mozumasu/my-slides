@@ -3,7 +3,9 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "prebuild": "node ../../../scripts/copy-shared-assets.js",
     "build": "slidev build",
+    "predev": "node ../../../scripts/copy-shared-assets.js",
     "dev": "slidev --open",
     "export": "slidev export"
   },
