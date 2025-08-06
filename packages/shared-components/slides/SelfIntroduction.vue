@@ -310,23 +310,19 @@ onMounted(() => {
 }
 
 .avatar-name {
-  font-size: 1.3rem;
-  font-weight: 700;
-  font-family: "Space Grotesk", "Outfit", sans-serif;
-  color: #d4af37;
-  letter-spacing: 0.02em;
+  font-size: 1.35rem;
+  font-weight: 500;
+  font-family: "Outfit", "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.7);
+  letter-spacing: 0.08em;
   line-height: 1;
   opacity: 1;
-  margin-top: 0.25rem;
+  margin-top: 0.5rem;
   position: relative;
   text-shadow: 
-    /* Inset effect - light from bottom */
-    0 1px 0 rgba(255, 255, 255, 0.4),
-    0 2px 1px rgba(255, 255, 255, 0.2),
-    /* Inset effect - shadow from top */ 0 -1px 0 rgba(0, 0, 0, 0.6),
-    0 -2px 1px rgba(0, 0, 0, 0.3),
-    /* Depth */ 1px 2px 4px rgba(0, 0, 0, 0.2),
-    1px 4px 8px rgba(0, 0, 0, 0.1);
+    0 1px 2px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
 }
 
 /* Content Section */
@@ -353,11 +349,10 @@ onMounted(() => {
   font-size: 0.9rem;
   font-weight: 500;
   font-family: "Outfit", "Inter", sans-serif;
-  color: #ffffff;
-  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.08em;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.1);
+    0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 .role-icon {
@@ -379,19 +374,14 @@ onMounted(() => {
 .section-title {
   font-size: 0.65rem;
   font-family: "Outfit", sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #d4af37;
-  opacity: 0.9;
-  margin: 0 0 0.2rem 0;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.5);
+  opacity: 1;
+  margin: 0 0 0.4rem 0;
   text-shadow: 
-    /* Inset effect - light from bottom */
-    0 0.5px 0 rgba(255, 255, 255, 0.4),
-    0 1px 0.5px rgba(255, 255, 255, 0.2),
-    /* Inset effect - shadow from top */ 0 -0.5px 0 rgba(0, 0, 0, 0.5),
-    0 -1px 0.5px rgba(0, 0, 0, 0.3),
-    /* Depth */ 0.5px 1px 2px rgba(0, 0, 0, 0.15);
+    0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .tools-badges {
@@ -456,16 +446,15 @@ onMounted(() => {
 }
 
 .tool-name {
-  color: #ffffff;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 600;
   font-family: "Outfit", "Inter", "Hiragino Sans", sans-serif;
   font-size: 0.8rem;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   position: relative;
   z-index: 1;
   text-shadow:
-    0 1px 2px rgba(100, 100, 100, 0.3),
-    0 2px 4px rgba(0, 0, 0, 0.1);
+    0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Achievement Section */
@@ -506,31 +495,25 @@ onMounted(() => {
 }
 
 .achievement-label {
-  font-weight: 700;
+  font-weight: 600;
   font-size: 0.7rem;
   font-family: "Outfit", sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #d4af37;
-  opacity: 0.95;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.55);
+  opacity: 1;
   text-shadow: 
-    /* Inset effect - light from bottom */
-    0 0.5px 0 rgba(255, 255, 255, 0.4),
-    0 1px 0.5px rgba(255, 255, 255, 0.2),
-    /* Inset effect - shadow from top */ 0 -0.5px 0 rgba(0, 0, 0, 0.5),
-    0 -1px 0.5px rgba(0, 0, 0, 0.3),
-    /* Depth */ 0.5px 1px 2px rgba(0, 0, 0, 0.15);
+    0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .achievement-text {
   font-size: 0.9rem;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
   font-family: "Outfit", "Inter", sans-serif;
   line-height: 1.4;
   text-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.2),
-    0 2px 4px rgba(0, 0, 0, 0.1);
+    0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
 /* Neon Theme */
@@ -578,6 +561,29 @@ onMounted(() => {
   box-shadow:
     inset 0 2px 5px rgba(0, 0, 0, 0.18),
     inset 0 -1px 2px rgba(255, 255, 255, 0.25);
+}
+
+.theme-neon .avatar-name {
+  color: rgba(200, 200, 200, 0.85);
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-neon .section-title,
+.theme-neon .achievement-label {
+  color: rgba(180, 180, 180, 0.6);
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.theme-neon .role-content,
+.theme-neon .achievement-text {
+  color: rgba(220, 220, 220, 0.85);
+}
+
+.theme-neon .tool-name {
+  color: rgba(230, 230, 230, 0.9);
 }
 
 .theme-ocean {
@@ -635,6 +641,29 @@ onMounted(() => {
   box-shadow:
     inset 0 2px 5px rgba(0, 0, 0, 0.18),
     inset 0 -1px 2px rgba(255, 255, 255, 0.25);
+}
+
+.theme-ocean .avatar-name {
+  color: rgba(30, 64, 175, 0.9);
+  text-shadow: 
+    0 1px 2px rgba(255, 255, 255, 0.5),
+    0 2px 4px rgba(14, 165, 233, 0.2);
+}
+
+.theme-ocean .section-title,
+.theme-ocean .achievement-label {
+  color: rgba(14, 165, 233, 0.6);
+  text-shadow: 
+    0 1px 2px rgba(255, 255, 255, 0.4);
+}
+
+.theme-ocean .role-content,
+.theme-ocean .achievement-text {
+  color: rgba(30, 64, 175, 0.85);
+}
+
+.theme-ocean .tool-name {
+  color: rgba(30, 64, 175, 0.9);
 }
 
 /* Responsive Design */
