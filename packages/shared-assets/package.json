@@ -1,0 +1,30 @@
+{
+  "name": "@mozumasu/shared-assets",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Shared assets for blog and slides",
+  "main": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./images/*": "./images/*",
+    "./icons/*": "./icons/*",
+    "./fonts/*": "./fonts/*"
+  },
+  "files": [
+    "images",
+    "icons", 
+    "fonts",
+    "index.js",
+    "index.d.ts"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
