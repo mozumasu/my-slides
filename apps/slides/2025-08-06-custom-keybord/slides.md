@@ -193,13 +193,55 @@ import SelfIntroduction from '@mozumasu/shared-components/slides/SelfIntroductio
 layout: center
 ---
 
-# Q. <span v-click>あなたの沼はどこから？</span>
+# Q. <span v-click class="gradient-text">あなたの沼はどこから？</span>
+
+<style scoped>
+h1 {
+  font-size: 3rem;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
 
 ---
 layout: center
 ---
 
-# A. <span v-click>私は思想から</span>
+# A. <span v-click class="gradient-text">私は思想から</span>
+
+<style scoped>
+h1 {
+  font-size: 3rem;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  animation: fadeInScale 0.8s ease-out;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+</style>
 
 ---
 layout: default
@@ -207,107 +249,253 @@ layout: default
 
 # 思想？
 
-<div v-click class="glass">
-  <h3 class="text-2xl mb-2">デザインは必要最低限であるべき</h3>
+<div v-click class="glass glow-box">
+  <h3 class="text-2xl mb-2 font-bold">デザインは必要最低限であるべき</h3>
 </div>
 
-<div v-click class="glass">
-  <h3 class="text-2xl mb-2">→ 使わないキーがポジションを占有しているのが気にくわない
+<div v-click class="glass glow-box mt-6">
+  <h3 class="text-2xl mb-2">→ 使わないキーがポジションを占有しているのが<span class="gradient-text">気にくわない</span>
 </h3>
 </div>
+
+<style scoped>
+h1 {
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 3rem;
+}
+
+.glow-box {
+  transition: all 0.3s ease;
+}
+
+.glow-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+</style>
 
 ---
 
 <div class="grid grid-cols-2 gap-6 mt-8">
 
-<div class="glass">
-<h2 class="text-xl mb-4">使用しないキーたち</h2>
+<div v-click class="glass glow-box">
+<h2 class="text-xl mb-4 gradient-text">使用しないキーたち</h2>
 
-- <span class="key">Enter</span>
-- <span class="key">Backspace</span>
-- <span class="key">英数/かな</span>
-- <span class="key">矢印キー</span>
-
-</div>
-
-<div class="glass">
-<h2 class="text-xl mb-4">その他の不満</h2>
-
-- 数字キーが遠い 📏
-- 印字は不要 🚫
+<ul class="space-y-3">
+<li v-click="1">- <span class="key">Enter</span></li>
+<li v-click="2">- <span class="key">Backspace</span></li>
+<li v-click="3">- <span class="key">英数/かな</span></li>
+<li v-click="4">- <span class="key">矢印キー</span></li>
+</ul>
 
 </div>
 
+<div v-click="5" class="glass glow-box">
+<h2 class="text-xl mb-4 gradient-text">その他の不満</h2>
+
+<ul class="space-y-3">
+<li v-click="6">- 数字キーが遠い 📏</li>
+<li v-click="7">- 印字は不要 🚫</li>
+</ul>
+
 </div>
 
-<div v-click class="grid grid-cols-2 gap-6 mt-8">
-必要なものだけ視界に入ってほしい</div>
+</div>
+
+<div v-click="8" class="mt-12 text-center">
+<p class="text-2xl font-bold gradient-text animate-pulse">必要なものだけ視界に入ってほしい</p>
+</div>
+
+<style scoped>
+.glow-box {
+  transition: all 0.3s ease;
+}
+
+.glow-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+</style>
 
 ---
 layout: center
 ---
 
-# 自作キーボードのメリット
+# 自作キーボードの<span class="gradient-text">メリット</span>
 
 <div class="mt-8 max-w-3xl mx-auto">
 
-<div v-click class="glass mb-6">
+<div v-click="1" class="glass mb-6 benefit-card">
   <h3 class="text-xl mb-2">🎮 ARグラスと組み合わせれば寝ながら作業できる</h3>
-  <p>究極のリラックスコーディング環境</p>
+  <p class="text-sm opacity-90">究極のリラックスコーディング環境</p>
 </div>
 
-<div v-click class="glass mb-6">
+<div v-click="2" class="glass mb-6 benefit-card">
   <h3 class="text-xl mb-2">💪 分割キーボードで肩凝り軽減</h3>
-  <p>自然な姿勢で長時間作業も快適に</p>
+  <p class="text-sm opacity-90">自然な姿勢で長時間作業も快適に</p>
 </div>
 
-<div v-click class="glass mb-6">
+<div v-click="3" class="glass mb-6 benefit-card">
   <h3 class="text-xl mb-2">⚡ ホームポジションから離れない</h3>
-  <p>レイヤー機能とカスタムキーバインドで効率UP</p>
+  <p class="text-sm opacity-90">レイヤー機能とカスタムキーバインドで効率UP</p>
 </div>
 
-<div v-click class="glass">
-  <h3 class="text-xl mb-2">😎 かっこいい</h3>
+<div v-click="4" class="glass benefit-card special">
+  <h3 class="text-2xl mb-2 gradient-text font-bold">😎 かっこいい</h3>
 </div>
 
 </div>
+
+<style scoped>
+h1 {
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+}
+
+.benefit-card {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, transparent, rgba(255, 191, 0, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.benefit-card:hover {
+  transform: translateX(10px);
+  box-shadow: -5px 5px 20px rgba(0, 191, 255, 0.3);
+}
+
+.benefit-card:hover::before {
+  opacity: 1;
+}
+
+.special {
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 191, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 191, 0, 0.6);
+  }
+}
+</style>
 
 ---
 layout: default
 ---
 
-# キーボードの選定
+# キーボードの<span class="gradient-text">選定</span>
 
 <div class="grid grid-cols-2 gap-8 mt-8">
 
-<div class="glass">
-<h3 class="text-xl mb-4">考慮すべきポイント</h3>
+<div v-click="1" class="glass selection-card">
+<h3 class="text-xl mb-4 font-bold">考慮すべきポイント</h3>
 
-- **トラックボールの有無** 🖲️
-- **キーの数** → 40くらいほしい  
-  <small>※ アルファベットは26キー</small>
-- **接続方式**  
-  Bluetooth or 有線
-- **購入形態**  
-  組み立て済み or キット or すべて自作
-
-</div>
-
-<div class="glass">
-<h3 class="text-xl mb-4">私の選択</h3>
-
-- トラックボール **あり** ✅
-- キー数 **42キー**
-- **Bluetooth** 接続
-- **キット** で購入
+<ul class="space-y-3">
+<li v-click="2">• <strong>トラックボールの有無</strong> 🖲️</li>
+<li v-click="3">• <strong>キーの数</strong> → 40くらいほしい<br>
+  <small class="ml-4 opacity-80">※ アルファベットは26キー</small></li>
+<li v-click="4">• <strong>接続方式</strong><br>
+  <span class="ml-4 text-sm">Bluetooth or 有線</span></li>
+<li v-click="5">• <strong>購入形態</strong><br>
+  <span class="ml-4 text-sm">組み立て済み or キット or すべて自作</span></li>
+</ul>
 
 </div>
 
+<div v-click="6" class="glass selection-card highlight">
+<h3 class="text-xl mb-4 gradient-text font-bold">私の選択</h3>
+
+<ul class="space-y-3">
+<li>• トラックボール <strong class="text-green-400">あり</strong> ✅</li>
+<li>• キー数 <strong class="text-green-400">42キー</strong></li>
+<li>• <strong class="text-green-400">Bluetooth</strong> 接続</li>
+<li>• <strong class="text-green-400">キット</strong> で購入</li>
+</ul>
+
 </div>
 
-<div v-click class="glass mt-8 text-center">
-→ roBa を選択！
 </div>
+
+<div v-click="7" class="glass mt-8 text-center result-box">
+<p class="text-2xl font-bold">→ <span class="gradient-text">roBa</span> を選択！</p>
+</div>
+
+<style scoped>
+h1 {
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.selection-card {
+  transition: all 0.3s ease;
+}
+
+.selection-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+.highlight {
+  border: 2px solid rgba(255, 191, 0, 0.5);
+  animation: borderGlow 2s ease-in-out infinite;
+}
+
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(255, 191, 0, 0.3);
+  }
+  50% {
+    border-color: rgba(255, 191, 0, 0.7);
+  }
+}
+
+.result-box {
+  animation: slideInUp 0.6s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 
 ---
 layout: default
@@ -697,11 +885,53 @@ layout: default
 
 # 苦労したこと
 
-## プリントしたロータリーエンコーダー回らない~~
+<div class="space-y-8 mt-12">
 
-## 打鍵感がぶにゅんぶにゅん
+<div v-click="1" class="glass trouble-card">
+<h3 class="text-xl mb-2">🔄 プリントしたロータリーエンコーダー回らない〜〜</h3>
+</div>
 
-<div v-click>やすりがけしたらいけた</div>
+<div v-click="2" class="glass trouble-card">
+<h3 class="text-xl mb-2">🤔 打鍵感がぶにゅんぶにゅん</h3>
+</div>
+
+<div v-click="3" class="mt-8 text-center">
+<p class="text-2xl gradient-text font-bold animate-bounce">✨ やすりがけしたらいけた！</p>
+</div>
+
+</div>
+
+<style scoped>
+h1 {
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+.trouble-card {
+  transition: all 0.3s ease;
+  border-left: 4px solid rgba(255, 107, 53, 0.7);
+}
+
+.trouble-card:hover {
+  transform: translateX(10px);
+  border-left-color: rgba(255, 191, 0, 1);
+  box-shadow: -5px 5px 20px rgba(255, 191, 0, 0.3);
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s ease-in-out infinite;
+}
+</style>
 
 ---
 layout: center
@@ -739,52 +969,172 @@ layout: center
 
 # まとめ
 
-<div class="glass max-w-3xl mx-auto">
+<div class="glass max-w-3xl mx-auto summary-container">
 
-### 自作キーボードは
+<h3 class="text-center text-2xl mb-8 gradient-text">自作キーボードは...</h3>
 
-<div class="grid grid-cols-2 gap-6 mt-8">
+<div class="grid grid-cols-2 gap-6">
 
-<div class="text-center">
+<div v-click="1" class="text-center summary-card">
 <h3 class="text-2xl mb-4">🎯 効率的</h3>
-自分に最適化された<br>キー配置とバインド
+<p>自分に最適化された<br>キー配置とバインド</p>
 </div>
 
-<div class="text-center">
+<div v-click="2" class="text-center summary-card">
 <h3 class="text-2xl mb-4">💪 健康的</h3>
-分割キーボードで<br>肩こり・首こり軽減
+<p>分割キーボードで<br>肩こり・首こり軽減</p>
 </div>
 
-<div class="text-center">
+<div v-click="3" class="text-center summary-card">
 <h3 class="text-2xl mb-4">🎨 創造的</h3>
-3Dプリンターやレジンで<br>オリジナルデザイン
+<p>3Dプリンターやレジンで<br>オリジナルデザイン</p>
 </div>
 
-<div class="text-center">
-<h3 class="text-2xl mb-4">🌊 深い沼</h3>
-一度入ったら<br>抜け出せない...！
-</div>
-
-</div>
-
-<div class="mt-8 text-center text-xl">
-**あなたも自作キーボードの世界へ！** 🚀
+<div v-click="4" class="text-center summary-card special-card">
+<h3 class="text-2xl mb-4 gradient-text">🌊 深い沼</h3>
+<p class="font-bold">一度入ったら<br>抜け出せない...！</p>
 </div>
 
 </div>
+
+<div v-click="5" class="mt-12 text-center">
+<p class="text-2xl font-bold cta-text">
+あなたも<span class="gradient-text">自作キーボード</span>の世界へ！ 🚀
+</p>
+</div>
+
+</div>
+
+<style scoped>
+h1 {
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 2rem;
+}
+
+.summary-container {
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.summary-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 191, 0, 0.1) 0%, transparent 70%);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.summary-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+}
+
+.special-card {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 191, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(255, 191, 0, 0.6);
+  }
+}
+
+.cta-text {
+  animation: slideInUp 0.8s ease-out;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
 
 ---
 layout: end
 ---
 
-# ご清聴ありがとうございました
+# <span class="gradient-text">ご清聴ありがとうございました</span>
 
-<div class="text-center mt-8">
+<div class="text-center mt-12">
 
-### 質問・相談はお気軽に！ 💬
+<h3 class="text-2xl mb-8 font-bold">質問・相談はお気軽に！ 💬</h3>
 
-<div class="mt-8 opacity-75">
-自作キーボードの沼でお待ちしています 🌊
+<div class="mt-8 end-message">
+<p class="text-xl">自作キーボードの<span class="gradient-text font-bold">沼</span>でお待ちしています 🌊</p>
 </div>
 
 </div>
+
+<style scoped>
+h1 {
+  font-size: 3.5rem;
+  text-shadow: 
+    3px 3px 0 rgba(0, 0, 0, 0.2),
+    0 0 20px rgba(255, 255, 255, 0.5);
+  animation: fadeInScale 1s ease-out;
+}
+
+h3 {
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.end-message {
+  animation: fadeInUp 1s ease-out 1s both;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
