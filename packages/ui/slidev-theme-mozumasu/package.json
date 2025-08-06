@@ -8,7 +8,7 @@
   ],
   "exports": {
     ".": "./index.ts",
-    "./global-bottom.vue": "./components/global-bottom.vue",
+    "./components/global-bottom.vue": "./components/global-bottom.vue",
     "./composables/*": "./composables/*"
   },
   "engines": {

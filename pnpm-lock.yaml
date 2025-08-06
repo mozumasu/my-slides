@@ -99,6 +99,9 @@ importers:
       '@slidev/theme-seriph':
         specifier: ^0.25.0
         version: 0.25.0
+      slidev-theme-mozumasu:
+        specifier: file:../../../packages/ui/slidev-theme-mozumasu
+        version: file:packages/ui/slidev-theme-mozumasu(@nuxt/kit@3.14.159(magicast@0.3.5)(rollup@4.46.2))(@vue/compiler-sfc@3.5.13)(postcss@8.5.6)(rollup@4.46.2)(typescript@5.6.3)(vite@6.3.5(@types/node@20.19.9)(jiti@2.5.1)(tsx@4.19.2)(yaml@2.8.0))
       vue:
         specifier: ^3.5.12
         version: 3.5.13(typescript@5.6.3)

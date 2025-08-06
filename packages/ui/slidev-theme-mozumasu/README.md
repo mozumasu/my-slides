@@ -17,7 +17,7 @@ Ocean & Neon themed [Slidev](https://github.com/slidevjs/slidev) theme with anim
 
 ### For workspace projects
 
-Add to your `package.json`:
+1. Add to your `package.json`:
 
 ```json
 {
@@ -28,6 +28,27 @@ Add to your `package.json`:
     "three": "^0.179.1"
   }
 }
+```
+
+2. Create `global-bottom.vue` in your project root:
+
+```vue
+<script setup lang="ts">
+// Re-export from theme
+import GlobalBottom from 'slidev-theme-mozumasu/components/global-bottom.vue'
+</script>
+
+<template>
+  <GlobalBottom theme="ocean" />
+</template>
+```
+
+3. Update your `slides.md` frontmatter:
+
+```yaml
+---
+theme: mozumasu
+---
 ```
 
 ### For external projects
