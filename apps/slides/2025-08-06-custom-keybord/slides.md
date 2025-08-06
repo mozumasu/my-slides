@@ -242,6 +242,27 @@ h1 {
   color: #ffffff;
 }
 
+/* Glass morphism for entire section */
+.glass-section {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+/* Glass morphism for individual items within glass section */
+.glass-item {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
 /* Code blocks with glass effect */
 .slidev-code {
   background: rgba(15, 23, 42, 0.8) !important;
@@ -374,23 +395,23 @@ h1 {
 <div class="grid grid-cols-2 gap-6 mt-8">
 
 <div v-click class="glass glow-box">
-<h2 class="text-xl mb-4 gradient-text">使用しないキーたち</h2>
+<h2 class="text-2xl mb-4 gradient-text">使用しないキーたち</h2>
 
-<ul class="space-y-3 text-xl">
-<li v-click="1">- <span class="key">Enter</span></li>
-<li v-click="2">- <span class="key">Backspace</span></li>
-<li v-click="3">- <span class="key">英数/かな</span></li>
-<li v-click="4">- <span class="key">矢印キー</span></li>
+<ul class="space-y-4 text-2xl">
+<li v-click="1"><span class="key text-xl">Enter</span></li>
+<li v-click="2"><span class="key text-xl">Backspace</span></li>
+<li v-click="3"><span class="key text-xl">英数/かな</span></li>
+<li v-click="4"><span class="key text-xl">矢印キー</span></li>
 </ul>
 
 </div>
 
 <div v-click="5" class="glass glow-box">
-<h2 class="text-xl mb-4 gradient-text">その他の不満</h2>
+<h2 class="text-2xl mb-4 gradient-text">その他の不満</h2>
 
-<ul class="space-y-3 text-xl">
-<li v-click="6">- 数字キーが遠い 📏</li>
-<li v-click="7">- 印字は不要 🚫</li>
+<ul class="space-y-4 text-2xl">
+<li v-click="6">数字キーが遠い 📏</li>
+<li v-click="7">印字は不要 🚫</li>
 </ul>
 
 </div>
@@ -720,26 +741,27 @@ layout: default
 
 # 自作キーボードの不安
 
-<div class="grid grid-cols-2 gap-8 mt-8">
+<div class="glass-section mt-8">
+<div class="grid grid-cols-2 gap-8 p-8">
 
 <div>
 
 ## よくある不安 😰
 
 <div class="space-y-3">
-<div v-click class="glass">
+<div v-click class="glass-item">
 はんだ付けできるかな... 🔥
 </div>
 
-<div v-click class="glass">
+<div v-click class="glass-item">
 コンデンサー？ソケット？<br>なにそれ美味しいの？ 🍕
 </div>
 
-<div v-click class="glass">
+<div v-click class="glass-item">
 道具はなにが必要？ 🔧
 </div>
 
-<div v-click class="glass">
+<div v-click class="glass-item">
 動かなかったらどうしよう... 😱
 </div>
 </div>
@@ -750,7 +772,7 @@ layout: default
 
 <h2 v-click class="text-xl mb-4">それ、遊舎工房 で解決します 🎯</h2>
 
-<div v-click class="glass">
+<div v-click class="glass-item">
 <h4 class="text-lg mb-3">はんだ付けの練習</h4>
 
 - 基盤込みで **2,500円**
@@ -758,7 +780,7 @@ layout: default
 
 </div>
 
-<div v-click class="glass mt-4">
+<div v-click class="glass-item mt-4">
 <h4 class="text-lg mb-3">その他のサポート</h4>
 
 - 相談にも乗ってくれる
@@ -770,6 +792,7 @@ layout: default
 
 </div>
 
+</div>
 </div>
 
 ---
