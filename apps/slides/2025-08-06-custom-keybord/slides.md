@@ -1,6 +1,8 @@
 ---
 # Ocean themed presentation with mozumasu theme
 theme: mozumasu
+themeConfig:
+  primary: '#ff6b35'
 # Ocean wave background is provided by the theme
 title: 自作キーボードに入門した人はどうなる?
 info: |
@@ -26,30 +28,85 @@ css: unocss
 <style global>
 /* Global font size adjustments */
 body {
-  font-size: 1.25rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 p {
-  font-size: 1.25rem;
-  line-height: 1.8;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 li {
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 h1 {
-  font-size: 4.5rem !important;
+  font-size: 3rem !important;
+  color: #ffffff !important;
+  z-index: 10;
+  position: relative;
 }
 
 h2 {
-  font-size: 3rem !important;
+  font-size: 2rem !important;
+  color: #ffffff !important;
+  z-index: 10;
+  position: relative;
 }
 
 h3 {
-  font-size: 2.5rem !important;
+  font-size: 1.5rem !important;
+  color: #ffffff !important;
+  z-index: 10;
+  position: relative;
+}
+
+/* Ensure text is visible on ocean background */
+.slidev-layout {
+  color: #ffffff !important;
+}
+
+/* Fix for center layout slides */
+.slidev-layout[layout="center"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Override theme text colors */
+.slidev-page-4 h1,
+.slidev-page-5 h1,
+.slidev-page-6 h1,
+.slidev-page-7 h1,
+.slidev-page-8 h1,
+.slidev-page-9 h1,
+.slidev-page-10 h1 {
+  color: #ffffff !important;
+}
+
+/* Ensure all text elements are visible */
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout span,
+.slidev-layout div {
+  color: #ffffff;
+}
+
+/* Fix for default layout */
+.slidev-layout[layout="default"] {
+  padding: 4rem 6rem;
+}
+
+/* Ensure headings are properly styled */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3 {
+  color: #ffffff !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 </style>
 
@@ -73,13 +130,13 @@ h3 {
 /* Ocean title effects - blue glow for h1 */
 h1 {
   color: #ffffff;
-  font-size: 4.5rem;
+  font-size: 3rem;
   font-weight: 700;
   letter-spacing: -0.5px;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-shadow: 
-    3px 3px 0 rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.5);
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(0, 0, 0, 0.3);
 }
 
 /* Gradient text effect */
@@ -93,14 +150,14 @@ h1 {
 
 /* Subtitle styling */
 .subtitle {
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: #ffffff;
   font-weight: 900;
   margin: 0;
   font-family: "Rounded Mplus 1c", "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", "Hiragino Kaku Gothic ProN", sans-serif;
   text-shadow: 
-    3px 3px 0 rgba(0, 0, 0, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.5);
+    2px 2px 4px rgba(0, 0, 0, 0.5),
+    0 0 10px rgba(0, 0, 0, 0.3);
   letter-spacing: 0.05em;
   animation: fadeInUp 1s ease-out 0.5s both;
 }
@@ -175,42 +232,43 @@ h1 {
 
 /* Enhanced glass morphism for content */
 .glass {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
-  padding: 2rem;
-  font-size: 1.2rem;
-  line-height: 1.8;
+  padding: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
 }
 
 /* Code blocks with glass effect */
 .slidev-code {
-  background: rgba(15, 23, 42, 0.4) !important;
+  background: rgba(15, 23, 42, 0.8) !important;
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(100, 116, 139, 0.2);
-  font-size: 1.3em !important;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  font-size: 0.9em !important;
 }
 
 pre {
-  background: rgba(15, 23, 42, 0.4) !important;
+  background: rgba(15, 23, 42, 0.8) !important;
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(100, 116, 139, 0.2);
-  font-size: 1.2rem !important;
+  border: 1px solid rgba(100, 116, 139, 0.3);
+  font-size: 0.9rem !important;
 }
 
 /* Keyboard key styling */
 .key {
   display: inline-block;
-  background: rgba(139, 92, 246, 0.2);
-  color: #a78bfa;
-  padding: 6px 16px;
-  border-radius: 8px;
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  padding: 4px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(139, 92, 246, 0.5);
   font-family: "Fira Code", monospace;
-  font-size: 1.1em;
+  font-size: 0.9em;
   font-weight: 500;
-  margin: 0 4px;
+  margin: 0 2px;
 }
 </style>
 
@@ -232,7 +290,7 @@ layout: center
 
 <style scoped>
 h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-shadow: 
     3px 3px 0 rgba(0, 0, 0, 0.2),
     0 0 20px rgba(255, 255, 255, 0.5);
@@ -259,7 +317,7 @@ layout: center
 
 <style scoped>
 h1 {
-  font-size: 4rem;
+  font-size: 2.5rem;
   text-shadow: 
     3px 3px 0 rgba(0, 0, 0, 0.2),
     0 0 20px rgba(255, 255, 255, 0.5);
@@ -285,11 +343,11 @@ layout: default
 # 思想？
 
 <div v-click class="glass glow-box">
-  <h3 class="text-3xl mb-2 font-bold">デザインは必要最低限であるべき</h3>
+  <h3 class="text-2xl mb-2 font-bold">デザインは必要最低限であるべき</h3>
 </div>
 
 <div v-click class="glass glow-box mt-6">
-  <h3 class="text-3xl mb-2">→ 使わないキーがポジションを占有しているのが<span class="gradient-text">気にくわない</span>
+  <h3 class="text-2xl mb-2">→ 使わないキーがポジションを占有しているのが<span class="gradient-text">気にくわない</span>
 </h3>
 </div>
 
@@ -316,7 +374,7 @@ h1 {
 <div class="grid grid-cols-2 gap-6 mt-8">
 
 <div v-click class="glass glow-box">
-<h2 class="text-2xl mb-4 gradient-text">使用しないキーたち</h2>
+<h2 class="text-xl mb-4 gradient-text">使用しないキーたち</h2>
 
 <ul class="space-y-3">
 <li v-click="1">- <span class="key">Enter</span></li>
@@ -328,7 +386,7 @@ h1 {
 </div>
 
 <div v-click="5" class="glass glow-box">
-<h2 class="text-2xl mb-4 gradient-text">その他の不満</h2>
+<h2 class="text-xl mb-4 gradient-text">その他の不満</h2>
 
 <ul class="space-y-3">
 <li v-click="6">- 数字キーが遠い 📏</li>
@@ -340,7 +398,7 @@ h1 {
 </div>
 
 <div v-click="8" class="mt-12 text-center">
-<p class="text-3xl font-bold gradient-text animate-pulse">必要なものだけ視界に入ってほしい</p>
+<p class="text-2xl font-bold gradient-text animate-pulse">必要なものだけ視界に入ってほしい</p>
 </div>
 
 <style scoped>
