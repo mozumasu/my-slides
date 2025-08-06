@@ -38,8 +38,8 @@ p {
 }
 
 li {
-  font-size: 1rem;
-  line-height: 1.6;
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
 h1 {
@@ -262,13 +262,13 @@ pre {
   display: inline-block;
   background: rgba(139, 92, 246, 0.3);
   color: #c4b5fd;
-  padding: 4px 12px;
+  padding: 6px 14px;
   border-radius: 6px;
   border: 1px solid rgba(139, 92, 246, 0.5);
   font-family: "Fira Code", monospace;
-  font-size: 0.9em;
+  font-size: 1em;
   font-weight: 500;
-  margin: 0 2px;
+  margin: 0 4px;
 }
 </style>
 
@@ -376,7 +376,7 @@ h1 {
 <div v-click class="glass glow-box">
 <h2 class="text-xl mb-4 gradient-text">使用しないキーたち</h2>
 
-<ul class="space-y-3">
+<ul class="space-y-3 text-xl">
 <li v-click="1">- <span class="key">Enter</span></li>
 <li v-click="2">- <span class="key">Backspace</span></li>
 <li v-click="3">- <span class="key">英数/かな</span></li>
@@ -388,7 +388,7 @@ h1 {
 <div v-click="5" class="glass glow-box">
 <h2 class="text-xl mb-4 gradient-text">その他の不満</h2>
 
-<ul class="space-y-3">
+<ul class="space-y-3 text-xl">
 <li v-click="6">- 数字キーが遠い 📏</li>
 <li v-click="7">- 印字は不要 🚫</li>
 </ul>
