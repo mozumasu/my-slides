@@ -611,6 +611,7 @@ layout: two-cols
 
 ## レイヤー機能の活用
 
+<div class="glass mt-4">
 <h4 class="text-lg mb-2">別レイヤーに割り当て</h4>
 
 - 数字キー（0-9）
@@ -641,8 +642,6 @@ layout: default
 - <span class="key">Backspace</span> → Ctrl + H
 
 </div>
-
-<div class="glass mt-4">
 
 ---
 layout: center
