@@ -1,16 +1,15 @@
 ---
-# try also "default" to start simple
-theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev/1920x1080
+# Ocean themed presentation with mozumasu theme
+theme: mozumasu
+# Ocean wave background is provided by the theme
+# background: https://cover.sli.dev/1920x1080
 # some information about your slides, markdown enabled
-title: 2025-08-06-custom-keybord
+title: カスタムキーボード入門
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
+  ## カスタムキーボード入門
+  自作キーボードの世界へようこそ
 
-  Learn more at [Sli.dev](https://sli.dev)
+  カスタムキーボードの魅力と始め方
 # apply any unocss classes to the current slide
 class: text-center
 # https://sli.dev/custom/highlighters.html
@@ -23,17 +22,87 @@ drawings:
 transition: slide-left
 # enable MDC Syntax: https://sli.dev/guide/syntax.html#mdc-syntax
 mdc: true
+colorSchema: light
+fonts:
+  # basically the text
+  sans: "Noto Sans JP"
+  # use with `font-serif` css class from windicss
+  serif: "Robot Slab"
+  # for code blocks, inline code, etc.
+  mono: "Fira Code"
+css: unocss
 ---
 
-# 2025-08-06-custom-keybord
+# カスタムキーボード入門
 
-Presentation slides for developers
+自作キーボードの世界へようこそ
 
 <div class="pt-12">
   <span @click="$nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
     Press Space for next page <kbd>space</kbd>
   </span>
 </div>
+
+<style>
+/* Enhanced code blocks */
+.slidev-code {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
+}
+
+pre {
+  background: rgba(15, 23, 42, 0.4) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
+}
+
+.code-container {
+  background: rgba(15, 23, 42, 0.3) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2em !important;
+}
+
+/* Override existing background classes */
+.bg-slate-900\/70,
+.bg-slate-800\/50,
+.bg-slate-800 {
+  background: rgba(15, 23, 42, 0.3) !important;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.2) !important;
+}
+
+/* Tab key styling */
+.tab-key {
+  display: inline-block;
+  background: rgba(139, 92, 246, 0.2);
+  color: #a78bfa;
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  font-family: "Fira Code", monospace;
+  font-size: 0.75em;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 4px;
+}
+
+/* Ocean title effects - blue glow for h1 */
+h1 {
+  color: #00bfff;
+  text-shadow:
+    0 0 1px #00bfff,
+    0 0 15px #00bfff,
+    0 0 8px #4dd0e1,
+    0 0 25px #4dd0e1;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+</style>
 
 <div class="abs-br m-6 flex gap-2">
   <button @click="$nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
