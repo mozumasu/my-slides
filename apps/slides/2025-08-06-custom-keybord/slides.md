@@ -465,13 +465,11 @@ layout: default
 
 </div>
 
-<div v-click>
+<div>
 
-## それ、遊舎工房 で解決します 🎯
+<h2 v-click class="text-xl mb-4">それ、遊舎工房 で解決します 🎯</h2>
 
-</div>
-
-<div v-click class="glass" >
+<div v-click class="glass">
 <h4 class="text-lg mb-3">はんだ付けの練習</h4>
 
 - 基盤込みで **2,500円**
@@ -479,13 +477,15 @@ layout: default
 
 </div>
 
-<div class="glass mt-4">
+<div v-click class="glass mt-4">
 <h4 class="text-lg mb-3">その他のサポート</h4>
 
 - 相談にも乗ってくれる
 - 工具の貸出あり
 - 初心者に優しい環境
 - 工具のセット売りあり
+
+</div>
 
 </div>
 
@@ -692,7 +692,7 @@ layout: default
 </div>
 
 ---
-layout: center
+layout: default
 ---
 
 # 苦労したこと
