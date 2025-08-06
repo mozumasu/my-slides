@@ -233,19 +233,22 @@ h1 {
 /* Enhanced glass morphism for content */
 .glass {
   background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 12px;
   padding: 1.5rem;
   font-size: 1rem;
   line-height: 1.6;
   color: #ffffff;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
 }
 
 /* Glass morphism for entire section */
 .glass-section {
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 16px;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -254,19 +257,22 @@ h1 {
 /* Glass morphism for individual items within glass section */
 .glass-item {
   background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
   padding: 1rem;
   font-size: 1rem;
   line-height: 1.6;
   color: #ffffff;
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
 }
 
 /* Code blocks with glass effect */
 .slidev-code {
   background: rgba(15, 23, 42, 0.8) !important;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(100, 116, 139, 0.3);
   font-size: 0.9em !important;
 }
