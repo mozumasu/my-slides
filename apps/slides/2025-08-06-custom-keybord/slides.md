@@ -23,6 +23,38 @@ fonts:
 css: unocss
 ---
 
+<style global>
+/* Global font size adjustments */
+body {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+}
+
+li {
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+h1 {
+  font-size: 4.5rem !important;
+}
+
+h2 {
+  font-size: 3rem !important;
+}
+
+h3 {
+  font-size: 2.5rem !important;
+}
+</style>
+
+---
+
 # ようこそ、<span class="gradient-text">自作キーボード沼</span>へ
 
 <div class="flex flex-col items-center justify-center h-60">
@@ -41,7 +73,7 @@ css: unocss
 /* Ocean title effects - blue glow for h1 */
 h1 {
   color: #ffffff;
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   font-weight: 700;
   letter-spacing: -0.5px;
   margin-bottom: 2rem;
@@ -61,7 +93,7 @@ h1 {
 
 /* Subtitle styling */
 .subtitle {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   color: #ffffff;
   font-weight: 900;
   margin: 0;
@@ -147,7 +179,9 @@ h1 {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
 }
 
 /* Code blocks with glass effect */
@@ -155,13 +189,14 @@ h1 {
   background: rgba(15, 23, 42, 0.4) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2);
-  font-size: 1.1em !important;
+  font-size: 1.3em !important;
 }
 
 pre {
   background: rgba(15, 23, 42, 0.4) !important;
   backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.2);
+  font-size: 1.2rem !important;
 }
 
 /* Keyboard key styling */
@@ -169,11 +204,11 @@ pre {
   display: inline-block;
   background: rgba(139, 92, 246, 0.2);
   color: #a78bfa;
-  padding: 4px 12px;
+  padding: 6px 16px;
   border-radius: 8px;
   border: 1px solid rgba(139, 92, 246, 0.3);
   font-family: "Fira Code", monospace;
-  font-size: 0.85em;
+  font-size: 1.1em;
   font-weight: 500;
   margin: 0 4px;
 }
@@ -197,7 +232,7 @@ layout: center
 
 <style scoped>
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   text-shadow: 
     3px 3px 0 rgba(0, 0, 0, 0.2),
     0 0 20px rgba(255, 255, 255, 0.5);
@@ -224,7 +259,7 @@ layout: center
 
 <style scoped>
 h1 {
-  font-size: 3rem;
+  font-size: 4rem;
   text-shadow: 
     3px 3px 0 rgba(0, 0, 0, 0.2),
     0 0 20px rgba(255, 255, 255, 0.5);
@@ -250,11 +285,11 @@ layout: default
 # 思想？
 
 <div v-click class="glass glow-box">
-  <h3 class="text-2xl mb-2 font-bold">デザインは必要最低限であるべき</h3>
+  <h3 class="text-3xl mb-2 font-bold">デザインは必要最低限であるべき</h3>
 </div>
 
 <div v-click class="glass glow-box mt-6">
-  <h3 class="text-2xl mb-2">→ 使わないキーがポジションを占有しているのが<span class="gradient-text">気にくわない</span>
+  <h3 class="text-3xl mb-2">→ 使わないキーがポジションを占有しているのが<span class="gradient-text">気にくわない</span>
 </h3>
 </div>
 
@@ -281,7 +316,7 @@ h1 {
 <div class="grid grid-cols-2 gap-6 mt-8">
 
 <div v-click class="glass glow-box">
-<h2 class="text-xl mb-4 gradient-text">使用しないキーたち</h2>
+<h2 class="text-2xl mb-4 gradient-text">使用しないキーたち</h2>
 
 <ul class="space-y-3">
 <li v-click="1">- <span class="key">Enter</span></li>
@@ -293,7 +328,7 @@ h1 {
 </div>
 
 <div v-click="5" class="glass glow-box">
-<h2 class="text-xl mb-4 gradient-text">その他の不満</h2>
+<h2 class="text-2xl mb-4 gradient-text">その他の不満</h2>
 
 <ul class="space-y-3">
 <li v-click="6">- 数字キーが遠い 📏</li>
@@ -305,7 +340,7 @@ h1 {
 </div>
 
 <div v-click="8" class="mt-12 text-center">
-<p class="text-2xl font-bold gradient-text animate-pulse">必要なものだけ視界に入ってほしい</p>
+<p class="text-3xl font-bold gradient-text animate-pulse">必要なものだけ視界に入ってほしい</p>
 </div>
 
 <style scoped>
@@ -341,22 +376,22 @@ layout: center
 <div class="mt-8 max-w-3xl mx-auto">
 
 <div v-click="1" class="glass mb-6 benefit-card">
-  <h3 class="text-xl mb-2">🎮 ARグラスと組み合わせれば寝ながら作業できる</h3>
-  <p class="text-sm opacity-90">究極のリラックスコーディング環境</p>
+  <h3 class="text-2xl mb-2">🎮 ARグラスと組み合わせれば寝ながら作業できる</h3>
+  <p class="text-base opacity-90">究極のリラックスコーディング環境</p>
 </div>
 
 <div v-click="2" class="glass mb-6 benefit-card">
-  <h3 class="text-xl mb-2">💪 分割キーボードで肩凝り軽減</h3>
-  <p class="text-sm opacity-90">自然な姿勢で長時間作業も快適に</p>
+  <h3 class="text-2xl mb-2">💪 分割キーボードで肩凝り軽減</h3>
+  <p class="text-base opacity-90">自然な姿勢で長時間作業も快適に</p>
 </div>
 
 <div v-click="3" class="glass mb-6 benefit-card">
-  <h3 class="text-xl mb-2">⚡ ホームポジションから離れない</h3>
-  <p class="text-sm opacity-90">レイヤー機能とカスタムキーバインドで効率UP</p>
+  <h3 class="text-2xl mb-2">⚡ ホームポジションから離れない</h3>
+  <p class="text-base opacity-90">レイヤー機能とカスタムキーバインドで効率UP</p>
 </div>
 
 <div v-click="4" class="glass benefit-card special">
-  <h3 class="text-2xl mb-2 gradient-text font-bold">😎 かっこいい</h3>
+  <h3 class="text-3xl mb-2 gradient-text font-bold">😎 かっこいい</h3>
 </div>
 
 </div>
@@ -419,28 +454,28 @@ layout: default
 <div class="grid grid-cols-2 gap-8 mt-8">
 
 <div v-click="1" class="glass selection-card">
-<h3 class="text-xl mb-4 font-bold">考慮すべきポイント</h3>
+<h3 class="text-2xl mb-4 font-bold">考慮すべきポイント</h3>
 
-<ul class="space-y-3">
+<ul class="space-y-3 text-lg">
 <li v-click="2">• <strong>トラックボールの有無</strong> 🖲️</li>
 <li v-click="3">• <strong>キーの数</strong> → 40くらいほしい<br>
-  <small class="ml-4 opacity-80">※ アルファベットは26キー</small></li>
+  <small class="ml-4 opacity-80 text-base">※ アルファベットは26キー</small></li>
 <li v-click="4">• <strong>接続方式</strong><br>
-  <span class="ml-4 text-sm">Bluetooth or 有線</span></li>
+  <span class="ml-4 text-base">Bluetooth or 有線</span></li>
 <li v-click="5">• <strong>購入形態</strong><br>
-  <span class="ml-4 text-sm">組み立て済み or キット or すべて自作</span></li>
+  <span class="ml-4 text-base">組み立て済み or キット or すべて自作</span></li>
 </ul>
 
 </div>
 
 <div v-click="6" class="glass selection-card highlight">
-<h3 class="text-xl mb-4 gradient-text font-bold">私の選択</h3>
+<h3 class="text-2xl mb-4 gradient-text font-bold">私の選択</h3>
 
-<ul class="space-y-3">
-<li>• トラックボール <strong class="text-green-400">あり</strong> ✅</li>
-<li>• キー数 <strong class="text-green-400">42キー</strong></li>
-<li>• <strong class="text-green-400">Bluetooth</strong> 接続</li>
-<li>• <strong class="text-green-400">キット</strong> で購入</li>
+<ul class="space-y-3 text-lg">
+<li>• トラックボール <strong class="text-green-400 text-xl">あり</strong> ✅</li>
+<li>• キー数 <strong class="text-green-400 text-xl">42キー</strong></li>
+<li>• <strong class="text-green-400 text-xl">Bluetooth</strong> 接続</li>
+<li>• <strong class="text-green-400 text-xl">キット</strong> で購入</li>
 </ul>
 
 </div>
@@ -448,7 +483,7 @@ layout: default
 </div>
 
 <div v-click="7" class="glass mt-8 text-center result-box">
-<p class="text-2xl font-bold">→ <span class="gradient-text">roBa</span> を選択！</p>
+<p class="text-3xl font-bold">→ <span class="gradient-text">roBa</span> を選択！</p>
 </div>
 
 <style scoped>
@@ -888,15 +923,15 @@ layout: default
 <div class="space-y-8 mt-12">
 
 <div v-click="1" class="glass trouble-card">
-<h3 class="text-xl mb-2">🔄 プリントしたロータリーエンコーダー回らない〜〜</h3>
+<h3 class="text-2xl mb-2">🔄 プリントしたロータリーエンコーダー回らない〜〜</h3>
 </div>
 
 <div v-click="2" class="glass trouble-card">
-<h3 class="text-xl mb-2">🤔 打鍵感がぶにゅんぶにゅん</h3>
+<h3 class="text-2xl mb-2">🤔 打鍵感がぶにゅんぶにゅん</h3>
 </div>
 
 <div v-click="3" class="mt-8 text-center">
-<p class="text-2xl gradient-text font-bold animate-bounce">✨ やすりがけしたらいけた！</p>
+<p class="text-3xl gradient-text font-bold animate-bounce">✨ やすりがけしたらいけた！</p>
 </div>
 
 </div>
@@ -971,34 +1006,34 @@ layout: center
 
 <div class="glass max-w-3xl mx-auto summary-container">
 
-<h3 class="text-center text-2xl mb-8 gradient-text">自作キーボードは...</h3>
+<h3 class="text-center text-3xl mb-8 gradient-text">自作キーボードは...</h3>
 
 <div class="grid grid-cols-2 gap-6">
 
 <div v-click="1" class="text-center summary-card">
-<h3 class="text-2xl mb-4">🎯 効率的</h3>
-<p>自分に最適化された<br>キー配置とバインド</p>
+<h3 class="text-3xl mb-4">🎯 効率的</h3>
+<p class="text-lg">自分に最適化された<br>キー配置とバインド</p>
 </div>
 
 <div v-click="2" class="text-center summary-card">
-<h3 class="text-2xl mb-4">💪 健康的</h3>
-<p>分割キーボードで<br>肩こり・首こり軽減</p>
+<h3 class="text-3xl mb-4">💪 健康的</h3>
+<p class="text-lg">分割キーボードで<br>肩こり・首こり軽減</p>
 </div>
 
 <div v-click="3" class="text-center summary-card">
-<h3 class="text-2xl mb-4">🎨 創造的</h3>
-<p>3Dプリンターやレジンで<br>オリジナルデザイン</p>
+<h3 class="text-3xl mb-4">🎨 創造的</h3>
+<p class="text-lg">3Dプリンターやレジンで<br>オリジナルデザイン</p>
 </div>
 
 <div v-click="4" class="text-center summary-card special-card">
-<h3 class="text-2xl mb-4 gradient-text">🌊 深い沼</h3>
-<p class="font-bold">一度入ったら<br>抜け出せない...！</p>
+<h3 class="text-3xl mb-4 gradient-text">🌊 深い沼</h3>
+<p class="font-bold text-lg">一度入ったら<br>抜け出せない...！</p>
 </div>
 
 </div>
 
 <div v-click="5" class="mt-12 text-center">
-<p class="text-2xl font-bold cta-text">
+<p class="text-3xl font-bold cta-text">
 あなたも<span class="gradient-text">自作キーボード</span>の世界へ！ 🚀
 </p>
 </div>
@@ -1091,17 +1126,17 @@ layout: end
 
 <div class="text-center mt-12">
 
-<h3 class="text-2xl mb-8 font-bold">質問・相談はお気軽に！ 💬</h3>
+<h3 class="text-3xl mb-8 font-bold">質問・相談はお気軽に！ 💬</h3>
 
 <div class="mt-8 end-message">
-<p class="text-xl">自作キーボードの<span class="gradient-text font-bold">沼</span>でお待ちしています 🌊</p>
+<p class="text-2xl">自作キーボードの<span class="gradient-text font-bold">沼</span>でお待ちしています 🌊</p>
 </div>
 
 </div>
 
 <style scoped>
 h1 {
-  font-size: 3.5rem;
+  font-size: 4.5rem;
   text-shadow: 
     3px 3px 0 rgba(0, 0, 0, 0.2),
     0 0 20px rgba(255, 255, 255, 0.5);
