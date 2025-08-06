@@ -208,7 +208,7 @@ h1 {
 layout: center
 ---
 
-<SelfIntroduction theme="neon" />
+<SelfIntroduction theme="ocean" />
 
 ---
 

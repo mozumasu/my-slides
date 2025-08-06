@@ -475,24 +475,22 @@ onMounted(() => {
 }
 
 .achievement-badge {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 215, 0, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
   border-radius: 16px;
   padding: 1rem;
   box-shadow:
-    inset 0 0 10px rgba(255, 215, 0, 0.15),
-    0 0 20px rgba(255, 215, 0, 0.05);
+    inset 0 2px 4px rgba(0, 0, 0, 0.15),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.2);
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 .achievement-badge:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 215, 0, 0.5);
+  background: rgba(255, 0, 0, 1);
   box-shadow:
-    inset 0 0 15px rgba(255, 215, 0, 0.2),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 0 25px rgba(255, 215, 0, 0.1);
+    inset 0 2px 5px rgba(0, 0, 0, 0.18),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.25);
 }
 
 .achievement-header {
@@ -569,13 +567,17 @@ onMounted(() => {
 }
 
 .theme-neon .achievement-badge {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.28) 0%,
-    rgba(235, 235, 235, 0.2) 30%,
-    rgba(200, 200, 200, 0.15) 70%,
-    rgba(170, 170, 170, 0.08) 100%
-  );
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1);
+}
+
+.theme-neon .achievement-badge:hover {
+  background: rgba(255, 0, 0, 1);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.18),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.25);
 }
 
 .theme-ocean {
@@ -622,13 +624,17 @@ onMounted(() => {
 }
 
 .theme-ocean .achievement-badge {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(235, 245, 255, 0.25) 30%,
-    rgba(210, 230, 255, 0.18) 70%,
-    rgba(190, 210, 245, 0.1) 100%
-  );
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 2px 4px rgba(14, 165, 233, 0.15),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.3);
+}
+
+.theme-ocean .achievement-badge:hover {
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 2px 5px rgba(0, 0, 0, 0.18),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.25);
 }
 
 /* Responsive Design */
@@ -758,4 +764,3 @@ onMounted(() => {
   font-size: 0.75rem;
 }
 </style>
-
