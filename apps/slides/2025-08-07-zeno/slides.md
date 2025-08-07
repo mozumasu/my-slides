@@ -247,9 +247,7 @@ layout: center
 </div>
 
 ---
-
 layout: center
-
 ---
 
 # さっそく試してみよう
@@ -470,9 +468,7 @@ completions:
 </div>
 
 ---
-
 layout: center
-
 ---
 
 # fzf補完実践
@@ -568,9 +564,7 @@ ref: <a href="https://github.com/yuki-yano/zeno.zsh?tab=readme-ov-file#configura
 </div>
 
 ---
-
 layout: center
-
 ---
 
 # お気に入りの使い方
