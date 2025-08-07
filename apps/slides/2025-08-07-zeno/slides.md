@@ -15,7 +15,7 @@ transition: fade-out
 mdc: true
 overviewSnapshots: true
 
-colorSchema: light
+colorSchema: dark
 fonts:
   # basically the text
   sans: "Noto Sans JP"
@@ -212,30 +212,17 @@ layout: center
 
 ---
 
-# zeno.zsh とは
+# zeno.zsh
 
-<div class="mt-8 grid grid-cols-2 gap-8">
+zshとfishのプラグイン
 
-<div class="bg-slate-800/50 p-6 rounded-lg border border-slate-600">
-<div class="text-purple-400 font-mono text-sm mb-4">// plugin.info</div>
-<div class="space-y-3">
-<div><span class="text-blue-400">type:</span> <span class="text-green-400">"zsh-plugin"</span></div>
-
-<div><span class="text-blue-400">supports:</span> <span class="text-green-400">["zsh", "fish"]</span></div>
-<div><span class="text-blue-400">powered_by:</span> <span class="text-green-400">"deno"</span></div>
+<div class="mt-8 bg-slate-800/50 p-8 rounded-lg border border-slate-600">
+<div class="space-y-4 text-lg">
+<div>• <span class="text-yellow-400">abbrev</span>を用いた<span class="text-yellow-300">snippet</span>の展開</div>
+<div>• ファジーファインダー(<span class="text-cyan-400">fzf</span>)を用いた補完</div>
+<div>• <span class="text-cyan-400">fzf</span>を用いた<span class="text-pink-400">snippet</span>の挿入</div>
+<div>• その他いくつかの便利<span class="text-green-400">utility</span></div>
 </div>
-</div>
-
-<div class="bg-slate-800/50 p-6 rounded-lg border border-slate-600">
-<div class="text-purple-400 font-mono text-sm mb-4">// features</div>
-<div class="space-y-2 text-sm">
-<div>• <span class="text-yellow-400">abbrev</span> snippet expansion</div>
-<div>• <span class="text-cyan-400">fzf</span> completion</div>
-<div>• <span class="text-pink-400">snippet</span> insertion</div>
-<div>• various <span class="text-green-400">utilities</span></div>
-</div>
-</div>
-
 </div>
 
 <div class="mt-8 text-center">
@@ -250,7 +237,7 @@ layout: center
 layout: center
 ---
 
-# さっそく試してみよう
+# どんなときに便利なの?
 
 ---
 
