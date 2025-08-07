@@ -322,7 +322,8 @@ aws ec2-instance-connect ssh \
 
 ## 面倒 その1
 
-そもそも入力が面倒
+<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
+<div class="text-yellow-400 font-mono text-sm mb-4">// そもそも入力が面倒</div>
 
 ```sh
 aws ec2-instance-connect ssh \
@@ -330,32 +331,76 @@ aws ec2-instance-connect ssh \
     --os-user ec2-user
 ```
 
+</div>
+
 ---
 
 ## 面倒 その2
 
-idの確認が面倒
+<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
+<div class="text-cyan-400 font-mono text-sm mb-4">// idの確認が面倒</div>
+
+<div class="small-code">
 
 ```sh
 aws ec2 describe-instances \
   --query 'Reservations[*].Instances[*].[InstanceId, Tags[?Key==`Name`].Value | [0]]' \
   --output table
-
-------------------------------------------------
-|               DescribeInstances              |
-+----------------------+-----------------------+
-|  i-XXXXXXXXXXXXXXXXX |  dev-BastionInstance  |
-+----------------------+-----------------------+
 ```
+
+</div>
+
+<div class="mt-4 bg-slate-800 p-3 rounded text-xs font-mono">
+<div class="text-slate-300">------------------------------------------------</div>
+<div class="text-slate-300">|               DescribeInstances              |</div>
+<div class="text-slate-300">+----------------------+-----------------------+</div>
+<div class="text-slate-300">|  i-XXXXXXXXXXXXXXXXX |  dev-BastionInstance  |</div>
+<div class="text-slate-300">+----------------------+-----------------------+</div>
+</div>
+
+</div>
 
 ---
 
 ## 立ちはばかる面倒
 
-1. 入力が面倒 → スニペットで解決
-2. idの確認が面倒 → fzf補完で解決
+<div class="mt-8 grid grid-cols-2 gap-8">
 
-それ、zeno.zshで解決できるよ
+<div class="bg-red-900/20 p-6 rounded-lg border border-red-600/30">
+<div class="text-red-400 font-mono text-sm mb-4">// 問題</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="text-red-400">1.</span>
+<span>入力が面倒</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-red-400">2.</span>
+<span>idの確認が面倒</span>
+</div>
+</div>
+</div>
+
+<div class="bg-green-900/20 p-6 rounded-lg border border-green-600/30">
+<div class="text-green-400 font-mono text-sm mb-4">// 解決策</div>
+<div class="space-y-3">
+<div class="flex items-center gap-2">
+<span class="text-green-400">→</span>
+<span>スニペットで解決</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-green-400">→</span>
+<span>fzf補完で解決</span>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="mt-8 text-center">
+<div class="inline-block bg-purple-900/30 px-6 py-3 rounded-lg border border-purple-600/50">
+<span class="text-purple-400 text-lg">それ、zeno.zshで解決できるよ</span>
+</div>
+</div>
 
 ---
 
@@ -373,10 +418,6 @@ aws ec2 describe-instances \
 <div class="flex items-center gap-2">
 <span class="text-red-400">❌</span>
 <span>idのコピペが面倒</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>毎回同じ作業</span>
 </div>
 </div>
 </div>
