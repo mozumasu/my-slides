@@ -348,7 +348,9 @@ aws ec2 describe-instances \
 
 ---
 
-## それ、zeno.zshで解決できるよ
+<div v-click>
+<h1>それ、zeno.zshで解決できるよ</h1>
+</div>
 
 <div class="mt-8 grid grid-cols-2 gap-8">
 
@@ -366,6 +368,7 @@ aws ec2 describe-instances \
 </div>
 </div>
 
+<div v-click>
 <div class="bg-green-900/20 p-6 rounded-lg border border-green-600/30">
 <div class="text-green-400 font-mono text-sm mb-4">// 解決策</div>
 <div class="space-y-3">
@@ -376,6 +379,7 @@ aws ec2 describe-instances \
 <div class="flex items-center gap-2">
 <span class="text-green-400">→</span>
 <span>fzf補完で解決</span>
+</div>
 </div>
 </div>
 </div>
@@ -690,11 +694,6 @@ completions:
 <div class="text-lg">
 📚 <strong>公式リポジトリ</strong><br>
 <a href="https://github.com/yuki-yano/zeno.zsh" target="_blank">https://github.com/yuki-yano/zeno.zsh</a>
-</div>
-
-<div class="text-lg">
-🔧 <strong>設定例</strong><br>
-<a href="https://github.com/gamoutatsumi/dotfiles/blob/27265ef95acd4542f37b249b55e94c4403dac47c/dot_config/zeno/config.yml#L224" target="_blank">https://github.com/gamoutatsumi/dotfiles/.../config.yml</a>
 </div>
 
 <div class="text-lg">
