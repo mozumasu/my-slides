@@ -414,11 +414,15 @@ aws ec2 describe-instances \
 <span class="ml-4 text-slate-400 text-sm font-mono">~/.config/zeno/config.yml</span>
 </div>
 
+<div class="small-code">
+
 ```yaml
 snippets:
   - keyword: instance-connect
     snippet: aws ec2-instance-connect ssh --instance-id {{instance-id}} --os-user ec2-user
 ```
+
+</div>
 
 </div>
 
