@@ -598,6 +598,8 @@ layout: center
 
 # sshの接続先の補完
 
+<div class="small-code">
+
 ```yaml
 # ~/.config/zeno/config.yml
 completions:
@@ -610,9 +612,13 @@ completions:
       --prompt: "'ssh > '"
 ```
 
+</div>
+
 ---
 
 # package.jsonのscript実行
+
+<div class="small-code">
 
 ```yaml
 # ~/.config/zeno/config.yml
@@ -629,6 +635,8 @@ completions:
     callback: "awk -F ' = ' '{ print $1 }'"
 ```
 
+</div>
+
 ---
 
 # オススメの設定
@@ -640,8 +648,15 @@ completions:
 <a href="https://www.m3tech.blog/entry/zeno-zsh-abbr" target="_blank" class="text-sm opacity-70">https://www.m3tech.blog/entry/zeno-zsh-abbr</a>
 </div>
 
-<div class="bg-gray-800 p-4 rounded-lg">
+</div>
+
+---
+
+# ターミナルでメモるなら
+
 <strong class="text-purple-400">nbコマンドと組み合わせ</strong>
+
+<div class="small-code">
 
 ```yaml
 completions:
@@ -659,11 +674,11 @@ completions:
 
 </div>
 
-</div>
-
 ---
 
 # gh コマンドと組み合わせ
+
+<div class="small-code">
 
 ```yaml
 # ~/.config/zeno/config.yml
@@ -676,21 +691,7 @@ completions:
       --prompt: "'browse repo >'"
 ```
 
-<div class="mt-8 text-center">
-
-<span class="text-2xl">🚀</span>
-
-<div class="mt-4 text-xl">
-CLIがもっと楽しくなる！
 </div>
-
-</div>
-
-<style>
-span {
-  font-size: 1.5em;
-}
-</style>
 
 ---
 
