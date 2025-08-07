@@ -301,26 +301,12 @@ aws ec2-instance-connect ssh \
 ```
 
 </div>
-
-<div class="mt-4 text-sm">
-<div class="text-red-400">⚠️ コピペが必要</div>
-</div>
-</div>
-
-</div>
-
-<div class="mt-8 flex justify-center gap-4">
-<div class="inline-flex items-center gap-4 bg-red-900/30 px-6 py-3 rounded-lg border border-red-600/50">
-<span class="text-red-400">❌</span> <span class="text-sm">コマンド入力が面倒</span>
-</div>
-<div class="inline-flex items-center gap-4 bg-red-900/30 px-6 py-3 rounded-lg border border-red-600/50">
-<span class="text-red-400">❌</span> <span class="text-sm">idの確認が面倒</span>
 </div>
 </div>
 
 ---
 
-## 面倒 その1
+# 面倒 その1
 
 <div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-yellow-400 font-mono text-sm mb-4">// そもそも入力が面倒</div>
@@ -335,7 +321,7 @@ aws ec2-instance-connect ssh \
 
 ---
 
-## 面倒 その2
+# 面倒 その2
 
 <div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-cyan-400 font-mono text-sm mb-4">// idの確認が面倒</div>
@@ -677,6 +663,8 @@ completions:
 ---
 
 # gh コマンドと組み合わせ
+
+リポジトリを選んでブラウザで開く
 
 <div class="small-code">
 
