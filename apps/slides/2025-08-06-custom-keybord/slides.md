@@ -68,6 +68,18 @@ h3 {
   color: #ffffff !important;
 }
 
+/* Enhanced text visibility with shadows */
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout p,
+.slidev-layout li,
+.slidev-layout span,
+.slidev-layout div,
+.slidev-layout .prose {
+  text-shadow: 0 1px 3px var(--text-shadow-color, rgba(0, 0, 0, 0.5));
+}
+
 /* Fix for center layout slides */
 .slidev-layout[layout="center"] {
   display: flex;
@@ -77,14 +89,10 @@ h3 {
   height: 100vh;
 }
 
-/* Override theme text colors */
-.slidev-page-4 h1,
-.slidev-page-5 h1,
-.slidev-page-6 h1,
-.slidev-page-7 h1,
-.slidev-page-8 h1,
-.slidev-page-9 h1,
-.slidev-page-10 h1 {
+/* Override theme text colors - simplified with better specificity */
+.slidev-layout[layout="default"] h1,
+.slidev-layout[layout="center"] h1,
+.slidev-layout[layout="intro"] h1 {
   color: #ffffff !important;
 }
 
@@ -230,58 +238,130 @@ h1 {
   }
 }
 
-/* Enhanced glass morphism for content */
+/*
+ * Enhanced Glassmorphism Styles with improved accessibility and performance
+ */
+
+/* Define variables for consistency */
+:root {
+  --glass-border-color: rgba(255, 255, 255, 0.25);
+  --glass-shadow-color: rgba(31, 38, 135, 0.35);
+  --text-shadow-color: rgba(0, 0, 0, 0.5);
+  --glass-border-radius: 15px;
+  --item-border-radius: 10px;
+}
+
+/* Base glass morphism styles */
 .glass {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 12px;
+  border: 1px solid var(--glass-border-color);
+  border-radius: var(--glass-border-radius);
   padding: 1.5rem;
+  margin: 0.5rem 0;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow-color);
   font-size: 1rem;
   line-height: 1.6;
   color: #ffffff;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  text-shadow: 0 1px 3px var(--text-shadow-color);
+  /* Fallback for browsers without backdrop-filter support */
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Apply backdrop-filter only if supported */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
 }
 
 /* Glass morphism for entire section */
 .glass-section {
-  background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--glass-border-color);
   border-radius: 16px;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  padding: 2rem;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow-color);
+  /* Fallback */
+  background: rgba(0, 0, 0, 0.5);
 }
 
-/* Glass morphism for individual items within glass section */
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-section {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+  }
+}
+
+/* Glass morphism for individual items */
 .glass-item {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
-  -webkit-backdrop-filter: blur(15px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 8px;
+  border: 1px solid var(--glass-border-color);
+  border-radius: var(--item-border-radius);
   padding: 1rem;
+  margin: 0.5rem 0;
+  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
   font-size: 1rem;
   line-height: 1.6;
   color: #ffffff;
-  box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+  text-shadow: 0 1px 3px var(--text-shadow-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.15);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .glass-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+  }
+}
+
+/* Hover effect for glass items */
+.glass-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.3);
+}
+
+/* Accessibility: Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .glass-item {
+    transition: none;
+  }
+  .glass-item:hover {
+    transform: none;
+  }
 }
 
 /* Code blocks with glass effect */
 .slidev-code {
-  background: rgba(15, 23, 42, 0.8) !important;
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
   border: 1px solid rgba(100, 116, 139, 0.3);
   font-size: 0.9em !important;
+  /* Fallback */
+  background: rgba(15, 23, 42, 0.85) !important;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .slidev-code {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
 }
 
 pre {
-  background: rgba(15, 23, 42, 0.8) !important;
-  backdrop-filter: blur(12px);
   border: 1px solid rgba(100, 116, 139, 0.3);
   font-size: 0.9rem !important;
+  /* Fallback */
+  background: rgba(15, 23, 42, 0.85) !important;
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  pre {
+    background: rgba(15, 23, 42, 0.8) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
 }
 
 /* Keyboard key styling */
@@ -296,6 +376,110 @@ pre {
   font-size: 1em;
   font-weight: 500;
   margin: 0 4px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Design Adjustments */
+@media (max-width: 768px) {
+  /* Adjust font sizes for mobile */
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  h2 {
+    font-size: 1.75rem !important;
+  }
+  h3 {
+    font-size: 1.35rem !important;
+  }
+  p, li {
+    font-size: 1rem;
+  }
+  
+  /* Adjust padding for glass elements */
+  .glass, .glass-section {
+    padding: 1rem;
+  }
+  .glass-item {
+    padding: 0.75rem;
+  }
+  
+  /* Adjust key styling for mobile */
+  .key {
+    padding: 4px 10px;
+    font-size: 0.9em;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass, .glass-section, .glass-item {
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .slidev-layout h1,
+  .slidev-layout h2,
+  .slidev-layout h3,
+  .slidev-layout p,
+  .slidev-layout li {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+}
+
+/* Global kbd element styling with glass effect */
+kbd {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  margin: 0 0.125rem;
+  border: 1px solid var(--glass-border-color, rgba(255, 255, 255, 0.25));
+  border-radius: 0.375rem;
+  font-family: "Fira Code", monospace;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 2px 4px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-shadow: 0 1px 2px var(--text-shadow-color, rgba(0, 0, 0, 0.5));
+  transition: transform 0.2s ease, background-color 0.2s ease;
+  /* Fallback */
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  kbd {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+}
+
+kbd:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.18);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  kbd:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+}
+
+/* Accessibility: Reduce motion for kbd */
+@media (prefers-reduced-motion: reduce) {
+  kbd {
+    transition: background-color 0.2s ease;
+  }
+  kbd:hover {
+    transform: none;
+  }
+}
+
+/* Plus sign between kbd elements */
+.key-plus {
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
 }
 </style>
 
