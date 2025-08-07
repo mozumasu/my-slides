@@ -8,7 +8,7 @@ const props = defineProps<{
   theme?: 'neon' | 'ocean'
 }>()
 
-const currentTheme = ref(props.theme || 'ocean');
+const currentTheme = ref(props.theme || 'neon');
 
 // Theme switching function
 const toggleTheme = () => {
