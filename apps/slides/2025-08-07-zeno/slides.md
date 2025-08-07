@@ -75,6 +75,11 @@ pre {
   margin: 0 4px;
 }
 
+/* Small code blocks */
+.small-code pre {
+  font-size: 0.85em !important;
+}
+
 /* Neon title effects - green glow for h1 */
 h1 {
   color: #00ff41;
@@ -252,6 +257,7 @@ layout: center
 </div>
 
 ```bash
+# 入力するコマンド
 aws ec2-instance-connect ssh \
     --instance-id <EC2のinstance-id> \
     --os-user ec2-user
@@ -261,18 +267,22 @@ aws ec2-instance-connect ssh \
 
 ---
 
-# 接続時のつらみ
+# 実際に入力するとき
 
 <div class="mt-8 grid grid-cols-2 gap-6">
 
 <div class="bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-yellow-400 font-mono text-sm mb-4">// step 1: 確認</div>
 
+<div class="small-code">
+
 ```bash
 aws ec2 describe-instances \
   --query 'Reservations[*].Instances[*]...' \
   --output table
 ```
+
+</div>
 
 <div class="mt-4 bg-slate-800 p-3 rounded text-xs font-mono">
 <div class="text-slate-300">|  i-XXXXXXXXXXXXXXXXX |  dev-Instance  |</div>
@@ -282,11 +292,15 @@ aws ec2 describe-instances \
 <div class="bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-cyan-400 font-mono text-sm mb-4">// step 2: 実行</div>
 
+<div class="small-code">
+
 ```bash
 aws ec2-instance-connect ssh \
     --instance-id i-XXXXXXXXXXXXXXXXX \
     --os-user ec2-user
 ```
+
+</div>
 
 <div class="mt-4 text-sm">
 <div class="text-red-400">⚠️ コピペが必要</div>
@@ -295,12 +309,53 @@ aws ec2-instance-connect ssh \
 
 </div>
 
-<div class="mt-8 text-center">
+<div class="mt-8 flex justify-center gap-4">
 <div class="inline-flex items-center gap-4 bg-red-900/30 px-6 py-3 rounded-lg border border-red-600/50">
-<span class="text-red-400">❌</span> <span class="text-sm">idの確認とコピペが面倒</span>
 <span class="text-red-400">❌</span> <span class="text-sm">コマンド入力が面倒</span>
 </div>
+<div class="inline-flex items-center gap-4 bg-red-900/30 px-6 py-3 rounded-lg border border-red-600/50">
+<span class="text-red-400">❌</span> <span class="text-sm">idの確認が面倒</span>
 </div>
+</div>
+
+---
+
+## 面倒 その1
+
+そもそも入力が面倒
+
+```sh
+aws ec2-instance-connect ssh \
+    --instance-id <EC2のinstance-id> \
+    --os-user ec2-user
+```
+
+---
+
+## 面倒 その2
+
+idの確認が面倒
+
+```sh
+aws ec2 describe-instances \
+  --query 'Reservations[*].Instances[*].[InstanceId, Tags[?Key==`Name`].Value | [0]]' \
+  --output table
+
+------------------------------------------------
+|               DescribeInstances              |
++----------------------+-----------------------+
+|  i-XXXXXXXXXXXXXXXXX |  dev-BastionInstance  |
++----------------------+-----------------------+
+```
+
+---
+
+## 立ちはばかる面倒
+
+1. 入力が面倒 → スニペットで解決
+2. idの確認が面倒 → fzf補完で解決
+
+それ、zeno.zshで解決できるよ
 
 ---
 
