@@ -33,8 +33,8 @@ export const WAVE_THEMES: Record<WaveTheme, WaveSettings> = {
       shallow: '#99e8ff',
       medium: '#66ccff',
       deep: '#3399ff',
-      background: '#3838ff',
-      rendererBg: 0x3838ff
+      background: '#00d9ff',
+      rendererBg: 0x00d9ff
     },
     effects: {
       sparkleIntensity: 6.0,
@@ -54,8 +54,8 @@ export const WAVE_THEMES: Record<WaveTheme, WaveSettings> = {
       shallow: '#4DB8DA',
       medium: '#3A9BC1',
       deep: '#2E7BA6',
-      background: '#3A9BC1',
-      rendererBg: 0x3A9BC1
+      background: '#3838ff',
+      rendererBg: 0x3838ff
     },
     effects: {
       sparkleIntensity: 4.0,

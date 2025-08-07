@@ -182,6 +182,29 @@ cd my-new-slide
 
 Slidevのカスタムテーマは `packages/ui/slidev-theme-mozumasu/` にあります。
 
+**🌊 Ocean & Neon テーマ機能:**
+- 🌊 **Ocean テーマ**: Three.jsによるリアルな海のアニメーション
+- ⚡ **Neon テーマ**: 動的なポリゴンアニメーション  
+- 🎨 **波スタイル**: Tropical / Natural / Deep の3種類
+- ⌨️ **キーボードショートカット**:
+  - `T` - Ocean ⇔ Neon テーマ切り替え
+  - `W` - 波スタイル切り替え（Oceanテーマ時）
+
+**使用方法:**
+```bash
+# 新しいスライドプロジェクトを作成
+make new-slide NAME=my-presentation
+
+# プロジェクトのpackage.jsonに依存関係を追加
+cd apps/slides/my-presentation
+# package.jsonを編集（下記参照）
+
+# global-bottom.vueをプロジェクトルートに作成（下記参照）
+# slides.mdのthemeをmozumasuに変更
+```
+
+詳細は [`packages/ui/slidev-theme-mozumasu/README.md`](packages/ui/slidev-theme-mozumasu/README.md) を参照してください。
+
 ## 🚢 デプロイ
 
 ### Cloudflare Workers

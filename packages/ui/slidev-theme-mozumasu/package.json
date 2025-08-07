@@ -6,6 +6,11 @@
     "slidev-theme",
     "slidev"
   ],
+  "exports": {
+    ".": "./index.ts",
+    "./components/global-bottom.vue": "./components/global-bottom.vue",
+    "./composables/*": "./composables/*"
+  },
   "engines": {
     "node": ">=18.0.0"
   },
@@ -16,7 +21,8 @@
     "screenshot": "slidev export example.md --format png"
   },
   "dependencies": {
-    "@slidev/types": "^0.50.0-beta.6"
+    "@slidev/types": "^0.50.0-beta.6",
+    "three": "^0.179.1"
   },
   "devDependencies": {
     "@slidev/cli": "^0.50.0-beta.6"
