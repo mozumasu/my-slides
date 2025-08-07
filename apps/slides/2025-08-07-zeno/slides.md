@@ -362,7 +362,7 @@ aws ec2 describe-instances \
 
 ---
 
-## 立ちはばかる面倒
+## それ、zeno.zshで解決できるよ
 
 <div class="mt-8 grid grid-cols-2 gap-8">
 
@@ -393,68 +393,6 @@ aws ec2 describe-instances \
 </div>
 </div>
 </div>
-
-</div>
-
-<div class="mt-8 text-center">
-<div class="inline-block bg-purple-900/30 px-6 py-3 rounded-lg border border-purple-600/50">
-<span class="text-purple-400 text-lg">それ、zeno.zshで解決できるよ</span>
-</div>
-</div>
-
----
-
-# zeno.zshで解決
-
-<div class="mt-8 grid grid-cols-2 gap-8">
-
-<div class="bg-red-900/20 p-6 rounded-lg border border-red-600/30">
-<div class="text-red-400 font-mono text-sm mb-4">// before</div>
-<div class="space-y-3 text-sm">
-<div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>コマンド入力が面倒</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>idのコピペが面倒</span>
-</div>
-</div>
-</div>
-
-<div class="bg-green-900/20 p-6 rounded-lg border border-green-600/30">
-<div class="text-green-400 font-mono text-sm mb-4">// after</div>
-<div class="space-y-3 text-sm">
-<div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span><strong>snippet展開</strong>でコマンド入力簡単</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span><strong>fzf補完</strong>でidを選択するだけ</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span>自動化された効率的な操作</span>
-</div>
-</div>
-</div>
-
-</div>
-
-<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-3 h-3 bg-red-500 rounded-full"></div>
-<div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-<div class="w-3 h-3 bg-green-500 rounded-full"></div>
-<span class="ml-4 text-slate-400 text-sm font-mono">result</span>
-</div>
-
-```bash
-aws ec2-instance-connect ssh \
-    --instance-id i-XXXXXXXXXXXXXXXXX \
-    --os-user ec2-user
-```
 
 </div>
 
