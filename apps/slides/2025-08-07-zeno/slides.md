@@ -432,7 +432,7 @@ snippets:
 <div class="text-yellow-400 font-mono text-sm mb-4">// input</div>
 
 <div class="font-mono text-green-400 bg-slate-800 p-3 rounded">
-$ instance-connect<span class="tab-key">Tab</span>
+$ instance-connect<span class="tab-key">space</span>
 </div>
 
 </div>
@@ -455,7 +455,7 @@ aws ec2-instance-connect ssh \
 
 ---
 
-# idのコピペが面倒
+# idの確認と入力が面倒
 
 <div class="mt-8 text-center">
 <div class="inline-block bg-purple-900/30 px-4 py-2 rounded border border-purple-600/50">
