@@ -15,7 +15,7 @@ transition: fade-out
 mdc: true
 overviewSnapshots: true
 
-colorSchema: light
+colorSchema: dark
 fonts:
   # basically the text
   sans: "Noto Sans JP"
@@ -73,6 +73,11 @@ pre {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0 4px;
+}
+
+/* Small code blocks */
+.small-code pre {
+  font-size: 0.85em !important;
 }
 
 /* Neon title effects - green glow for h1 */
@@ -212,30 +217,17 @@ layout: center
 
 ---
 
-# zeno.zsh とは
+# zeno.zsh
 
-<div class="mt-8 grid grid-cols-2 gap-8">
+zshとfishのプラグイン
 
-<div class="bg-slate-800/50 p-6 rounded-lg border border-slate-600">
-<div class="text-purple-400 font-mono text-sm mb-4">// plugin.info</div>
-<div class="space-y-3">
-<div><span class="text-blue-400">type:</span> <span class="text-green-400">"zsh-plugin"</span></div>
-
-<div><span class="text-blue-400">supports:</span> <span class="text-green-400">["zsh", "fish"]</span></div>
-<div><span class="text-blue-400">powered_by:</span> <span class="text-green-400">"deno"</span></div>
+<div class="mt-8 bg-slate-800/50 p-8 rounded-lg border border-slate-600">
+<div class="space-y-4 text-lg">
+<div>• <span class="text-yellow-400">abbrev</span>を用いた<span class="text-yellow-300">snippet</span>の展開</div>
+<div>• ファジーファインダー(<span class="text-cyan-400">fzf</span>)を用いた補完</div>
+<div>• <span class="text-cyan-400">fzf</span>を用いた<span class="text-pink-400">snippet</span>の挿入</div>
+<div>• その他いくつかの便利<span class="text-green-400">utility</span></div>
 </div>
-</div>
-
-<div class="bg-slate-800/50 p-6 rounded-lg border border-slate-600">
-<div class="text-purple-400 font-mono text-sm mb-4">// features</div>
-<div class="space-y-2 text-sm">
-<div>• <span class="text-yellow-400">abbrev</span> snippet expansion</div>
-<div>• <span class="text-cyan-400">fzf</span> completion</div>
-<div>• <span class="text-pink-400">snippet</span> insertion</div>
-<div>• various <span class="text-green-400">utilities</span></div>
-</div>
-</div>
-
 </div>
 
 <div class="mt-8 text-center">
@@ -247,12 +239,10 @@ layout: center
 </div>
 
 ---
-
 layout: center
-
 ---
 
-# さっそく試してみよう
+# どんなときに便利なの?
 
 ---
 
@@ -267,6 +257,7 @@ layout: center
 </div>
 
 ```bash
+# 入力するコマンド
 aws ec2-instance-connect ssh \
     --instance-id <EC2のinstance-id> \
     --os-user ec2-user
@@ -276,18 +267,22 @@ aws ec2-instance-connect ssh \
 
 ---
 
-# 接続時のつらみ
+# 実際に入力するとき
 
 <div class="mt-8 grid grid-cols-2 gap-6">
 
 <div class="bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-yellow-400 font-mono text-sm mb-4">// step 1: 確認</div>
 
+<div class="small-code">
+
 ```bash
 aws ec2 describe-instances \
   --query 'Reservations[*].Instances[*]...' \
   --output table
 ```
+
+</div>
 
 <div class="mt-4 bg-slate-800 p-3 rounded text-xs font-mono">
 <div class="text-slate-300">|  i-XXXXXXXXXXXXXXXXX |  dev-Instance  |</div>
@@ -297,83 +292,97 @@ aws ec2 describe-instances \
 <div class="bg-slate-900/70 p-6 rounded-lg border border-slate-600">
 <div class="text-cyan-400 font-mono text-sm mb-4">// step 2: 実行</div>
 
+<div class="small-code">
+
 ```bash
 aws ec2-instance-connect ssh \
     --instance-id i-XXXXXXXXXXXXXXXXX \
     --os-user ec2-user
 ```
 
-<div class="mt-4 text-sm">
-<div class="text-red-400">⚠️ コピペが必要</div>
 </div>
-</div>
-
-</div>
-
-<div class="mt-8 text-center">
-<div class="inline-flex items-center gap-4 bg-red-900/30 px-6 py-3 rounded-lg border border-red-600/50">
-<span class="text-red-400">❌</span> <span class="text-sm">idの確認とコピペが面倒</span>
-<span class="text-red-400">❌</span> <span class="text-sm">コマンド入力が面倒</span>
 </div>
 </div>
 
 ---
 
-# zeno.zshで解決
+# 面倒 その1
+
+<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
+<div class="text-yellow-400 font-mono text-sm mb-4">// そもそも入力が面倒</div>
+
+```sh
+aws ec2-instance-connect ssh \
+    --instance-id <EC2のinstance-id> \
+    --os-user ec2-user
+```
+
+</div>
+
+---
+
+# 面倒 その2
+
+<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
+<div class="text-cyan-400 font-mono text-sm mb-4">// idの確認が面倒</div>
+
+<div class="small-code">
+
+```sh
+aws ec2 describe-instances \
+  --query 'Reservations[*].Instances[*].[InstanceId, Tags[?Key==`Name`].Value | [0]]' \
+  --output table
+```
+
+</div>
+
+<div class="mt-4 bg-slate-800 p-3 rounded text-xs font-mono">
+<div class="text-slate-300">------------------------------------------------</div>
+<div class="text-slate-300">|               DescribeInstances              |</div>
+<div class="text-slate-300">+----------------------+-----------------------+</div>
+<div class="text-slate-300">|  i-XXXXXXXXXXXXXXXXX |  dev-BastionInstance  |</div>
+<div class="text-slate-300">+----------------------+-----------------------+</div>
+</div>
+
+</div>
+
+---
+
+<div v-click>
+<h1>それ、zeno.zshで解決できるよ</h1>
+</div>
 
 <div class="mt-8 grid grid-cols-2 gap-8">
 
 <div class="bg-red-900/20 p-6 rounded-lg border border-red-600/30">
-<div class="text-red-400 font-mono text-sm mb-4">// before</div>
-<div class="space-y-3 text-sm">
+<div class="text-red-400 font-mono text-sm mb-4">// 問題</div>
+<div class="space-y-3">
 <div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>コマンド入力が面倒</span>
+<span class="text-red-400">1.</span>
+<span>入力が面倒</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>idのコピペが面倒</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-red-400">❌</span>
-<span>毎回同じ作業</span>
+<span class="text-red-400">2.</span>
+<span>idの確認が面倒</span>
 </div>
 </div>
 </div>
 
+<div v-click>
 <div class="bg-green-900/20 p-6 rounded-lg border border-green-600/30">
-<div class="text-green-400 font-mono text-sm mb-4">// after</div>
-<div class="space-y-3 text-sm">
+<div class="text-green-400 font-mono text-sm mb-4">// 解決策</div>
+<div class="space-y-3">
 <div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span><strong>snippet展開</strong>でコマンド入力簡単</span>
-</div>
-<div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span><strong>fzf補完</strong>でidを選択するだけ</span>
+<span class="text-green-400">→</span>
+<span>スニペットで解決</span>
 </div>
 <div class="flex items-center gap-2">
-<span class="text-green-400">✅</span>
-<span>自動化された効率的な操作</span>
+<span class="text-green-400">→</span>
+<span>fzf補完で解決</span>
 </div>
 </div>
 </div>
-
 </div>
-
-<div class="mt-8 bg-slate-900/70 p-6 rounded-lg border border-slate-600">
-<div class="flex items-center gap-2 mb-4">
-<div class="w-3 h-3 bg-red-500 rounded-full"></div>
-<div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
-<div class="w-3 h-3 bg-green-500 rounded-full"></div>
-<span class="ml-4 text-slate-400 text-sm font-mono">result</span>
-</div>
-
-```bash
-aws ec2-instance-connect ssh \
-    --instance-id i-XXXXXXXXXXXXXXXXX \
-    --os-user ec2-user
-```
 
 </div>
 
@@ -395,11 +404,15 @@ aws ec2-instance-connect ssh \
 <span class="ml-4 text-slate-400 text-sm font-mono">~/.config/zeno/config.yml</span>
 </div>
 
+<div class="small-code">
+
 ```yaml
 snippets:
   - keyword: instance-connect
     snippet: aws ec2-instance-connect ssh --instance-id {{instance-id}} --os-user ec2-user
 ```
+
+</div>
 
 </div>
 
@@ -419,7 +432,7 @@ snippets:
 <div class="text-yellow-400 font-mono text-sm mb-4">// input</div>
 
 <div class="font-mono text-green-400 bg-slate-800 p-3 rounded">
-$ instance-connect<span class="tab-key">Tab</span>
+$ instance-connect<span class="tab-key">space</span>
 </div>
 
 </div>
@@ -442,7 +455,7 @@ aws ec2-instance-connect ssh \
 
 ---
 
-# idのコピペが面倒
+# idの確認と入力が面倒
 
 <div class="mt-8 text-center">
 <div class="inline-block bg-purple-900/30 px-4 py-2 rounded border border-purple-600/50">
@@ -470,9 +483,7 @@ completions:
 </div>
 
 ---
-
 layout: center
-
 ---
 
 # fzf補完実践
@@ -568,9 +579,7 @@ ref: <a href="https://github.com/yuki-yano/zeno.zsh?tab=readme-ov-file#configura
 </div>
 
 ---
-
 layout: center
-
 ---
 
 # お気に入りの使い方
@@ -578,6 +587,8 @@ layout: center
 ---
 
 # sshの接続先の補完
+
+<div class="small-code">
 
 ```yaml
 # ~/.config/zeno/config.yml
@@ -591,9 +602,13 @@ completions:
       --prompt: "'ssh > '"
 ```
 
+</div>
+
 ---
 
 # package.jsonのscript実行
+
+<div class="small-code">
 
 ```yaml
 # ~/.config/zeno/config.yml
@@ -610,6 +625,8 @@ completions:
     callback: "awk -F ' = ' '{ print $1 }'"
 ```
 
+</div>
+
 ---
 
 # オススメの設定
@@ -621,8 +638,15 @@ completions:
 <a href="https://www.m3tech.blog/entry/zeno-zsh-abbr" target="_blank" class="text-sm opacity-70">https://www.m3tech.blog/entry/zeno-zsh-abbr</a>
 </div>
 
-<div class="bg-gray-800 p-4 rounded-lg">
+</div>
+
+---
+
+# ターミナルでメモるなら
+
 <strong class="text-purple-400">nbコマンドと組み合わせ</strong>
+
+<div class="small-code">
 
 ```yaml
 completions:
@@ -640,11 +664,13 @@ completions:
 
 </div>
 
-</div>
-
 ---
 
 # gh コマンドと組み合わせ
+
+リポジトリを選んでブラウザで開く
+
+<div class="small-code">
 
 ```yaml
 # ~/.config/zeno/config.yml
@@ -657,21 +683,7 @@ completions:
       --prompt: "'browse repo >'"
 ```
 
-<div class="mt-8 text-center">
-
-<span class="text-2xl">🚀</span>
-
-<div class="mt-4 text-xl">
-CLIがもっと楽しくなる！
 </div>
-
-</div>
-
-<style>
-span {
-  font-size: 1.5em;
-}
-</style>
 
 ---
 
@@ -682,11 +694,6 @@ span {
 <div class="text-lg">
 📚 <strong>公式リポジトリ</strong><br>
 <a href="https://github.com/yuki-yano/zeno.zsh" target="_blank">https://github.com/yuki-yano/zeno.zsh</a>
-</div>
-
-<div class="text-lg">
-🔧 <strong>設定例</strong><br>
-<a href="https://github.com/gamoutatsumi/dotfiles/blob/27265ef95acd4542f37b249b55e94c4403dac47c/dot_config/zeno/config.yml#L224" target="_blank">https://github.com/gamoutatsumi/dotfiles/.../config.yml</a>
 </div>
 
 <div class="text-lg">
