@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, onMounted, onUnmounted } from "vue";
 import * as THREE from 'three';
+import { WAVE_THEMES, getNextTheme, type WaveSettings, type WaveTheme } from '../composables/useOceanThemes';
 
 // Theme props
 const props = defineProps<{
@@ -81,110 +82,13 @@ const colorSchemes = computed(() => {
 });
 const animationTime = ref(0);
 
-// Wave Configuration Types
-interface WaveColors {
-  shallow: string;
-  medium: string;
-  deep: string;
-  background: string;
-  rendererBg: number;
-}
-
-interface WaveEffects {
-  sparkleIntensity: number;
-  glintIntensity: number;
-  causticsIntensity: number;
-  foamIntensity: number;
-  fresnelStrength: number;
-  brightnessMultiplier: number;
-  saturation: number;
-}
-
-interface WaveSettings {
-  colors: WaveColors;
-  effects: WaveEffects;
-  waveStrength: number;
-  opacity: number;
-  animationSpeed: number;
-}
-
-// Wave Theme Configurations
-const waveThemes: Record<string, WaveSettings> = {
-  tropical: {
-    colors: {
-      shallow: '#99e8ff',  // Bright Cyan
-      medium: '#66ccff',   // Light Blue
-      deep: '#3399ff',     // Deep Blue
-      background: '#3838ff',
-      rendererBg: 0x3838ff
-    },
-    effects: {
-      sparkleIntensity: 6.0,
-      glintIntensity: 10.0,
-      causticsIntensity: 0.8,
-      foamIntensity: 0.25,
-      fresnelStrength: 0.7,
-      brightnessMultiplier: 1.7,
-      saturation: 1.3
-    },
-    waveStrength: 1.5,
-    opacity: 0.95,
-    animationSpeed: 0.008
-  },
-  natural: {
-    colors: {
-      shallow: '#4DB8DA',
-      medium: '#3A9BC1',
-      deep: '#2E7BA6',
-      background: '#3A9BC1',
-      rendererBg: 0x3A9BC1
-    },
-    effects: {
-      sparkleIntensity: 4.0,
-      glintIntensity: 6.0,
-      causticsIntensity: 0.6,
-      foamIntensity: 0.15,
-      fresnelStrength: 0.5,
-      brightnessMultiplier: 1.25,
-      saturation: 1.2
-    },
-    waveStrength: 1.2,
-    opacity: 0.92,
-    animationSpeed: 0.008
-  },
-  deep: {
-    colors: {
-      shallow: '#1A5F8F',
-      medium: '#144766',
-      deep: '#0A2A4A',
-      background: '#032A4A',
-      rendererBg: 0x032A4A
-    },
-    effects: {
-      sparkleIntensity: 2.0,
-      glintIntensity: 3.0,
-      causticsIntensity: 0.4,
-      foamIntensity: 0.1,
-      fresnelStrength: 0.3,
-      brightnessMultiplier: 1.0,
-      saturation: 1.0
-    },
-    waveStrength: 1.0,
-    opacity: 0.98,
-    animationSpeed: 0.006
-  }
-};
-
 // Current wave theme
-const currentWaveTheme = ref<keyof typeof waveThemes>('tropical');
-const waveConfig = computed(() => waveThemes[currentWaveTheme.value]);
+const currentWaveTheme = ref<WaveTheme>('tropical');
+const waveConfig = computed(() => WAVE_THEMES[currentWaveTheme.value]);
 
 // Wave theme switching function
 const switchWaveTheme = () => {
-  const themes = Object.keys(waveThemes) as Array<keyof typeof waveThemes>;
-  const currentIndex = themes.indexOf(currentWaveTheme.value);
-  const nextIndex = (currentIndex + 1) % themes.length;
-  currentWaveTheme.value = themes[nextIndex];
+  currentWaveTheme.value = getNextTheme(currentWaveTheme.value);
   console.log('Wave theme switched to:', currentWaveTheme.value);
   
   // Reinitialize water surface with new theme

@@ -1,5 +1,5 @@
 {
-  "name": "slides-2025-08-07-zeno",
+  "name": "slides-2025-08-06-custom-keybord",
   "type": "module",
   "private": true,
   "scripts": {
@@ -14,10 +14,10 @@
     "@slidev/theme-default": "^0.25.0",
     "@slidev/theme-seriph": "^0.25.0",
     "vue": "^3.5.12",
-    "slidev-theme-mozumasu": "file:../../../packages/ui/slidev-theme-mozumasu"
+    "slidev-theme-mozumasu": "file:../../../packages/ui/slidev-theme-mozumasu",
+    "@mozumasu/shared-components": "file:../../../packages/shared-components"
   },
   "dependencies": {
-    "three": "^0.179.1",
-    "@mozumasu/shared-components": "workspace:*"
+    "three": "^0.179.1"
   }
 }

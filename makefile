@@ -9,7 +9,7 @@ help:
 	@echo "  make blog          - ブログ開発"
 	@echo "  make slides        - 全スライド開発"
 	@echo "  make slide-select  - スライド選択開発（fzf）"
-	@echo "  make new-slide [NAME=<name>] - 新しいスライドプロジェクト作成"
+	@echo "  make new-slide <name>  - 新しいスライドプロジェクト作成"
 	@echo ""
 	@echo "🔨 Build & Deploy:"
 	@echo "  make build         - 全プロジェクトビルド"
@@ -49,12 +49,17 @@ slide-select:
 new-slide:
 	@project_name="$(NAME)"; \
 	if [ -z "$$project_name" ]; then \
-		echo "🎯 新しいスライドプロジェクトを作成します"; \
-		echo -n "プロジェクト名を入力してください: "; \
-		read project_name; \
-		if [ -z "$$project_name" ]; then \
-			echo "❌ プロジェクト名が入力されませんでした"; \
-			exit 1; \
+		args=$$(echo "$(MAKECMDGOALS)" | sed 's/new-slide//g' | xargs); \
+		if [ -n "$$args" ]; then \
+			project_name=$$args; \
+		else \
+			echo "🎯 新しいスライドプロジェクトを作成します"; \
+			echo -n "プロジェクト名を入力してください: "; \
+			read project_name; \
+			if [ -z "$$project_name" ]; then \
+				echo "❌ プロジェクト名が入力されませんでした"; \
+				exit 1; \
+			fi; \
 		fi; \
 	fi; \
 	if [ -d "apps/slides/$$project_name" ]; then \
@@ -114,3 +119,7 @@ status:
 	@echo ""
 	@echo "Git status:"
 	@git status --short
+
+# make new-slide <name> の形式で引数を受け取るための特別なルール
+%:
+	@:

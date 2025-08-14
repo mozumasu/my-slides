@@ -1,5 +1,5 @@
 ---
-theme: default
+theme: mozumasu
 title: zeno.zshで始めるCLI無双
 info: |
   ## zeno.zshで始めるCLI無双
